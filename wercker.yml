@@ -20,7 +20,7 @@ build:
             version: 0.14
 deploy:
     steps:
-        - gh-pages:
+        - lukevivier/gh-pages@0.2.1:
             token: $GIT_TOKEN
             domain: glacjay.info
             basedir: public
