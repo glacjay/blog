@@ -1,0 +1,27 @@
+---
+baseUrl: "http://glacjay.info"
+title: "Random Stuff from GlacJAY"
+
+languageCode: "zh-cn"
+metaDataFormat: "yaml"
+theme: "hyde-y"
+disqusShortname: "glacjay"
+
+author:
+    name: "GlacJAY"
+
+permalinks:
+    post: "post/:year-:month-:day/:title/"
+uglyUrls: false
+
+taxonomies:
+    tag: "tags"
+
+params:
+    sidebar: "left"
+    rss: true
+    truncate: true
+    highlight: "solarized_light"
+
+    github: "glacjay"
+    twitter: "glacjay"
