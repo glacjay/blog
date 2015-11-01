@@ -20,7 +20,7 @@ build:
             version: 0.14
 deploy:
     steps:
-        - eyedol/deploy-gh-pages@0.2.1:
+        - gh-pages:
             token: $GIT_TOKEN
             domain: glacjay.info
             basedir: public
