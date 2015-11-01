@@ -18,5 +18,10 @@ build:
                 git submodule update --init --recursive
         - arjen/hugo-build:
             version: 0.14
-            theme: hyde-y
-            flags:
+depoly:
+    steps:
+        - eyedol/deploy-gh-pages@0.2.1:
+            token: $GIT_TOKEN
+            domain: glacjay.info
+            basedir: public
+            repo: glacjay/glacjay.github.com
