@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="修改 OpenVPN 实现加密算法的自动协商  &middot; Random Stuff from GlacJAY ">
 <meta property="og:site_name" content="Random Stuff from GlacJAY"/>
-<meta property="og:url" content="https://glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
+<meta property="og:url" content="https://blog.glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
 <meta property="og:locale" content="zh-cn">
 
 
@@ -42,8 +42,8 @@
 <meta name="twitter:creator" content="@glacjay" />
 <meta name="twitter:title" content="修改 OpenVPN 实现加密算法的自动协商" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
-<meta name="twitter:domain" content="https://glacjay.info/">
+<meta name="twitter:url" content="https://blog.glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
+<meta name="twitter:domain" content="https://blog.glacjay.info/">
   
 
 <script type="application/ld+json">
@@ -63,10 +63,10 @@
 
 
 
-<link rel="canonical" href="https://glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
+<link rel="canonical" href="https://blog.glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://glacjay.info/touch-icon-144-precomposed.png">
-<link href="https://glacjay.info/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://blog.glacjay.info/touch-icon-144-precomposed.png">
+<link href="https://blog.glacjay.info/favicon.png" rel="icon">
 
 <meta name="generator" content="Hugo 0.31.1" />
 
@@ -77,9 +77,9 @@
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://glacjay.info/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://glacjay.info/css/style.css">
-<link rel="stylesheet" href="https://glacjay.info/css/highlight/solarized_light.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/style.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/highlight/solarized_light.css">
 
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
@@ -103,7 +103,7 @@ pre {
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="https://glacjay.info/">
+  <a class="baselink" href="https://blog.glacjay.info/">
   Random Stuff from GlacJAY
 
 </a>
@@ -124,9 +124,9 @@ pre {
 
 
   
-<a href="https://glacjay.info/post">归档</a>
+<a href="https://blog.glacjay.info/post">归档</a>
 
-<a href="https://glacjay.info/tags">标签</a>
+<a href="https://blog.glacjay.info/tags">标签</a>
 
 
 </nav>
@@ -185,9 +185,9 @@ pre {
   &middot; (93 Words)
   <br>
   
-<a class="label" href="https://glacjay.info/tags/openssl">openssl</a>
+<a class="label" href="https://blog.glacjay.info/tags/openssl">openssl</a>
 
-<a class="label" href="https://glacjay.info/tags/openvpn">openvpn</a>
+<a class="label" href="https://blog.glacjay.info/tags/openvpn">openvpn</a>
 
 
 
@@ -232,13 +232,13 @@ key_type-&gt;hmac_length = EVP_MD_size (session-&gt;opt-&gt;key_type-&gt;digest)
   
 
     
-    <a class="prev" href="https://glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/" title="编写自己的 Web 版 Google Reader 客户端">
+    <a class="prev" href="https://blog.glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/" title="编写自己的 Web 版 Google Reader 客户端">
       Previous
     </a>
     
 
     
-    <a class="next" href="https://glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" title="OpenSSL 与 WinSock2 配合使用时遇到的一个坑">
+    <a class="next" href="https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" title="OpenSSL 与 WinSock2 配合使用时遇到的一个坑">
       Next
     </a>
     
@@ -313,7 +313,7 @@ key_type-&gt;hmac_length = EVP_MD_size (session-&gt;opt-&gt;key_type-&gt;digest)
 
 
 
-<script src="https://glacjay.info/js/highlight.pack.js"></script>
+<script src="https://blog.glacjay.info/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

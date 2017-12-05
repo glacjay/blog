@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web on Random Stuff from GlacJAY</title>
-    <link>https://glacjay.info/tags/web/</link>
+    <link>https://blog.glacjay.info/tags/web/</link>
     <description>Recent content in Web on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 19 Jun 2014 00:23:16 +0800</lastBuildDate>
     
-	<atom:link href="https://glacjay.info/tags/web/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/web/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>LoadRunner 中进行 HTTP 测试时使 Keep-Alive 生效的注意事项</title>
-      <link>https://glacjay.info/post/2014-06-19/loadrunner-%E4%B8%AD%E8%BF%9B%E8%A1%8C-http-%E6%B5%8B%E8%AF%95%E6%97%B6%E4%BD%BF-keep-alive-%E7%94%9F%E6%95%88%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+      <link>https://blog.glacjay.info/post/2014-06-19/loadrunner-%E4%B8%AD%E8%BF%9B%E8%A1%8C-http-%E6%B5%8B%E8%AF%95%E6%97%B6%E4%BD%BF-keep-alive-%E7%94%9F%E6%95%88%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
       <pubDate>Thu, 19 Jun 2014 00:23:16 +0800</pubDate>
       
-      <guid>https://glacjay.info/post/2014-06-19/loadrunner-%E4%B8%AD%E8%BF%9B%E8%A1%8C-http-%E6%B5%8B%E8%AF%95%E6%97%B6%E4%BD%BF-keep-alive-%E7%94%9F%E6%95%88%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+      <guid>https://blog.glacjay.info/post/2014-06-19/loadrunner-%E4%B8%AD%E8%BF%9B%E8%A1%8C-http-%E6%B5%8B%E8%AF%95%E6%97%B6%E4%BD%BF-keep-alive-%E7%94%9F%E6%95%88%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
       <description>&lt;p&gt;工作需要，在使用 LoadRunner 进行 HTTP 测试时，为了使每个虚拟用户在不同的循环周期中都能保持长连接，则除了要打开 Keep-Alive 运行时配置（默认打开）之外，还有两个选项需要修改，这两个选项都在运行时配置的「Browser - Browser Simulation」中：&lt;/p&gt;
 
 &lt;ul&gt;
@@ -30,10 +30,10 @@
     
     <item>
       <title>编写自己的 Web 版 Google Reader 客户端</title>
-      <link>https://glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
+      <link>https://blog.glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/</link>
       <pubDate>Thu, 11 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
+      <guid>https://blog.glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/</guid>
       <description>&lt;p&gt;最近花在路上的时间明显变多了，手机就成了我打发这些路上时间的利器。小说神马的看太多也会腻，正好 Google Reader 中也积累了大量的未读文章，因此用手机看看订阅文章就成了一个比较好的选择。&lt;/p&gt;
 
 &lt;p&gt;但多次使用下来，却也发现了很多 Google 原版 Web 界面的不方便之处。Google 提供了两个版本的 Reader 界面给手机，一个是苹果风格的 &lt;code&gt;/i/&lt;/code&gt; 界面，设计得很漂亮，功能也很全，用 Nokia 手机也能看，但太费流量（未证实，只是感觉，大概是因为一次加载了很多的文章吧），而且在网络状况不好的时候，体验不太好。另一个是 &lt;code&gt;/m/&lt;/code&gt; 界面，很简洁，选项不多，但也总有些这样那样的细节另我不太满意，下面详述。然后又去找 Nokia 的 S60v3 客户端软件，总之是没一个喜欢啦。作为一个 Geek （至少是自称），在这种情况下，最佳选择自然就是打造一个自己专属的解决方案啦。&lt;/p&gt;

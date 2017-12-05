@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="OpenVPN 的并发测试方法  &middot; Random Stuff from GlacJAY ">
 <meta property="og:site_name" content="Random Stuff from GlacJAY"/>
-<meta property="og:url" content="https://glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
+<meta property="og:url" content="https://blog.glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
 <meta property="og:locale" content="zh-cn">
 
 
@@ -40,8 +40,8 @@
 <meta name="twitter:creator" content="@glacjay" />
 <meta name="twitter:title" content="OpenVPN 的并发测试方法" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
-<meta name="twitter:domain" content="https://glacjay.info/">
+<meta name="twitter:url" content="https://blog.glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
+<meta name="twitter:domain" content="https://blog.glacjay.info/">
   
 
 <script type="application/ld+json">
@@ -61,10 +61,10 @@
 
 
 
-<link rel="canonical" href="https://glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
+<link rel="canonical" href="https://blog.glacjay.info/post/2011-01-19/openvpn-%E7%9A%84%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://glacjay.info/touch-icon-144-precomposed.png">
-<link href="https://glacjay.info/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://blog.glacjay.info/touch-icon-144-precomposed.png">
+<link href="https://blog.glacjay.info/favicon.png" rel="icon">
 
 <meta name="generator" content="Hugo 0.31.1" />
 
@@ -75,9 +75,9 @@
 <![endif]-->
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://glacjay.info/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://glacjay.info/css/style.css">
-<link rel="stylesheet" href="https://glacjay.info/css/highlight/solarized_light.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/style.css">
+<link rel="stylesheet" href="https://blog.glacjay.info/css/highlight/solarized_light.css">
 
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
@@ -101,7 +101,7 @@ pre {
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="https://glacjay.info/">
+  <a class="baselink" href="https://blog.glacjay.info/">
   Random Stuff from GlacJAY
 
 </a>
@@ -122,9 +122,9 @@ pre {
 
 
   
-<a href="https://glacjay.info/post">归档</a>
+<a href="https://blog.glacjay.info/post">归档</a>
 
-<a href="https://glacjay.info/tags">标签</a>
+<a href="https://blog.glacjay.info/tags">标签</a>
 
 
 </nav>
@@ -183,7 +183,7 @@ pre {
   &middot; (59 Words)
   <br>
   
-<a class="label" href="https://glacjay.info/tags/openvpn">openvpn</a>
+<a class="label" href="https://blog.glacjay.info/tags/openvpn">openvpn</a>
 
 
 
@@ -215,13 +215,13 @@ pre {
   
 
     
-    <a class="prev" href="https://glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/" title="OpenVPN 的初始化过程分析">
+    <a class="prev" href="https://blog.glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/" title="OpenVPN 的初始化过程分析">
       Previous
     </a>
     
 
     
-    <a class="next" href="https://glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/" title="Linux 下有关环境变量与换行符的一个小问题">
+    <a class="next" href="https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/" title="Linux 下有关环境变量与换行符的一个小问题">
       Next
     </a>
     
@@ -296,7 +296,7 @@ pre {
 
 
 
-<script src="https://glacjay.info/js/highlight.pack.js"></script>
+<script src="https://blog.glacjay.info/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

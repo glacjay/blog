@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mac on Random Stuff from GlacJAY</title>
-    <link>https://glacjay.info/tags/mac/</link>
+    <link>https://blog.glacjay.info/tags/mac/</link>
     <description>Recent content in Mac on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 17 Jan 2015 16:40:49 +0800</lastBuildDate>
     
-	<atom:link href="https://glacjay.info/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>我的 MBP SSD 优化过程</title>
-      <link>https://glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</link>
+      <link>https://blog.glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Sat, 17 Jan 2015 16:40:49 +0800</pubDate>
       
-      <guid>https://glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</guid>
+      <guid>https://blog.glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</guid>
       <description>&lt;p&gt;嗯，这次的标题终于没那么长了 ;-)&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -32,11 +32,11 @@
     
     <item>
       <title>用 Python 操作虚拟网卡</title>
-      <link>https://glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</link>
+      <link>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</link>
       <pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid>
-      <description>&lt;p&gt;在我的 &lt;a href=&#34;https://glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/&#34;&gt;XTunnel&lt;/a&gt; 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p&gt;
+      <guid>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid>
+      <description>&lt;p&gt;在我的 &lt;a href=&#34;https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/&#34;&gt;XTunnel&lt;/a&gt; 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p&gt;
 
 &lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Openssl on Random Stuff from GlacJAY</title>
-    <link>https://glacjay.info/tags/openssl/</link>
+    <link>https://blog.glacjay.info/tags/openssl/</link>
     <description>Recent content in Openssl on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 29 Mar 2014 23:06:38 +0800</lastBuildDate>
     
-	<atom:link href="https://glacjay.info/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>OpenSSL 与 WinSock2 配合使用时遇到的一个坑</title>
-      <link>https://glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link>
+      <link>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link>
       <pubDate>Sat, 29 Mar 2014 23:06:38 +0800</pubDate>
       
-      <guid>https://glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid>
+      <guid>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid>
       <description>&lt;p&gt;今天才发现，这里已经两年多没有被照看过了，估计连树都要长出来了吧。&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -28,11 +28,11 @@
     
     <item>
       <title>修改 OpenVPN 实现加密算法的自动协商</title>
-      <link>https://glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/</link>
+      <link>https://blog.glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/</link>
       <pubDate>Sat, 17 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/</guid>
-      <description>&lt;p&gt;由&lt;a href=&#34;https://glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/&#34;&gt;另一篇博&lt;/a&gt;中的分析可知，OpenVPN 中有两个加解密通道。一条是标准的 SSL 协议通道，被 OpenVPN 用于协商自己所用的密钥。这个通道的加密算法当然也是通过 SSL 协议来进行协商的，可以通过 &lt;code&gt;--tls-cipher&lt;/code&gt; 选项来进行配置。另一条是 OpenVPN 自己的加解密通道，用于交换实际的数据，也就是虚拟网卡抓到的 IP 报文。这个通道的加密算法则是通过 &lt;code&gt;--cipher&lt;/code&gt; 和 &lt;code&gt;--auth&lt;/code&gt; 两个选项，分别在通调两端指定的。&lt;/p&gt;
+      <guid>https://blog.glacjay.info/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/</guid>
+      <description>&lt;p&gt;由&lt;a href=&#34;https://blog.glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/&#34;&gt;另一篇博&lt;/a&gt;中的分析可知，OpenVPN 中有两个加解密通道。一条是标准的 SSL 协议通道，被 OpenVPN 用于协商自己所用的密钥。这个通道的加密算法当然也是通过 SSL 协议来进行协商的，可以通过 &lt;code&gt;--tls-cipher&lt;/code&gt; 选项来进行配置。另一条是 OpenVPN 自己的加解密通道，用于交换实际的数据，也就是虚拟网卡抓到的 IP 报文。这个通道的加密算法则是通过 &lt;code&gt;--cipher&lt;/code&gt; 和 &lt;code&gt;--auth&lt;/code&gt; 两个选项，分别在通调两端指定的。&lt;/p&gt;
 
 &lt;p&gt;对于第二条通道的加密算法，必须要同时在两端分别指定一致的选项，有时候不是很方便（当然，我研究的还是 2.1.1 版本的 OpenVPN ，不知道最新的版本还是不是这样）。比如说，我想通过在服务端修改配置，指定加密算法，然后让连接我的客户端自动用同一个算法。最简单的修改思路，就是借用第一条通道中的算法协商机制，从 SSL 对象中取得协商出来的算法。&lt;/p&gt;
 
@@ -41,10 +41,10 @@
     
     <item>
       <title>OpenVPN 的初始化过程分析</title>
-      <link>https://glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</link>
+      <link>https://blog.glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 18 Jan 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</guid>
+      <guid>https://blog.glacjay.info/post/2011-01-18/openvpn-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</guid>
       <description>&lt;p&gt;题外话：Eclipse CDT 很给力，至少在我用起来，比 gVim + Cscope 或者 SourceInsight 要来得给力，推荐一下。&lt;/p&gt;
 
 &lt;p&gt;更准确的来说，是 OpenVPN 的客户端与服务端之间，从协商密钥、到推送配置，以及最后的网卡与路由配置生效，开始进行 IP 报文的传递，这整个的过程。&lt;/p&gt;
@@ -58,10 +58,10 @@
     
     <item>
       <title>OpenVPN 的握手协议分析</title>
-      <link>https://glacjay.info/post/2010-11-22/openvpn-%E7%9A%84%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/</link>
+      <link>https://blog.glacjay.info/post/2010-11-22/openvpn-%E7%9A%84%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/</link>
       <pubDate>Mon, 22 Nov 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2010-11-22/openvpn-%E7%9A%84%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/</guid>
+      <guid>https://blog.glacjay.info/post/2010-11-22/openvpn-%E7%9A%84%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/</guid>
       <description>&lt;p&gt;又是好久没来这儿了啊。&lt;/p&gt;
 
 &lt;p&gt;最近因为工作需要（其实也没需要那么多），一直在断断续续地看 OpenVPN 的代码，终于大概搞清楚了它的握手是怎么个流程了。简单来说的话其实非常的简单，首先在 &lt;code&gt;reliable&lt;/code&gt; 模块中实现了一个可靠的 UDP 报文协议，就是加上超时重传和确认报文的功能；然后用该协议交换一个 Hard Reset 命令，开始握手；最后建立 SSL 对象，并且通过内存 &lt;code&gt;BIO&lt;/code&gt; 在可靠 UDP 协议的基础上转发 OpenSSL 的握手协议报文，通过这个 SSL 连接交换 OpenVPN 自己的密钥。接下来就是用这些密钥，该干嘛干嘛了。&lt;/p&gt;

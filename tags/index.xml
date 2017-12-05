@@ -2,237 +2,237 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Random Stuff from GlacJAY</title>
-    <link>https://glacjay.info/tags/</link>
+    <link>https://blog.glacjay.info/tags/</link>
     <description>Recent content in Tags on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 22 Mar 2009 22:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://glacjay.info/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bison</title>
-      <link>https://glacjay.info/tags/bison/</link>
+      <link>https://blog.glacjay.info/tags/bison/</link>
       <pubDate>Sun, 22 Mar 2009 22:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/bison/</guid>
+      <guid>https://blog.glacjay.info/tags/bison/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>https://glacjay.info/tags/c&#43;&#43;/</link>
+      <link>https://blog.glacjay.info/tags/c&#43;&#43;/</link>
       <pubDate>Sat, 05 Mar 2011 22:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/c&#43;&#43;/</guid>
+      <guid>https://blog.glacjay.info/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compiler</title>
-      <link>https://glacjay.info/tags/compiler/</link>
+      <link>https://blog.glacjay.info/tags/compiler/</link>
       <pubDate>Tue, 26 Jul 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/compiler/</guid>
+      <guid>https://blog.glacjay.info/tags/compiler/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Erlang</title>
-      <link>https://glacjay.info/tags/erlang/</link>
+      <link>https://blog.glacjay.info/tags/erlang/</link>
       <pubDate>Mon, 22 Nov 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/erlang/</guid>
+      <guid>https://blog.glacjay.info/tags/erlang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Firefox</title>
-      <link>https://glacjay.info/tags/firefox/</link>
+      <link>https://blog.glacjay.info/tags/firefox/</link>
       <pubDate>Sat, 23 Apr 2016 10:33:22 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/firefox/</guid>
+      <guid>https://blog.glacjay.info/tags/firefox/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Flex</title>
-      <link>https://glacjay.info/tags/flex/</link>
+      <link>https://blog.glacjay.info/tags/flex/</link>
       <pubDate>Thu, 19 Mar 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/flex/</guid>
+      <guid>https://blog.glacjay.info/tags/flex/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://glacjay.info/tags/go/</link>
+      <link>https://blog.glacjay.info/tags/go/</link>
       <pubDate>Sun, 13 Dec 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/go/</guid>
+      <guid>https://blog.glacjay.info/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Haskell</title>
-      <link>https://glacjay.info/tags/haskell/</link>
+      <link>https://blog.glacjay.info/tags/haskell/</link>
       <pubDate>Tue, 14 Jul 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/haskell/</guid>
+      <guid>https://blog.glacjay.info/tags/haskell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://glacjay.info/tags/linux/</link>
+      <link>https://blog.glacjay.info/tags/linux/</link>
       <pubDate>Sat, 21 May 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/linux/</guid>
+      <guid>https://blog.glacjay.info/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lvs</title>
-      <link>https://glacjay.info/tags/lvs/</link>
+      <link>https://blog.glacjay.info/tags/lvs/</link>
       <pubDate>Sat, 12 Mar 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/lvs/</guid>
+      <guid>https://blog.glacjay.info/tags/lvs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac</title>
-      <link>https://glacjay.info/tags/mac/</link>
+      <link>https://blog.glacjay.info/tags/mac/</link>
       <pubDate>Sat, 17 Jan 2015 16:40:49 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/mac/</guid>
+      <guid>https://blog.glacjay.info/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Network</title>
-      <link>https://glacjay.info/tags/network/</link>
+      <link>https://blog.glacjay.info/tags/network/</link>
       <pubDate>Sun, 22 Jun 2014 01:09:12 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/network/</guid>
+      <guid>https://blog.glacjay.info/tags/network/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Openssl</title>
-      <link>https://glacjay.info/tags/openssl/</link>
+      <link>https://blog.glacjay.info/tags/openssl/</link>
       <pubDate>Sat, 29 Mar 2014 23:06:38 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/openssl/</guid>
+      <guid>https://blog.glacjay.info/tags/openssl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Openvpn</title>
-      <link>https://glacjay.info/tags/openvpn/</link>
+      <link>https://blog.glacjay.info/tags/openvpn/</link>
       <pubDate>Sat, 17 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/openvpn/</guid>
+      <guid>https://blog.glacjay.info/tags/openvpn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Oracle</title>
-      <link>https://glacjay.info/tags/oracle/</link>
+      <link>https://blog.glacjay.info/tags/oracle/</link>
       <pubDate>Wed, 03 Mar 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/oracle/</guid>
+      <guid>https://blog.glacjay.info/tags/oracle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Php</title>
-      <link>https://glacjay.info/tags/php/</link>
+      <link>https://blog.glacjay.info/tags/php/</link>
       <pubDate>Thu, 11 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/php/</guid>
+      <guid>https://blog.glacjay.info/tags/php/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://glacjay.info/tags/python/</link>
+      <link>https://blog.glacjay.info/tags/python/</link>
       <pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/python/</guid>
+      <guid>https://blog.glacjay.info/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ruby</title>
-      <link>https://glacjay.info/tags/ruby/</link>
+      <link>https://blog.glacjay.info/tags/ruby/</link>
       <pubDate>Sat, 21 May 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/ruby/</guid>
+      <guid>https://blog.glacjay.info/tags/ruby/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Shell</title>
-      <link>https://glacjay.info/tags/shell/</link>
+      <link>https://blog.glacjay.info/tags/shell/</link>
       <pubDate>Sat, 05 Mar 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/shell/</guid>
+      <guid>https://blog.glacjay.info/tags/shell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sql</title>
-      <link>https://glacjay.info/tags/sql/</link>
+      <link>https://blog.glacjay.info/tags/sql/</link>
       <pubDate>Tue, 02 Mar 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/sql/</guid>
+      <guid>https://blog.glacjay.info/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ssd</title>
-      <link>https://glacjay.info/tags/ssd/</link>
+      <link>https://blog.glacjay.info/tags/ssd/</link>
       <pubDate>Sat, 17 Jan 2015 16:40:49 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/ssd/</guid>
+      <guid>https://blog.glacjay.info/tags/ssd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vim</title>
-      <link>https://glacjay.info/tags/vim/</link>
+      <link>https://blog.glacjay.info/tags/vim/</link>
       <pubDate>Sun, 13 Dec 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/vim/</guid>
+      <guid>https://blog.glacjay.info/tags/vim/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
-      <link>https://glacjay.info/tags/web/</link>
+      <link>https://blog.glacjay.info/tags/web/</link>
       <pubDate>Thu, 19 Jun 2014 00:23:16 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/web/</guid>
+      <guid>https://blog.glacjay.info/tags/web/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows</title>
-      <link>https://glacjay.info/tags/windows/</link>
+      <link>https://blog.glacjay.info/tags/windows/</link>
       <pubDate>Wed, 18 Jun 2014 22:29:01 +0800</pubDate>
       
-      <guid>https://glacjay.info/tags/windows/</guid>
+      <guid>https://blog.glacjay.info/tags/windows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Xmpp</title>
-      <link>https://glacjay.info/tags/xmpp/</link>
+      <link>https://blog.glacjay.info/tags/xmpp/</link>
       <pubDate>Sat, 19 Dec 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/tags/xmpp/</guid>
+      <guid>https://blog.glacjay.info/tags/xmpp/</guid>
       <description></description>
     </item>
     

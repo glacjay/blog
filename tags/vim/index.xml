@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Random Stuff from GlacJAY</title>
-    <link>https://glacjay.info/tags/vim/</link>
+    <link>https://blog.glacjay.info/tags/vim/</link>
     <description>Recent content in Vim on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 13 Dec 2009 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://glacjay.info/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>让 Vim 在保存时自动调用外部命令进行格式化</title>
-      <link>https://glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</link>
+      <link>https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</link>
       <pubDate>Sun, 13 Dec 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</guid>
+      <guid>https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</guid>
       <description>&lt;p&gt;肯定有许多人遇到过这个问题，也肯定有许多现成的解决方案被发现，可是我没找到（或者说没耐心找）。无所谓，自己找到的话，得到的就不仅仅是最终结果了。&lt;/p&gt;
 
 &lt;p&gt;闲话少说。其实以前也干过类似的事情，就是在保存的时候自动去掉所有的行末空白；不过这个操作使用 Vim 本身的功能就能实现，不需要借助于外部程序，所以只要简单地设一个 &lt;code&gt;BufWrite&lt;/code&gt; 时的自动命令就行了。但当需要借助外部程序的时候，在 &lt;code&gt;BufWrite&lt;/code&gt; 或者 &lt;code&gt;BufWritePre&lt;/code&gt; 或者 &lt;code&gt;FileWritePre&lt;/code&gt; 时执行的自动命令就不行了，老是提示说什么文件本身已更改，是否确定写入。我在这上面反覆试了好多次，才发现是自己没有搞清楚底下到底发生了什么。要让外部程序对文件内容进行格式化（或者其他什么操作。我想调的是 gofmt，顺带一提），首先当然得要那个外部程序能看到你做过的，还没有保存的更改，所以说应该是先写入再操作的，即在 &lt;code&gt;BufWritePost&lt;/code&gt; 的时候执行自动命令。而我一开始就把基本步骤给搞反了。&lt;/p&gt;
