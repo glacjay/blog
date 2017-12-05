@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bison on Random Stuff from GlacJAY</title>
+    <link>https://glacjay.info/tags/bison/</link>
+    <description>Recent content in Bison on Random Stuff from GlacJAY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 22 Mar 2009 22:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://glacjay.info/tags/bison/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MiniJava 语法中的 non-LALR(1) 的部分及用 Bison 的解决方案</title>
+      <link>https://glacjay.info/post/2009-03-22/minijava-%E8%AF%AD%E6%B3%95%E4%B8%AD%E7%9A%84-non-lalr1-%E7%9A%84%E9%83%A8%E5%88%86%E5%8F%8A%E7%94%A8-bison-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Sun, 22 Mar 2009 22:00:00 +0000</pubDate>
+      
+      <guid>https://glacjay.info/post/2009-03-22/minijava-%E8%AF%AD%E6%B3%95%E4%B8%AD%E7%9A%84-non-lalr1-%E7%9A%84%E9%83%A8%E5%88%86%E5%8F%8A%E7%94%A8-bison-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;p&gt;我正在看&lt;a href=&#34;http://www.cs.princeton.edu/~appel/modern/java/&#34;&gt;虎书&lt;/a&gt;，在这本书中所给出的那个 &lt;a href=&#34;http://www.cambridge.org/us/features/052182060X/&#34;&gt;MiniJava&lt;/a&gt; 语言的语法并不是 LALR(1) 语法，因此在某些情况下，所生成的语法分析器会对正确的输入给出语法解析错误。不过 Bison 提供了一个简单而又强大的&lt;a href=&#34;http://www.gnu.org/software/bison/manual/html_mono/bison.html#Generalized-LR-Parsing&#34;&gt;解决方案&lt;/a&gt;，可以轻易的解决掉这个问题。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>对 Bison 手册中的 C&#43;&#43; 的例子的总结</title>
+      <link>https://glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 19 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;注意，我用的软件版本为：Bison - 2.4.1，Flex - 2.5.35 。至于老的版本会怎样我就不深究了。工具不是重点。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;%skeleton &amp;quot;lalr1.cc&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;%language &amp;quot;c++&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;来代替了，其中参数 &amp;ldquo;c++&amp;rdquo; 不区分大小写。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bison 中的 Prologue 的格式变迁</title>
+      <link>https://glacjay.info/post/2009-03-18/bison-%E4%B8%AD%E7%9A%84-prologue-%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8F%98%E8%BF%81/</link>
+      <pubDate>Wed, 18 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://glacjay.info/post/2009-03-18/bison-%E4%B8%AD%E7%9A%84-prologue-%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8F%98%E8%BF%81/</guid>
+      <description>&lt;p&gt;今天在用 Bison 手册中的 C++ 例子作为一个编译器前端实现的起点时发现，这个官方示例居然编译通不过，具体错误为在 Bison 生成的头文件中，没有 Driver 类的声明。按照 POSIX Yacc 标准，位于 &lt;code&gt;%union&lt;/code&gt; 块之前的 Prologue 区中的代码，应该会被拷到头文件中的啊，于是 google 半天，在某个地方的 Bison ChangeLog 中找到了线索。&lt;/p&gt;
+
+&lt;p&gt;原来，POSIX Yacc 确实应该符合上述行为，可是 Bison 这家伙为了统一性，从 2.3a 版开始，就把所有 Prologue 中的代码，不管是 %union 前的还是之后的，统统只拷到实现文件中而不管头文件了。而为了对应不同的需求，又新增了一套 Prologue 语法，就是 &lt;code&gt;%before-header&lt;/code&gt; 等四个新的 directive。好吧，这样也不错，以显式的统一格式的声明代替了可能会让人抓狂的隐规则。遂试之，结果告诉我说语法错误。接着往上看 ChangeLog 才发现，到了 2.3b 就又改了，把 &lt;code&gt;%before-header&lt;/code&gt; 改成了 &lt;code&gt;%code&lt;/code&gt; 之类的。这回终于没问题了。&lt;/p&gt;
+
+&lt;p&gt;我说，这也太不厚道了吧，这种兼容性改动，我在它的文档里面扒了半天都没看到半个字，而且还是出现在流行度这么高的软件中。于是深刻体会到「错文档不如无文档」的道理啊。由此看来，要做好软件还是需要有相当的责任感的啊。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
