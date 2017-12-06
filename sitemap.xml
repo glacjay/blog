@@ -183,6 +183,11 @@
   </url>
   
   <url>
+    <loc>https://blog.glacjay.info/post/2009-01-01/hello-world/</loc>
+    <lastmod>2009-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/tags/bison/</loc>
     <lastmod>2009-03-22T22:00:00+00:00</lastmod>
     <priority>0</priority>
