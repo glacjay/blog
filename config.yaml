@@ -1,10 +1,11 @@
 ---
 baseUrl: "https://blog.glacjay.info/"
 title: "Random Stuff from GlacJAY"
+author: "GlacJAY"
 
 languageCode: "zh-cn"
 metaDataFormat: "yaml"
-theme: "hyde-y"
+theme: "blackburn"
 disqusShortname: "glacjay"
 
 author:
@@ -17,11 +18,27 @@ uglyUrls: false
 taxonomies:
     tag: "tags"
 
+menu:
+    main:
+        -   name: "归档"
+            weight: 1
+            pre: "<i class='fa fa-list fa-fw'></i>"
+            identifier: "archive"
+            url: "/post/"
+        -   name: "标签"
+            weight: 2
+            pre: "<i class='fa fa-tags fa-fw'></i>"
+            identifier: "tags"
+            url: "/tags/"
+
 params:
     sidebar: "left"
+    brand: "GlacJAY"
     rss: true
     truncate: true
+    dateFormat: "2006-01-02 15:04"
     highlight: "solarized_light"
 
+social:
     github: "glacjay"
     twitter: "glacjay"

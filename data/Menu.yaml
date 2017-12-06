@@ -1,9 +1,0 @@
-posts:
-    Name: "归档"
-    Title: "show list of posts"
-    URL: "/post"
-
-tags:
-    Name: "标签"
-    Title: "show list of tags"
-    URL: "/tags"
