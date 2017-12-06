@@ -6,10 +6,6 @@ author: "GlacJAY"
 languageCode: "zh-cn"
 metaDataFormat: "yaml"
 theme: "blackburn"
-disqusShortname: "glacjay"
-
-author:
-    name: "GlacJAY"
 
 permalinks:
     post: "post/:year-:month-:day/:title/"
@@ -37,7 +33,8 @@ params:
     rss: true
     truncate: true
     dateFormat: "2006-01-02 15:04"
-    highlight: "solarized_light"
+    highlightjs: "solarized_light"
+    disqus: "glacjay"
 
 social:
     github: "glacjay"
