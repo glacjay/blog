@@ -45,16 +45,16 @@ set WCECOMPAT=D:\program\wcecompat
 
 运行命令
 
-```
-D:\program\wcecompat>perl config.pl
+``` cmd
+D:\program\wcecompat> perl config.pl
 ```
 
 这样会生成需要的 `makefile` 文件，不过还不能直接用它来编译，要手动改一下，删掉或注释掉其中的 `src/winmain.cpp \` 这一行，不然后面链进我们的程序时会报找不到 WinMain 所需的 `main` 函数这个错（大概是这样说的）。
 
 然后运行命令
 
-```
-D:\program\wcecompat>nmake
+``` cmd
+D:\program\wcecompat> nmake
 ```
 
 开始编译。完成之后，就会在 `lib` 目录中生成两个库文件 `wcecompat.lib` 和 `wcecompatex.lib` ，都是静态链接库。
@@ -63,17 +63,17 @@ D:\program\wcecompat>nmake
 
 还是同一个命令行窗口，进入 OpenSSL 的解压目录，我的是 `D:\program\openssl-0.9.8e` 。根据 `INSTALL.WCE` 文件中的说明，运行下列命令进行编译：
 
-```
-D:\program\openssl-0.9.8e>perl Configure VC-CE
+``` cmd
+D:\program\openssl-0.9.8e> perl Configure VC-CE
 ...
-D:\program\openssl-0.9.8e>ms\do_ms.bat
+D:\program\openssl-0.9.8e> ms\do_ms.bat
 ...
 ```
 
 这一步完成之后，打开生成的 `ms\ce.mak` 文件，把第 `19` 行 `CFLAG` 的变量定义中的 `/WX` 选项给删掉，不然后面有编译警告会被当成错误，从而编译失败。
 
-```
-D:\program\openssl-0.9.8e>nmake -f ms\ce.mak
+``` cmd
+D:\program\openssl-0.9.8e> nmake -f ms\ce.mak
 ...
 ```
 

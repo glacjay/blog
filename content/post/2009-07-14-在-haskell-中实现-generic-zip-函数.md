@@ -20,7 +20,7 @@ tags:
 
 那要怎么用嗫，也不是很麻烦啦，像这样就可以了：
 
-```
+``` haskell
 *Main> (,) `map` [1,2,3] `z` "abc"
 [(1,'a'),(2,'b'),(3,'c')]
 *Main> (,,) `map` [1,2,3] `z` "abc" `z` [Nothing, Just False, Just True]
@@ -31,7 +31,7 @@ tags:
 
 还有更好玩的哦，如果再加上[上一篇博]({{< relref "post/2009-05-06-haskell-中的可变长参数列表.md" >}})中的不定参函数的话呢：
 
-```
+``` haskell
 *Main> buildList `map` [1,2,3] `z` [4,5,6] :: [[Int]]
 [[1,4],[2,5],[3,6]]
 *Main> buildList `map` [1,2,3] `z` [4,5,6] `z` [7,8,9] :: [[Int]]

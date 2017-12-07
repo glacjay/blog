@@ -61,13 +61,13 @@ $ sqlplus username/password@test
 
 这个命令可以连接数据库。这种参数格式就是上面提到的 `TNSNAMES` 方式，而 `EZCONNECT` 方式则是下面的样子（这种方式就不需要在 `tnsnames.ora` 文件中进行配置了）：
 
-```
+``` plain
 $ sqlplus username/password@192.168.0.2:1521/test
 ```
 
 成功之后可以试试下面的 SQL 语句：
 
-```
+``` sql
 > select * from some_table;
 ```
 

@@ -7,6 +7,10 @@ languageCode: "zh-cn"
 metaDataFormat: "yaml"
 theme: "blackburn"
 
+pygmentsOptions: "linenos=table"
+pygmentsCodeFences: true
+pygmentsStyle: "manni"
+
 permalinks:
     post: "post/:year-:month-:day/:title/"
 uglyUrls: false
@@ -33,7 +37,6 @@ params:
     rss: true
     truncate: true
     dateFormat: "2006-01-02 15:04"
-    highlightjs: "solarized_light"
     disqus: "glacjay"
 
 social:
