@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -238,47 +233,53 @@
 <p></p>
 
 <p>那么，就让我们来看一下 gcc 在 C 语言中是怎样处理各种类型（包括 <code>long long</code> 等）的整数的吧。当然，这次还是针对 32 位的 x86 架构：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">15</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">16</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">17</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">18</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">19</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo1</span>(<span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">short</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo2</span>(<span style="color:#078;font-weight:bold">signed</span> <span style="color:#078;font-weight:bold">short</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo3</span>(<span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">int</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo4</span>(<span style="color:#078;font-weight:bold">signed</span> <span style="color:#078;font-weight:bold">int</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo5</span>(<span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">long</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo6</span>(<span style="color:#078;font-weight:bold">signed</span> <span style="color:#078;font-weight:bold">long</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo7</span>(<span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">long</span> <span style="color:#078;font-weight:bold">long</span> a) {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo8</span>(<span style="color:#078;font-weight:bold">signed</span> <span style="color:#078;font-weight:bold">long</span> <span style="color:#078;font-weight:bold">long</span> a) {}
 
-<pre><code class="language-c">void foo1(unsigned short a) {}
-void foo2(signed short a) {}
-void foo3(unsigned int a) {}
-void foo4(signed int a) {}
-void foo5(unsigned long a) {}
-void foo6(signed long a) {}
-void foo7(unsigned long long a) {}
-void foo8(signed long long a) {}
-
-int main()
+<span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>()
 {
-  foo1(1);
-  foo2(2);
-  foo3(3);
-  foo4(4);
-  foo5(5);
-  foo6(6);
-  foo7(7);
-}
-</code></pre>
-
+  foo1(<span style="color:#f60">1</span>);
+  foo2(<span style="color:#f60">2</span>);
+  foo3(<span style="color:#f60">3</span>);
+  foo4(<span style="color:#f60">4</span>);
+  foo5(<span style="color:#f60">5</span>);
+  foo6(<span style="color:#f60">6</span>);
+  foo7(<span style="color:#f60">7</span>);
+}</code></pre></td></tr></table>
+</div>
+</div>
 <p>我略掉了大部分 gcc 所生成的代码，如果愿意，你可以自己执行 <code>gcc -S</code> 命令来看。有趣的部分是对各个函数的调用，其生成的代码如下：</p>
-
-<pre><code class="language-nasm">        movl    $1, (%esp)
-        call    foo1
-        movl    $2, (%esp)
-        call    foo2
-        movl    $3, (%esp)
-        call    foo3
-        movl    $4, (%esp)
-        call    foo4
-        movl    $5, (%esp)
-        call    foo5
-        movl    $6, (%esp)
-        call    foo6
-        movl    $7, (%esp)
-        movl    $0, 4(%esp)
-        call    foo7
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">15</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm">        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">1</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo1</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">2</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo2</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">3</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo3</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">4</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo4</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">5</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo5</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">6</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo6</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">7</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">0</span>, <span style="color:#f60">4</span>(<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo7</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>换句话说，至少在处理函数调用的时候，gcc 都会把各种整数类型统一作为 32 位的整型来处理，除了 <code>long long</code> 类型之外。因此，我们可以暂时忘掉 <code>long long</code> 类型，而只处理 32 位以内的整数值，这样我们就可以忽略类型处理相关的东西了。</p>
 
 <p>懒惰还真是一种病啊。</p>
@@ -290,25 +291,34 @@ int main()
 <p>那么，我们真正要做的修改有哪些呢？</p>
 
 <p>在方法 <code>#get_arg</code> 中，在处理字符串常量之前，加入如下代码：</p>
-
-<pre><code class="language-ruby">    return [:int, a] if (a.is_a?(Fixnum))
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    <span style="color:#069;font-weight:bold">return</span> <span style="color:#555">[</span><span style="color:#fc3">:int</span>, a<span style="color:#555">]</span> <span style="color:#069;font-weight:bold">if</span> (a<span style="color:#555">.</span>is_a?(<span style="color:#360">Fixnum</span>))</code></pre></td></tr></table>
+</div>
+</div>
 <p>在方法 <code>#compile_exp</code> 中，我们用如下代码来处理 <code>#get_arg</code> 的返回值：</p>
-
-<pre><code class="language-ruby">    elsif atype == :int then param = &quot;$#{aparam}&quot;
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    <span style="color:#069;font-weight:bold">elsif</span> atype <span style="color:#555">==</span> <span style="color:#fc3">:int</span> <span style="color:#069;font-weight:bold">then</span> param <span style="color:#555">=</span> <span style="color:#c30">&#34;$</span><span style="color:#a00">#{</span>aparam<span style="color:#a00">}</span><span style="color:#c30">&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后，就完事了。就这么简单。</p>
 
 <p>然后就是测试啦：</p>
-
-<pre><code class="language-ruby">prog = [:do,
-  [:printf,&quot;'hello world' takes %ld bytes\n&quot;,[:strlen, &quot;hello world&quot;]],
-  [:printf,&quot;The above should show _%ld_ bytes\n&quot;,11]
-]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">prog <span style="color:#555">=</span> <span style="color:#555">[</span><span style="color:#fc3">:do</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:printf</span>,<span style="color:#c30">&#34;&#39;hello world&#39; takes %ld bytes</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,<span style="color:#555">[</span><span style="color:#fc3">:strlen</span>, <span style="color:#c30">&#34;hello world&#34;</span><span style="color:#555">]]</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:printf</span>,<span style="color:#c30">&#34;The above should show _%ld_ bytes</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,<span style="color:#f60">11</span><span style="color:#555">]</span>
+<span style="color:#555">]</span></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="插曲-针对原生数据类型的一些思考">插曲：针对原生数据类型的一些思考</h2>
 
 <p>“纯”面向对象类型的语言很棒，但并不是对底层的代码生成器而言的，我想。不管你是否想要实现一个纯的面向对象语言，我仍然坚信，首先实现原生的数据类型和其操作，是非常有价值的。你可以在后面的阶段再来考虑是否要对用户隐藏它们，或者是让它们看起来像是对象，或者是透明地在它们和对象之间执行自动转换的操作，等等。</p>
@@ -320,31 +330,37 @@ int main()
 <p>如果没有某种形式的条件逻辑支持的话，我们的语言是没有太大用处的。几乎所有有用的语言都支持某种形式的 <code>if .. then .. else</code> 构造。现在，我们要实现的是像 <code>[:if, condition, if-arm, else-arm]</code> 这样的构造，而且是以 C 语言的形式来实现。也就是说， <code>0</code> 和空指针都表示假，其他值则都为真。</p>
 
 <p>仍然是一个简单的例子：</p>
-
-<pre><code class="language-c">void foo() {}
-void bar() {}
-int main()
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo</span>() {}
+<span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">bar</span>() {}
+<span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>()
 {
-  if (baz()) {
+  <span style="color:#069;font-weight:bold">if</span> (baz()) {
     foo();
-  } else {
+  } <span style="color:#069;font-weight:bold">else</span> {
     bar();
   }
-}
-</code></pre>
-
+}</code></pre></td></tr></table>
+</div>
+</div>
 <p>相关的汇编输出：</p>
-
-<pre><code class="language-nasm">        call    baz
-        testl   %eax, %eax
-        je      .L6
-        call    foo
-        jmp     .L10
-.L6:
-        call    bar
-.L10:
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">8</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm">        <span style="color:#c0f">call</span>    <span style="color:#033">baz</span>
+        <span style="color:#c0f">testl</span>   <span style="color:#555">%</span><span style="color:#366">eax</span>, <span style="color:#555">%</span><span style="color:#366">eax</span>
+        <span style="color:#c0f">je</span>      <span style="color:#033">.L6</span>
+        <span style="color:#c0f">call</span>    <span style="color:#033">foo</span>
+        <span style="color:#c0f">jmp</span>     <span style="color:#033">.L10</span>
+<span style="color:#99f">.L6:</span>
+        <span style="color:#c0f">call</span>    <span style="color:#033">bar</span>
+<span style="color:#99f">.L10:</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>对于大多数的语言和架构来说，这都是一个编译 <code>if .. then .. else</code> 时会采用的通用模板：</p>
 
 <ul>
@@ -360,56 +376,68 @@ int main()
 <p>其他还有很多不同的变种，比如根据条件表达式取值的概率，或者某个架构中是否跳转的执行代价，进而调整两个子句的顺序等。不过就目前来说，上面的方法已经足够了。</p>
 
 <p>总之，编译的方法还是很简单的，应该说就是以上所述流程的直译：</p>
-
-<pre><code class="language-ruby">  def ifelse cond, if_arg,else_arm
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">ifelse</span> cond, if_arg,else_arm
     compile_exp(cond)
-    puts &quot;\ttestl\t%eax, %eax&quot;
-    @seq += 2
-    else_arm_seq = @seq - 1
-    end_if_arm_seq = @seq
-    puts &quot;\tje\t.L#{else_arm_seq}&quot;
+    <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">testl</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">%eax, %eax&#34;</span>
+    @seq <span style="color:#555">+=</span> <span style="color:#f60">2</span>
+    <span style="color:#555"></span>else_arm_seq <span style="color:#555">=</span> @seq <span style="color:#555">-</span> <span style="color:#f60">1</span>
+    <span style="color:#555"></span>end_if_arm_seq <span style="color:#555">=</span> @seq
+    <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">je</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">.L</span><span style="color:#a00">#{</span>else_arm_seq<span style="color:#a00">}</span><span style="color:#c30">&#34;</span>
     compile_exp(if_arm)
-    puts &quot;\tjmp\t.L#{end_if_arm_seq}&quot;
-    puts &quot;.L#{else_arm_seq}:&quot;
+    <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">jmp</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">.L</span><span style="color:#a00">#{</span>end_if_arm_seq<span style="color:#a00">}</span><span style="color:#c30">&#34;</span>
+    <span style="color:#366">puts</span> <span style="color:#c30">&#34;.L</span><span style="color:#a00">#{</span>else_arm_seq<span style="color:#a00">}</span><span style="color:#c30">:&#34;</span>
     compile_exp(else_arm)
-    puts &quot;.L#{end_if_arm_seq}:&quot;
-  end
-</code></pre>
-
+    <span style="color:#366">puts</span> <span style="color:#c30">&#34;.L</span><span style="color:#a00">#{</span>end_if_arm_seq<span style="color:#a00">}</span><span style="color:#c30">:&#34;</span>
+  <span style="color:#069;font-weight:bold">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这段代码应该很易懂的，其实就是对所有子句 &ndash; 条件， <code>then</code> 子句，以及 <code>else</code> 子句 &ndash; 分别调用 <code>#compile_exp</code> 方法，并在其间插入所需的辅助指令，同时用 <code>@seq</code> 成员来生成所需的标号。</p>
 
 <p>为了使其生效，我们在 <code>#compile_exp</code> 方法中的 <code>return defun ...</code> 之后插入如下代码：</p>
-
-<pre><code class="language-ruby">    return ifelse(*exp[1..-1]) if (exp[0] == :if)
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    <span style="color:#069;font-weight:bold">return</span> ifelse(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> (exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:if</span>)</code></pre></td></tr></table>
+</div>
+</div>
 <p>下面是一个简单的测试：</p>
-
-<pre><code class="language-ruby">prog = [:do,
-  [:if, [:strlen,&quot;&quot;],
-    [:puts, &quot;IF: The string was not empty&quot;],
-    [:puts, &quot;ELSE: The string was empty&quot;]
-  ],
-  [:if, [:strlen,&quot;Test&quot;],
-    [:puts, &quot;Second IF: The string was not empty&quot;],
-    [:puts, &quot;Second IF: The string was empty&quot;]
-  ]
-]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">prog <span style="color:#555">=</span> <span style="color:#555">[</span><span style="color:#fc3">:do</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:if</span>, <span style="color:#555">[</span><span style="color:#fc3">:strlen</span>,<span style="color:#c30">&#34;&#34;</span><span style="color:#555">]</span>,
+    <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;IF: The string was not empty&#34;</span><span style="color:#555">]</span>,
+    <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;ELSE: The string was empty&#34;</span><span style="color:#555">]</span>
+  <span style="color:#555">]</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:if</span>, <span style="color:#555">[</span><span style="color:#fc3">:strlen</span>,<span style="color:#c30">&#34;Test&#34;</span><span style="color:#555">]</span>,
+    <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;Second IF: The string was not empty&#34;</span><span style="color:#555">]</span>,
+    <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;Second IF: The string was empty&#34;</span><span style="color:#555">]</span>
+  <span style="color:#555">]</span>
+<span style="color:#555">]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><a href="http://www.hokstad.com/static/compiler/step5.rb">这里是最终结果</a>。</p>
 
 <p>如往常般，执行的方法如下：</p>
-
-<pre><code class="language-plain">$ ruby step5.rb &gt;step5.s
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ ruby step5.rb &gt;step5.s
 $ make step5
 cc   step5.s   -o step5
 $ ./step5
 ELSE: The string was empty
 Second IF: The string was not empty
-$
-</code></pre>
-
+$</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="有关循环的一些思考">有关循环的一些思考</h2>
 
 <p>非条件循环是很容易实现的，不过我们需要实现它吗？显然不需要。我们已经可以用递归来实现循环了，又何必要乱加东西呢？</p>
@@ -417,14 +445,17 @@ $
 <p>不过，要令它工作良好，我们还需要实现尾递归优化，可是我现在还没有做好准备。尾递归优化，或者更一般的形式 &ndash; 尾调用优化 &ndash; 所说的情况是，在一个函数的末尾，调用了一个需要相同或者更少个数参数的函数，并返回它所返回的值。在这种情况下，你可以将当前函数的调用栈，复用给被调用的函数来使用，并且是通过 <code>jmp</code> 而不是 <code>call</code> 来调用这个函数。 <code>jmp</code> 指令不会在堆栈中压入一个新的返回地址，因此当这个被调用的函数返回，返回到的就是当前函数的调用者那里，而不是当前的这个函数。</p>
 
 <p>这就同时完成了几件事情：首先，也是最重要的，就是堆栈不再会随着调用而增长了。其次，我们能够省掉几个指令周期。有了尾调用优化，再配合其他几个优化之后，你就可以这样来写循环，而不用担心堆栈溢出的问题了：</p>
-
-<pre><code class="language-ruby">[:defun, :loop, [], [:do,
-  [:puts, &quot;I am all loopy&quot;],
-  [:loop]
-],
-[:loop]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#555">[</span><span style="color:#fc3">:defun</span>, <span style="color:#fc3">:loop</span>, <span style="color:#555">[]</span>, <span style="color:#555">[</span><span style="color:#fc3">:do</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;I am all loopy&#34;</span><span style="color:#555">]</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:loop</span><span style="color:#555">]</span>
+<span style="color:#555">]</span>,
+<span style="color:#555">[</span><span style="color:#fc3">:loop</span><span style="color:#555">]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>换句话说，尾调用优化意味着，对任何形如 <code>(defun foo () (do bar foo))</code> 的函数来说，堆栈的使用率都会从原来的成比例增长减少为定值了。</p>
 
 <p>当前的版本已经可以编译上面的代码了，不过它会很快用完堆栈并且崩溃掉的。不是很令人满意啊。</p>
@@ -436,10 +467,13 @@ $
 <p>不管怎样，我们现在可以写出一个无限循环了⋯⋯不是太有用，不是吗？</p>
 
 <p>当然，我们其实也已经可以写 <code>while</code> 循环了：</p>
-
-<pre><code class="language-cl">(defun some-while-loop () (if condition (some-while-loop) ()))
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cl" data-lang="cl"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cl" data-lang="cl">(<span style="color:#033">defun</span> <span style="color:#033">some-while-loop</span> () (<span style="color:#033">if</span> <span style="color:#033">condition</span> (<span style="color:#033">some-while-loop</span>) ()))</code></pre></td></tr></table>
+</div>
+</div>
 <p>看起来不是太好，不过确实可以工作。但看起来总归还是太丑了，所以我们总归还是要实现一个正尔八经的 <code>while</code> 循环的。</p>
 
 <p>我不是一个 Lisp 程序员。我没办法处理那么多的括号⋯⋯不过 Lisp 的语法确实很适合于一门还没有语法的语言。到了一定的阶段之后，我会实现一个完整的解析器的。也许是出于偶然，我已经实现的和将要实现的很多东西在某种程度上来说都是取自于 Lisp 的，至少看起来是这样的。如果你能适应 Lisp 的语法的话，这个语言还是非常强大的。就算你不打算用它来开发你的程序，好好地学一下这门语言也是非常值得的。</p>

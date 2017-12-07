@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -226,20 +221,23 @@
 <p>要在 Haskell 中实现可变长参数列表，就是利用其 Typeclass 系统，对函数进行最终结果类型和中间函数类型之间的重载，然后利用 Haskell 的类型推导机制为我们自动调用合适的重载版本。嗯，就这么简单。下面是一个最简单的例子：</p>
 
 <p></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#555">|</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">a</span> <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildList&#39;</span> <span style="color:#000;font-weight:bold">::</span> [<span style="color:#c0f">a</span>] <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>
 
-<pre><code class="language-haskell">class BuildList a r | r -&gt; a where
-    buildList' :: [a] -&gt; r
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> [<span style="color:#c0f">a</span>] <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildList&#39;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">id</span>
 
-instance BuildList a [a] where
-    buildList' = id
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> (<span style="color:#c0f">a</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>) <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildList&#39;</span> <span style="color:#c0f">as</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\a</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">buildList&#39;</span> <span style="color:#555">$</span> <span style="color:#c0f">as</span> <span style="color:#555">++</span> [<span style="color:#c0f">a</span>]
 
-instance BuildList a r =&gt; BuildList a (a -&gt; r) where
-    buildList' as = \a -&gt; buildList' $ as ++ [a]
-
-buildList :: BuildList a r =&gt; r
-buildList = buildList' []
-</code></pre>
-
+<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#c0f">r</span>
+<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">buildList&#39;</span> <span style="color:#078;font-weight:bold">[]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>好吧，这个例子我是从<a href="http://okmij.org/ftp/Haskell/vararg-fn.lhs">这里</a>看到的，或者说我就是从这里学到这个东东的。在此友情提醒那些和我一样不怎么有耐心的家伙一句，原理解释在后面。</p>
 
 <p>按照我的想法，上面这个例子应该还可以进一步简化以去掉对两个语言扩展的依赖的，就是写一个 <code>buildIntList</code> 的特化版本，结果不幸地失败了。有知道的大大告诉我一声，在下洗耳恭听。</p>
@@ -247,34 +245,43 @@ buildList = buildList' []
 <hr />
 
 <p><strong>Update</strong>: 不需要大大们来告诉我了，我已经知道该怎么简化上面的这个 <code>buildList</code> 了，不过简化后的版本是 <code>buildCharList</code> ，也就是 <code>buildString</code> 啦，而不是原先说的 <code>buildIntList</code> 。先看实现：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildString&#39;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>
 
-<pre><code class="language-haskell">class BuildString r where
-    buildString' :: String -&gt; r
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildString</span> [<span style="color:#078;font-weight:bold">Char</span>] <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildString&#39;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">id</span>             <span style="color:#09f;font-style:italic">-- or whatever you want</span>
 
-instance BuildString [Char] where
-    buildString' = id             -- or whatever you want
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildString</span> (<span style="color:#078;font-weight:bold">Char</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>) <span style="color:#069;font-weight:bold">where</span>
+    <span style="color:#c0f">buildString&#39;</span> <span style="color:#c0f">cs</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\c</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">buildString&#39;</span> <span style="color:#555">$</span> <span style="color:#c0f">cs</span> <span style="color:#555">++</span> [<span style="color:#c0f">c</span>]
 
-instance BuildString r =&gt; BuildString (Char -&gt; r) where
-    buildString' cs = \c -&gt; buildString' $ cs ++ [c]
-
-buildString :: BuildString r =&gt; r
-buildString = buildString' []
-</code></pre>
-
+<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#c0f">r</span>
+<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">buildString&#39;</span> <span style="color:#078;font-weight:bold">[]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样就把对 <code>MultiParameterTypeClass</code> 和 <code>FunctionalDependency</code> 的依赖给简化掉了，可是又同时增加了对 <code>-XFlexibleInstances</code> 选项的需要（因为 <code>instance BuildString [Char] where</code> 这一行；如果你想把 <code>[Char]</code> 写成 <code>String</code> 的话，就还要再加上个 <code>-XTypeSynonymInstances</code>），暂时想不到更好的办法了。</p>
 
 <p>另外，关于我在这里为什么要用 <code>Char</code> 而不是 <code>Int</code> 呢，是因为 <code>'a'</code> 的类型很明确，就是 <code>Char</code> ，而 <code>5</code> 的类型就不明确了，因此，你可以这样调用 <code>buildString</code> ：</p>
-
-<pre><code>*TestVarargs&gt; buildString 'a' 'b' 'c' :: String
-&quot;abc&quot;
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildString</span> <span style="color:#c30">&#39;a&#39;</span> <span style="color:#c30">&#39;b&#39;</span> <span style="color:#c30">&#39;c&#39;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span>
+<span style="color:#c30">&#34;abc&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>可是却必须这样调用 <code>buildIntList</code> ：</p>
-
-<pre><code>*TestVarargs&gt; buildIntList (1::Int) (2::Int) (3::Int) :: [Int]
-[1,2,3]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildIntList</span> (<span style="color:#f60">1</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">2</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">3</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) <span style="color:#000;font-weight:bold">::</span> [<span style="color:#078;font-weight:bold">Int</span>]
+[<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>]</code></pre></td></tr></table>
+</div>
+</div>
 <p>虽然在我看来，GHC 应该可以倒推出每个参数的类型的，可他就是不认，我暂时也没什么办法。</p>
 
   

@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -226,25 +221,31 @@
 <p>当我们要把一组语句定义成一个宏，并希望像用一条语句那样来使用它的时候，我们就可以这样做：</p>
 
 <p></p>
-
-<pre><code class="language-cpp">#define MACROX \
-    do { \
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#099">#define MACROX \
+</span><span style="color:#099"></span>    <span style="color:#069;font-weight:bold">do</span> { \
         statement1 \
         statement2 \
         ... \
-    } while (0)
-</code></pre>
-
+    } <span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">0</span>)</code></pre></td></tr></table>
+</div>
+</div>
 <p>之后，我们只要在调用方写 <code>MACROX;</code> 就可以了。之所以不能简单的用花括号把这一组语句括起来，是为了防止扰乱 <code>if</code> 语句中的 <code>else</code> 子句的匹配问题。嗯，确实是个不错的主意啊，直到我遇到了一个，嗯，也许只有我才会遇到的问题。那就是，我在这组语句中，不能用 <code>break</code> 和 <code>continue</code> 。是不是觉得这需求蛮诡异的，呵呵，连我自己都觉得，不过这是我在重构一些相似的循环体时遇到的。但总之，我是找到了另外的一种包装方法啦，自己想想也没什么问题，大概，就像下面这样：</p>
-
-<pre><code class="language-cpp">#define MACROX \
-    if (true) { \
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#099">#define MACROX \
+</span><span style="color:#099"></span>    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#366">true</span>) { \
         statement1 \
         statement2 \
         ... \
-    } else
-</code></pre>
-
+    } <span style="color:#069;font-weight:bold">else</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>嗯，看起来是不是要比大家都知道的那个诡异很多啊。不管了，以后发现问题了再说吧。</p>
 
   

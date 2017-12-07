@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -228,25 +223,34 @@
 <p>这样说还不太清楚，上代码吧。编辑文本文件 <code>test.sh</code> 如下，记得以 DOS 换行符的模式来保存：</p>
 
 <p></p>
-
-<pre><code class="language-bash"># Save this file using DOS's CR/LF.
-
-export VAR1=blahblahblah
-export VAR2=hello
-export VAR1=$VAR1:$VAR2
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#09f;font-style:italic"># Save this file using DOS&#39;s CR/LF.
+</span><span style="color:#09f;font-style:italic"></span>
+<span style="color:#366">export</span> <span style="color:#033">VAR1</span><span style="color:#555">=</span>blahblahblah
+<span style="color:#366">export</span> <span style="color:#033">VAR2</span><span style="color:#555">=</span>hello
+<span style="color:#366">export</span> <span style="color:#033">VAR1</span><span style="color:#555">=</span><span style="color:#033">$VAR1</span>:<span style="color:#033">$VAR2</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后，执行一下命令：</p>
-
-<pre><code class="language-plain">$ . ./test.sh
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ . ./test.sh</code></pre></td></tr></table>
+</div>
+</div>
 <p>来使环境变量生效，并看一下结果：</p>
-
-<pre><code class="language-plain">$ echo $VAR1
-:helloahblah
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#366">echo</span> <span style="color:#033">$VAR1</span>
+:helloahblah</code></pre></td></tr></table>
+</div>
+</div>
 <p>当然，Shell 看到的还不是这个样子，而是会把多出来的那个 CR 回车符也看作是路径（或者其他什么值）的一部分，最后当然也会导致所作的设置不生效啦。</p>
 
 <p>至于为什么会变成这种换行符，我倒是还没有搞明白，因为我的源文件确实是 Unix 风格的换行符。也许是因为是在 Windows 下用 ClearCase 来进行源码控制的关系？</p>

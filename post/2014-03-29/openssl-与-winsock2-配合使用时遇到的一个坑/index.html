@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -232,23 +227,26 @@
 <p>在用 Windows 的 WSAEventSelect 模式进行网络编程时，比较固定的一个模式是这样的：</p>
 
 <p></p>
-
-<pre><code class="language-c">...
-WSAEventSelect(sock, events[0], FD_READ);
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">15</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">16</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">17</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">18</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">19</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">20</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">21</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">22</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">23</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">24</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">25</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">...
+WSAEventSelect(sock, events[<span style="color:#f60">0</span>], FD_READ);
 ...
-while (1)
+<span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">1</span>)
 {
-    ret = WSAWaitForMultipleEvents(1, events, FALSE, timeout, FALSE);
-    if (ret &gt;= WSA_WAIT_EVENT_0 &amp;&amp; ret &lt; WSA_WAIT_EVENT_0 + 1)
+    ret <span style="color:#555">=</span> WSAWaitForMultipleEvents(<span style="color:#f60">1</span>, events, FALSE, timeout, FALSE);
+    <span style="color:#069;font-weight:bold">if</span> (ret <span style="color:#555">&gt;=</span> WSA_WAIT_EVENT_0 <span style="color:#555">&amp;&amp;</span> ret <span style="color:#555">&lt;</span> WSA_WAIT_EVENT_0 <span style="color:#555">+</span> <span style="color:#f60">1</span>)
     {
-        eventIndex = ret - WSA_WAIT_EVENT_0;
-        if (eventIndex == 0)
+        eventIndex <span style="color:#555">=</span> ret <span style="color:#555">-</span> WSA_WAIT_EVENT_0;
+        <span style="color:#069;font-weight:bold">if</span> (eventIndex <span style="color:#555">==</span> <span style="color:#f60">0</span>)
         {
-            WSAEnumNetworkEvents(sock, events[0], &amp;networkEvents);
-            if (networkEvents.lNetworkEvents &amp; FD_READ)
+            WSAEnumNetworkEvents(sock, events[<span style="color:#f60">0</span>], <span style="color:#555">&amp;</span>networkEvents);
+            <span style="color:#069;font-weight:bold">if</span> (networkEvents.lNetworkEvents <span style="color:#555">&amp;</span> FD_READ)
             {
                 ...
-                recv(sock, buf, sizeof(buf));
+                recv(sock, buf, <span style="color:#069;font-weight:bold">sizeof</span>(buf));
                 ...
             }
             ...
@@ -257,9 +255,9 @@ while (1)
     }
     ...
 }
-...
-</code></pre>
-
+...</code></pre></td></tr></table>
+</div>
+</div>
 <p>当要处理的 sock 属于一个 OpenSSL 连接时，只要把当中的 recv 换成 SSL_read 就行了，当然前面还得加上些 readWaitonWrite 之类的标志位检查啥的，这里就不详细列举了，请参考《Network Security with OpenSSL》一书中的 5.2.2.3 小节。</p>
 
 <p>但我在实际使用中（事实上是在压力测试中）发现，当程序运行一段时间之后，WSAWaitForMultipleEvents 就会忽然不再返回可读信号了，从而导致对该 socket 的接收操作完全停止。</p>

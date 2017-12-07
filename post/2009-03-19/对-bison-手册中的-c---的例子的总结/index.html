@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -228,15 +223,21 @@
   <p>注意，我用的软件版本为：Bison - 2.4.1，Flex - 2.5.35 。至于老的版本会怎样我就不深究了。工具不是重点。</p>
 
 <hr />
-
-<pre><code>%skeleton &quot;lalr1.cc&quot;
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%skeleton &#34;lalr1.cc&#34;</code></pre></td></tr></table>
+</div>
+</div>
 <p>可以用</p>
-
-<pre><code>%language &quot;c++&quot;
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%language &#34;c++&#34;</code></pre></td></tr></table>
+</div>
+</div>
 <p>来代替了，其中参数 &ldquo;c++&rdquo; 不区分大小写。</p>
 
 <p></p>
@@ -244,25 +245,34 @@
 <hr />
 
 <p>如我在<a href="/post/2009-03-18/bison-%E4%B8%AD%E7%9A%84-prologue-%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8F%98%E8%BF%81/">上一篇 Blog</a> 中所说，分别在 <code>%union</code> 的前后放不同的 <code>%{ %}</code> 形式的 Prologue 这种方式对于需要输出头文件的情况已经不适用了，新的方法为在</p>
-
-<pre><code>%code requires { ... }
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%code requires { ... }</code></pre></td></tr></table>
+</div>
+</div>
 <p>中放 Bison 定义要用到的 C/C++ 代码，在</p>
-
-<pre><code>%code provides { ... }
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%code provides { ... }</code></pre></td></tr></table>
+</div>
+</div>
 <p>中放需要 Bison 定义的 C/C++ 代码。这两部分的代码都会原样输出到生成的头文件中。</p>
 
 <hr />
 
 <p>在 <code>%code provides</code> 块中要如下定义 <code>YYSTYPE</code> 和 <code>YYLTYPE</code> 这两个类型：</p>
-
-<pre><code class="language-cpp">typedef yy::Parser::semantic_type YYSTYPE;
-typedef yy::Parser::location_type YYLTYPE;
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#069;font-weight:bold">typedef</span> yy<span style="color:#555">::</span>Parser<span style="color:#555">::</span>semantic_type YYSTYPE;
+<span style="color:#069;font-weight:bold">typedef</span> yy<span style="color:#555">::</span>Parser<span style="color:#555">::</span>location_type YYLTYPE;</code></pre></td></tr></table>
+</div>
+</div>
 <p>不然 Flex 就会抱怨说这两个类型没有声明，我不知道为什么。</p>
 
 <hr />

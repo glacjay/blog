@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -238,28 +233,34 @@
 <p></p>
 
 <p>其实，这个东东也是很简单的啦。跟以前一样，还是让我们来看一下 C 语言中的函数是怎么实现的吧：</p>
-
-<pre><code class="language-c">void foo()
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">foo</span>()
 {
-  puts(&quot;Hello world&quot;);
-}
-</code></pre>
-
+  puts(<span style="color:#c30"></span><span style="color:#c30">&#34;Hello world&#34;</span>);
+}</code></pre></td></tr></table>
+</div>
+</div>
 <p>gcc 生成的汇编代码是这个样子滴：</p>
-
-<pre><code class="language-nasm">.globl foo
-        .type   foo, @function
-foo:
-        pushl   %ebp
-        movl    %esp, %ebp
-        subl    $8, %esp
-        movl    $.LC0, (%esp)
-        call    puts
-        leave
-        ret
-        .size   foo, .-foo
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nasm" data-lang="nasm"><span style="color:#c0f">.globl</span> <span style="color:#033">foo</span>
+        <span style="color:#c0f">.type</span>   <span style="color:#033">foo</span>, <span style="color:#a00;background-color:#faa">@</span><span style="color:#033">function</span>
+<span style="color:#99f">foo:</span>
+        <span style="color:#c0f">pushl</span>   <span style="color:#555">%</span><span style="color:#366">ebp</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#555">%</span><span style="color:#366">esp</span>, <span style="color:#555">%</span><span style="color:#366">ebp</span>
+        <span style="color:#c0f">subl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#f60">8</span>, <span style="color:#555">%</span><span style="color:#366">esp</span>
+        <span style="color:#c0f">movl</span>    <span style="color:#069;font-weight:bold">$</span><span style="color:#033">.LC0</span>, (<span style="color:#555">%</span><span style="color:#366">esp</span>)
+        <span style="color:#c0f">call</span>    <span style="color:#033">puts</span>
+        <span style="color:#c0f">leave</span>
+        <span style="color:#c0f">ret</span>
+        <span style="color:#c0f">.size</span>   <span style="color:#033">foo</span>, <span style="color:#033">.</span><span style="color:#555">-</span><span style="color:#033">foo</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>其中的函数调用现在应该很容易认了吧。剩下的就是简单的样板代码了：</p>
 
 <p>在函数的开头，首先是将寄存器 <code>%ebp</code> 压入堆栈，然后拷贝寄存器 <code>%esp</code> 到 <code>%ebp</code> 。而在函数的最后， <code>leave</code> 指令就是前面两条指令的逆操作，而 <code>ret</code> 指令则是从堆栈中弹出要返回到的指令地址（也就是调用该函数的那条指令的下一条指令）并跳转。为什么在这里要将 <code>%esp</code> （也就是堆栈指针）拷到 <code>%ebp</code> 呢？嘛，一个很明显的好处就是你可以尽情的申请堆栈空间，然后在完事时简单地将 <code>%ebp</code> 拷回给 <code>%esp</code> 就行了。从上面就可以看到， GCC 已经充分利用了这一点，直接用 <code>leave</code> 指令来处理调用函数时对参数所申请的空间 &ndash; 反正手工释放也只是浪费时间而已。</p>
@@ -267,89 +268,116 @@ foo:
 <p>这么说来的话，要做的事情应该就很简单了啊。</p>
 
 <p>首先需要修改方法 <code>Compiler#initialize</code> ，创建一个用来保存所有函数定义的哈希：</p>
-
-<pre><code class="language-ruby">  def initialize
-    @global_functions = {}
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">initialize</span>
+    @global_functions <span style="color:#555">=</span> {}</code></pre></td></tr></table>
+</div>
+</div>
 <p>然后增加一个输出所有函数定义的方法：</p>
-
-<pre><code class="language-ruby">  def output_functions
-    @global_functions.each do |name,data|
-      puts &quot;.globl #{name}&quot;
-      puts &quot;.type   #{name}, @function&quot;
-      puts &quot;#{name}:&quot;
-      puts &quot;\tpushl   %ebp&quot;
-      puts &quot;\tmovl    %esp, %ebp&quot;
-      compile_exp(data[1])
-      puts &quot;\tleave&quot;
-      puts &quot;\tret&quot;
-      puts &quot;\t.size   #{name}, .-#{name}&quot;
-      puts
-    end
-  end
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">output_functions</span>
+    @global_functions<span style="color:#555">.</span>each <span style="color:#069;font-weight:bold">do</span> <span style="color:#555">|</span><span style="color:#366">name</span>,data<span style="color:#555">|</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;.globl </span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;.type   </span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">, @function&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">:&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">pushl   %ebp&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">movl    %esp, %ebp&#34;</span>
+      compile_exp(data<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">]</span>)
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">leave&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">ret&#34;</span>
+      <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">.size   </span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">, .-</span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">&#34;</span>
+      <span style="color:#366">puts</span>
+    <span style="color:#069;font-weight:bold">end</span>
+  <span style="color:#069;font-weight:bold">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>可以看到，这里也同时包括了 <code>.globl</code> 与 <code>.type</code> 与 <code>.size</code> 之类的东西。 <code>.globl</code> 的意思就是你想让这个函数也能够从其他文件（也就是编译单元）中调用，这在链接多个目标文件的时候是很重要的。我想 <code>.type</code> 和 <code>.size</code> 主要是用在调试的时候，分别用来表示一个符号对应的是一个函数，以及这个函数的大小。</p>
 
 <p>除了这些之外，这个方法就很简单啦 &ndash; 它会通过调用 <code>#compile_exp</code> 方法来完成实际的工作。</p>
 
 <p>我们再来增加一个用来定义函数的辅助方法：</p>
-
-<pre><code class="language-ruby">  def defun name, args, body
-    @global_functions[name] = [args, body]
-  end
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">defun</span> <span style="color:#366">name</span>, args, body
+    @global_functions<span style="color:#555">[</span><span style="color:#366">name</span><span style="color:#555">]</span> <span style="color:#555">=</span> <span style="color:#555">[</span>args, body<span style="color:#555">]</span>
+  <span style="color:#069;font-weight:bold">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后在方法 <code>#compile_exp</code> 中增加如下的几行代码：</p>
-
-<pre><code class="language-ruby">    return if !exp || exp.size == 0
-    return defun(*exp[1..-1]) if (exp[0] == :defun)
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">!</span>exp <span style="color:#555">||</span> exp<span style="color:#555">.</span>size <span style="color:#555">==</span> <span style="color:#f60">0</span>
+    <span style="color:#555"></span><span style="color:#069;font-weight:bold">return</span> defun(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> (exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:defun</span>)</code></pre></td></tr></table>
+</div>
+</div>
 <p>之所以要增加第一行代码，一方面是出于健壮性的考虑，同时这也允许我们用 <code>nil</code> 和空数组来表示“啥也不做”的意思，当你要定义一个空函数的时候就会用到这一点了。这样一来，第二行代码就不需要去检查将要定义的是不是一个空函数了。</p>
 
 <p>不知道你注意到了没有，我们其实已经实现了对函数的递归定义。像 <code>[:defun,:foo,[:defun, :bar, []]]</code> 这样的代码完全是合法的。同时你也许会注意到，这个实现会导致两个函数其实都是可以从别处调用的。好吧，现在是没关系的啦，我们以后会处理这个的（要么不允许编写这样的代码，要么就只允许外层函数来调用内层函数 &ndash; 我还没有决定到底要做哪个啦）。</p>
 
 <p>剩下的事情就是输出这些函数的定义了，因此我们在方法 <code>#compile</code> 中对 <code>#output_constants</code> 的调用之前增加如下的一行：</p>
-
-<pre><code class="language-ruby">    output_functions
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    output_functions</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="增加对一个运行时库的支持">增加对一个运行时库的支持</h2>
 
 <p>首先，让我们将现在的 <code>#compile</code> 方法重命名为 <code>#compile_main</code> ，然后重新定义 <code>#compile</code> 方法如下：</p>
-
-<pre><code class="language-ruby">  def compile(exp)
-    compile_main([:do, DO_BEFORE, exp, DO_AFTER])
-  end
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile</span>(exp)
+    compile_main(<span style="color:#555">[</span><span style="color:#fc3">:do</span>, <span style="color:#360">DO_BEFORE</span>, exp, <span style="color:#360">DO_AFTER</span><span style="color:#555">]</span>)
+  <span style="color:#069;font-weight:bold">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>之后是对常量 <code>DO_BEFORE</code> 和 <code>DO_AFTER</code> 的定义（如果愿意的话，你也可以把它们放在一个单独的文件中，我现在就直接把它们放在开头好了）：</p>
-
-<pre><code class="language-ruby">DO_BEFORE= [:do,
-  [:defun, :hello_world,[], [:puts, &quot;Hello World&quot;]]
-]
-DO_AFTER= []
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#360">DO_BEFORE</span><span style="color:#555">=</span> <span style="color:#555">[</span><span style="color:#fc3">:do</span>,
+  <span style="color:#555">[</span><span style="color:#fc3">:defun</span>, <span style="color:#fc3">:hello_world</span>,<span style="color:#555">[]</span>, <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;Hello World&#34;</span><span style="color:#555">]]</span>
+<span style="color:#555">]</span>
+<span style="color:#360">DO_AFTER</span><span style="color:#555">=</span> <span style="color:#555">[]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>你得承认，你想看到的应该是更加高级一些的东东，但那样就违背我们最初的目标了。上面的代码对于实现一个运行时库来说已经足够了。当然，你也可以用一些只能通过 C 或者汇编才能实现的东西，只要把包含那些函数实现的目标文件给链接进来就可以了，因为我们一直都是在按照 C 语言的调用规则来办事的嘛。</p>
 
 <p>让我们来测试一下吧。在 <code>Compiler.new.compile(prog)</code> 的前面加入下面的代码：</p>
-
-<pre><code class="language-ruby">prog = [:hello_world]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">prog <span style="color:#555">=</span> <span style="color:#555">[</span><span style="color:#fc3">:hello_world</span><span style="color:#555">]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后编译运行：</p>
-
-<pre><code class="language-plain">$ ruby step4.rb &gt;step4.s
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ ruby step4.rb &gt;step4.s
 $ make step4
 cc    step4.s   -o step4
 $ ./step4
 Hello World
-$
-</code></pre>
-
+$</code></pre></td></tr></table>
+</div>
+</div>
 <p>你可以在<a href="http://www.hokstad.com/static/compiler/step4.rb">这里</a>找到今天的成果。</p>
 
 <h2 id="对函数参数的访问吗">对函数参数的访问吗？</h2>

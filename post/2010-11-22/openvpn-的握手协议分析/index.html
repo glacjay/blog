@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -236,16 +231,19 @@
 <p>这里的关键就是通过 OpenSSL 实现提供的 memory BIO 对象抓取密文包的功能。如果是在其他没有这个功能接口的语言实现或封装中，则可以使用 socketpair 这种方法来抓，我今天就试着改了一下 OpenVPN ，这种方法是可行的。具体就是把其中一个 socket 给 ssl 当后端，另一个 socket 就可以用来读写密文了。注意 <code>socketpair()</code> 调用中的 <code>type</code> 参数要加上 <code>SOCK_NONBLOCK</code> 。</p>
 
 <p>不过在 Erlang 这个语言中，甚至就连 <code>socketpair</code> 这个调用都没封。搜了一下它的源码，才发现自己实现一个也非常的简单，怪不得。下面摘自 <code>otp_src_R14B/lib/kernel/test/inet_sockopt_SUITE.erl</code> 文件：</p>
-
-<pre><code class="language-erlang">create_socketpair(ListenOptions,ConnectOptions) -&gt;
-    ?line {ok,LS}=gen_tcp:listen(0,ListenOptions),
-    ?line {ok,Port}=inet:port(LS),
-    ?line {ok,CS}=gen_tcp:connect(localhost,Port,ConnectOptions),
-    ?line {ok,AS}=gen_tcp:accept(LS),
-    ?line gen_tcp:close(LS),
-    {AS,CS}.
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang"><span style="color:#c0f">create_socketpair</span>(<span style="color:#033">ListenOptions</span>,<span style="color:#033">ConnectOptions</span>) -<span style="color:#a00;background-color:#faa">&gt;
+</span><span style="color:#a00;background-color:#faa">    ?</span><span style="color:#999;font-weight:bold">line</span> {ok,<span style="color:#033">LS</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">gen_tcp</span>:<span style="color:#c0f">listen</span>(<span style="color:#f60">0</span>,<span style="color:#033">ListenOptions</span>),
+    <span style="color:#555">?</span>line {ok,<span style="color:#033">Port</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">inet</span>:<span style="color:#c0f">port</span>(<span style="color:#033">LS</span>),
+    <span style="color:#555">?</span>line {ok,<span style="color:#033">CS</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">gen_tcp</span>:<span style="color:#c0f">connect</span>(localhost,<span style="color:#033">Port</span>,<span style="color:#033">ConnectOptions</span>),
+    <span style="color:#555">?</span>line {ok,<span style="color:#033">AS</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">gen_tcp</span>:<span style="color:#c0f">accept</span>(<span style="color:#033">LS</span>),
+    <span style="color:#555">?</span>line <span style="color:#0cf;font-weight:bold">gen_tcp</span>:<span style="color:#c0f">close</span>(<span style="color:#033">LS</span>),
+    {<span style="color:#033">AS</span>,<span style="color:#033">CS</span>}.</code></pre></td></tr></table>
+</div>
+</div>
 <p>至于前面的 <code>?line</code> 是啥，咱就不需要关心了。</p>
 
   

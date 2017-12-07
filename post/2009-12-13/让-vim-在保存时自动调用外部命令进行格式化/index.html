@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -234,31 +229,37 @@
 <p><code>:edit</code> 这个命令本身的话，应该是影响不到语法高亮功能的，在我看来。我的意思是，原来是语法高亮的，执行这个命令之后应该还是会语法高亮。但是在我把上面的两步命令做成自动命令之后，代码格式化好了，却也变黑了。不得其解，于是又在后面加上了 <code>syntax enable</code> 这条命令。结果，倒是连执行外部命令之后的那个回车确认步骤都给屏掉了，算是一个意料之外的成果。</p>
 
 <p>最后，做为参考，把我的相关配置给贴出来吧。就是在文件 <code>~/.vim/ftplugin/go.vim</code> 中，加了这么一段代码：</p>
-
-<pre><code class="language-vim">function! b:Format()
-    !gofmt -w %
-    edit
-    syntax enable
-endfunction
-
-au BufWritePost  :call b:Format()
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#069;font-weight:bold">function</span>! b:Format()<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    !gofmt -w %<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    edit<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    syntax enable<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">endfunction</span><span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>au BufWritePost  :call b:Format()</code></pre></td></tr></table>
+</div>
+</div>
 <p>最后的最后，在 <code>c.vim</code> 中也如法炮制了一下，不过用的是 <code>indent</code> 。</p>
 
 <hr />
 
 <p><strong>Update 2010-08-18:</strong> 参考<a href="http://www.miek.nl/blog/archives/2010/08/08/formatting_go_code_with_vim/index.html">这篇文章</a>的话，可以将上面的函数修改如下：</p>
-
-<pre><code class="language-vim">function! b:Format()
-    let regel=line(&quot;.&quot;)
-    let regec=col(&quot;.&quot;)
-    %!gofmt
-    call cursor(regel, regec)
-endfunction
-autocmd BufWritePre  :call b:Format()
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#069;font-weight:bold">function</span>! b:Format()<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    <span style="color:#069;font-weight:bold">let</span> regel=line(<span style="color:#09f;font-style:italic">&#34;.&#34;)</span><span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    <span style="color:#069;font-weight:bold">let</span> regec=col(<span style="color:#09f;font-style:italic">&#34;.&#34;)</span><span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    %!gofmt<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>    call cursor(regel, regec)<span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">endfunction</span><span style="color:#a00;background-color:#faa">
+</span><span style="color:#a00;background-color:#faa"></span>autocmd BufWritePre  :call b:Format()</code></pre></td></tr></table>
+</div>
+</div>
 <p>这样的话，Undo History 不会因为对外部程序的调用而被清空，而且外部程序所作的修改也同时成为了 Undo History 中的一步。</p>
 
   

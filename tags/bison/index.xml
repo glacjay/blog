@@ -31,15 +31,21 @@
       <description>&lt;p&gt;注意，我用的软件版本为：Bison - 2.4.1，Flex - 2.5.35 。至于老的版本会怎样我就不深究了。工具不是重点。&lt;/p&gt;
 
 &lt;hr /&gt;
-
-&lt;pre&gt;&lt;code&gt;%skeleton &amp;quot;lalr1.cc&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;;border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%skeleton &amp;#34;lalr1.cc&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;可以用&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;%language &amp;quot;c++&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;;border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%language &amp;#34;c++&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;来代替了，其中参数 &amp;ldquo;c++&amp;rdquo; 不区分大小写。&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

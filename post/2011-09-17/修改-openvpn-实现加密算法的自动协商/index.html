@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -236,18 +231,21 @@
 <p>但同时，这会引起接下来一个步骤的错误。在函数 <code>crypto_adjust_frame_parameters()</code> 中，会根据之前配置的算法进行报文中密钥空间的分配。现在还不知道算法，怎么知道要分配多少空间呢？就只能改成最大值了。分别改为 <code>MAX_CIPHER_KEY_LENGTH</code> 和 <code>MAX_HMAC_KEY_LENGTH</code> 就行了。当然，这样改不仅浪费空间，而且也不够严谨，因为 key length 和 IV length 不是一回事，却只能都用 <code>MAX_CIPHER_KEY_LENGTH</code> 来初始化。</p>
 
 <p>最后就是在 SSL 协商好之后，从里面取加密算法了。具体位置在 <code>key_method_2_write()</code> 和 <code>key_method_2_read()</code> 两个函数中，对 <code>generate_key_expansion()</code> 函数的调用之处了。在调用之前，初始化一下 <code>key_type</code> 就行了：</p>
-
-<pre><code class="language-c">struct key_type *key_type = (struct key_type *) session-&gt;opt-&gt;key_type;
-key_type-&gt;cipher = ks-&gt;ssl-&gt;enc_read_ctx-&gt;cipher;
-key_type-&gt;cipher_length = EVP_CIPHER_key_length (session-&gt;opt-&gt;key_type-&gt;cipher);
-#if OPENSSL_VERSION_NUMBER &gt;= 0x010000000L
-key_type-&gt;digest = ks-&gt;ssl-&gt;read_hash-&gt;digest;
-#else
-key_type-&gt;digest = ks-&gt;ssl-&gt;read_hash;
-#endif
-key_type-&gt;hmac_length = EVP_MD_size (session-&gt;opt-&gt;key_type-&gt;digest);
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">9</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#069;font-weight:bold">struct</span> key_type <span style="color:#555">*</span>key_type <span style="color:#555">=</span> (<span style="color:#069;font-weight:bold">struct</span> key_type <span style="color:#555">*</span>) session<span style="color:#555">-&gt;</span>opt<span style="color:#555">-&gt;</span>key_type;
+key_type<span style="color:#555">-&gt;</span>cipher <span style="color:#555">=</span> ks<span style="color:#555">-&gt;</span>ssl<span style="color:#555">-&gt;</span>enc_read_ctx<span style="color:#555">-&gt;</span>cipher;
+key_type<span style="color:#555">-&gt;</span>cipher_length <span style="color:#555">=</span> EVP_CIPHER_key_length (session<span style="color:#555">-&gt;</span>opt<span style="color:#555">-&gt;</span>key_type<span style="color:#555">-&gt;</span>cipher);
+<span style="color:#099">#if OPENSSL_VERSION_NUMBER &gt;= 0x010000000L
+</span><span style="color:#099"></span>key_type<span style="color:#555">-&gt;</span>digest <span style="color:#555">=</span> ks<span style="color:#555">-&gt;</span>ssl<span style="color:#555">-&gt;</span>read_hash<span style="color:#555">-&gt;</span>digest;
+<span style="color:#099">#else
+</span><span style="color:#099"></span>key_type<span style="color:#555">-&gt;</span>digest <span style="color:#555">=</span> ks<span style="color:#555">-&gt;</span>ssl<span style="color:#555">-&gt;</span>read_hash;
+<span style="color:#099">#endif
+</span><span style="color:#099"></span>key_type<span style="color:#555">-&gt;</span>hmac_length <span style="color:#555">=</span> EVP_MD_size (session<span style="color:#555">-&gt;</span>opt<span style="color:#555">-&gt;</span>key_type<span style="color:#555">-&gt;</span>digest);</code></pre></td></tr></table>
+</div>
+</div>
 <p>这样就行了。</p>
 
   

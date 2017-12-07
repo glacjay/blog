@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -226,31 +221,40 @@
 <p>所以，如果你只是跟我一样，看 <code>Data.List</code> 中的那一砣 <code>zipn</code> 不顺眼的话（其实也只是看着不顺哈，用着还是蛮顺的，反正实现不用我写），一个更简单的方案在此：</p>
 
 <p></p>
-
-<pre><code class="language-haskell">&gt; z :: [a -&gt; b] -&gt; [a] -&gt; [b]
-&gt; z = zipWith ($)
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">&gt;</span> <span style="color:#c0f">z</span> <span style="color:#000;font-weight:bold">::</span> [<span style="color:#c0f">a</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">b</span>] <span style="color:#000;font-weight:bold">-&gt;</span> [<span style="color:#c0f">a</span>] <span style="color:#000;font-weight:bold">-&gt;</span> [<span style="color:#c0f">b</span>]
+<span style="color:#555">&gt;</span> <span style="color:#c0f">z</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">zipWith</span> (<span style="color:#555">$</span>)</code></pre></td></tr></table>
+</div>
+</div>
 <p>吼吼，够简单的吧。其实这跟 <code>Control.Monad</code> 中的 <code>ap</code> 和 <code>Control.Applicative</code> 中的是一类东东啦，只不过是针对列表的 <code>zip</code> 功能滴。</p>
 
 <p>那要怎么用嗫，也不是很麻烦啦，像这样就可以了：</p>
-
-<pre><code>*Main&gt; (,) `map` [1,2,3] `z` &quot;abc&quot;
-[(1,'a'),(2,'b'),(3,'c')]
-*Main&gt; (,,) `map` [1,2,3] `z` &quot;abc&quot; `z` [Nothing, Just False, Just True]
-[(1,'a',Nothing),(2,'b',Just False),(3,'c',Just True)]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">Main</span><span style="color:#555">&gt;</span> (,) `<span style="color:#c0f">map</span>` [<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>] `<span style="color:#c0f">z</span>` <span style="color:#c30">&#34;abc&#34;</span>
+[(<span style="color:#f60">1</span>,<span style="color:#c30">&#39;a&#39;</span>),(<span style="color:#f60">2</span>,<span style="color:#c30">&#39;b&#39;</span>),(<span style="color:#f60">3</span>,<span style="color:#c30">&#39;c&#39;</span>)]
+<span style="color:#555">*</span><span style="color:#078;font-weight:bold">Main</span><span style="color:#555">&gt;</span> (,,) `<span style="color:#c0f">map</span>` [<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>] `<span style="color:#c0f">z</span>` <span style="color:#c30">&#34;abc&#34;</span> `<span style="color:#c0f">z</span>` [<span style="color:#078;font-weight:bold">Nothing</span>, <span style="color:#078;font-weight:bold">Just</span> <span style="color:#078;font-weight:bold">False</span>, <span style="color:#078;font-weight:bold">Just</span> <span style="color:#078;font-weight:bold">True</span>]
+[(<span style="color:#f60">1</span>,<span style="color:#c30">&#39;a&#39;</span>,<span style="color:#078;font-weight:bold">Nothing</span>),(<span style="color:#f60">2</span>,<span style="color:#c30">&#39;b&#39;</span>,<span style="color:#078;font-weight:bold">Just</span> <span style="color:#078;font-weight:bold">False</span>),(<span style="color:#f60">3</span>,<span style="color:#c30">&#39;c&#39;</span>,<span style="color:#078;font-weight:bold">Just</span> <span style="color:#078;font-weight:bold">True</span>)]</code></pre></td></tr></table>
+</div>
+</div>
 <p>这里的 <code>map</code> 所对应的自然就是 <code>Control.Applicative</code> 中的啦。</p>
 
 <p>还有更好玩的哦，如果再加上<a href="/post/2009-05-06/haskell-%E4%B8%AD%E7%9A%84%E5%8F%AF%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8/">上一篇博</a>中的不定参函数的话呢：</p>
-
-<pre><code>*Main&gt; buildList `map` [1,2,3] `z` [4,5,6] :: [[Int]]
-[[1,4],[2,5],[3,6]]
-*Main&gt; buildList `map` [1,2,3] `z` [4,5,6] `z` [7,8,9] :: [[Int]]
-[[1,4,7],[2,5,8],[3,6,9]]
-</code></pre>
-
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">Main</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildList</span> `<span style="color:#c0f">map</span>` [<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>] `<span style="color:#c0f">z</span>` [<span style="color:#f60">4</span>,<span style="color:#f60">5</span>,<span style="color:#f60">6</span>] <span style="color:#000;font-weight:bold">::</span> [[<span style="color:#078;font-weight:bold">Int</span>]]
+[[<span style="color:#f60">1</span>,<span style="color:#f60">4</span>],[<span style="color:#f60">2</span>,<span style="color:#f60">5</span>],[<span style="color:#f60">3</span>,<span style="color:#f60">6</span>]]
+<span style="color:#555">*</span><span style="color:#078;font-weight:bold">Main</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildList</span> `<span style="color:#c0f">map</span>` [<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>] `<span style="color:#c0f">z</span>` [<span style="color:#f60">4</span>,<span style="color:#f60">5</span>,<span style="color:#f60">6</span>] `<span style="color:#c0f">z</span>` [<span style="color:#f60">7</span>,<span style="color:#f60">8</span>,<span style="color:#f60">9</span>] <span style="color:#000;font-weight:bold">::</span> [[<span style="color:#078;font-weight:bold">Int</span>]]
+[[<span style="color:#f60">1</span>,<span style="color:#f60">4</span>,<span style="color:#f60">7</span>],[<span style="color:#f60">2</span>,<span style="color:#f60">5</span>,<span style="color:#f60">8</span>],[<span style="color:#f60">3</span>,<span style="color:#f60">6</span>,<span style="color:#f60">9</span>]]</code></pre></td></tr></table>
+</div>
+</div>
 <p>那我这次要说得就这么多啦，至于怎么用，就请大家尽情地发挥你们的想象力吧（其实是我想象力不够 :-(）</p>
 
   

@@ -39,11 +39,6 @@
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized_light.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
 
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
@@ -236,151 +231,154 @@
 <p>我通过这个程序学到的新知识就是，要发送 UDP 的广播报文，只是指定一个全 <code>1</code> 的地址是不够的，还要设置 socket 选项 <code>SO_BROADCAST</code> （我继续面壁去了）。</p>
 
 <p>下面是代码（好撑篇幅啊，又没人给我稿费的说）：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">  9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 14</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 15</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 16</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 17</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 18</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 19</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 20</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 21</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 22</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 23</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 24</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 25</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 26</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 27</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 28</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 29</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 30</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 31</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 32</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 33</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 34</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 35</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 36</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 37</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 38</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 39</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 40</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 41</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 42</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 43</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 44</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 45</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 46</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 47</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 48</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 49</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 50</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 51</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 52</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 53</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 54</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 55</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 56</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 57</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 58</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 59</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 60</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 61</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 62</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 63</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 64</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 65</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 66</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 67</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 68</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 69</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 70</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 71</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 72</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 73</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 74</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 75</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 76</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 77</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 78</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 79</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 80</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 81</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 82</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 83</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 84</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 85</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 86</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 87</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 88</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 89</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 90</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 91</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 92</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 93</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 94</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 95</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 96</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 97</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 98</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 99</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">100</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">101</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">102</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">103</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">104</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">105</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">106</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">107</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">108</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">109</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">110</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">111</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">112</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">113</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">114</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">115</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">116</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">117</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">118</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">119</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">120</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">121</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">122</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">123</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">124</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">125</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">126</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">127</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">128</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">129</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">130</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">131</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">132</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">133</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">134</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">135</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">136</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">137</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">138</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">139</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">140</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">141</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">142</span></code></pre></td>
+<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#099">#include</span> <span style="color:#099">&lt;stdio.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;stdlib.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;errno.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;string.h&gt;</span><span style="color:#099">
+</span><span style="color:#099"></span>
+<span style="color:#099">#include</span> <span style="color:#099">&lt;sys/socket.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;netinet/in.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;pthread.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;unistd.h&gt;</span><span style="color:#099">
+</span><span style="color:#099">#include</span> <span style="color:#099">&lt;arpa/inet.h&gt;</span><span style="color:#099">
+</span><span style="color:#099"></span>
+<span style="color:#099">#define PORT 5460
+</span><span style="color:#099"></span>
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>progname;
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> sock;
 
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;string.h&gt;
-
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;pthread.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;arpa/inet.h&gt;
-
-#define PORT 5460
-
-static char *progname;
-static int sock;
-
-static void usage(void)
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">usage</span>(<span style="color:#078;font-weight:bold">void</span>)
 {
     fprintf(stderr,
-            &quot;Usage: %s options\n&quot;
-            &quot;where options must be one of:\n&quot;
-            &quot;  -s         Running as a  named server.\n&quot;
-            &quot;  -c         Asking for 's address.\n&quot;,
+            <span style="color:#c30"></span><span style="color:#c30">&#34;Usage: %s options</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+            <span style="color:#c30"></span><span style="color:#c30">&#34;where options must be one of:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+            <span style="color:#c30"></span><span style="color:#c30">&#34;  -s         Running as a  named server.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+            <span style="color:#c30"></span><span style="color:#c30">&#34;  -c         Asking for &#39;s address.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
             progname);
-    exit(1);
+    exit(<span style="color:#f60">1</span>);
 }
 
-static int udp_socket(void)
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">udp_socket</span>(<span style="color:#078;font-weight:bold">void</span>)
 {
-    int sock = socket(PF_INET, SOCK_DGRAM, 0);
-    if (sock == -1) {
-        fprintf(stderr, &quot;Cannot open a new socket: %s\n&quot;, strerror(errno));
-        exit(1);
+    <span style="color:#078;font-weight:bold">int</span> sock <span style="color:#555">=</span> socket(PF_INET, SOCK_DGRAM, <span style="color:#f60">0</span>);
+    <span style="color:#069;font-weight:bold">if</span> (sock <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>) {
+        fprintf(stderr, <span style="color:#c30"></span><span style="color:#c30">&#34;Cannot open a new socket: %s</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, strerror(errno));
+        exit(<span style="color:#f60">1</span>);
     }
-    return sock;
+    <span style="color:#069;font-weight:bold">return</span> sock;
 }
 
-static void server(const char *name)
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">server</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name)
 {
-    struct sockaddr_in listen_addr;
+    <span style="color:#069;font-weight:bold">struct</span> sockaddr_in listen_addr;
 
-    listen_addr.sin_family = AF_INET;
-    listen_addr.sin_addr.s_addr = INADDR_ANY;
-    listen_addr.sin_port = htons(PORT);
+    listen_addr.sin_family <span style="color:#555">=</span> AF_INET;
+    listen_addr.sin_addr.s_addr <span style="color:#555">=</span> INADDR_ANY;
+    listen_addr.sin_port <span style="color:#555">=</span> htons(PORT);
 
-    if (bind(sock, (struct sockaddr *) &amp;listen_addr,
-             sizeof(listen_addr)) == -1)
+    <span style="color:#069;font-weight:bold">if</span> (bind(sock, (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>listen_addr,
+             <span style="color:#069;font-weight:bold">sizeof</span>(listen_addr)) <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
     {
-        fprintf(stderr, &quot;Cannot bind to the UDP port %d: %s\n&quot;,
+        fprintf(stderr, <span style="color:#c30"></span><span style="color:#c30">&#34;Cannot bind to the UDP port %d: %s</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
                 PORT, strerror(errno));
-        exit(1);
+        exit(<span style="color:#f60">1</span>);
     }
 
-    while (1) {
-        char buf[BUFSIZ+1];
-        struct sockaddr_in addr;
-        int addrlen = sizeof(addr);
-        int received;
+    <span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">1</span>) {
+        <span style="color:#078;font-weight:bold">char</span> buf[BUFSIZ<span style="color:#555">+</span><span style="color:#f60">1</span>];
+        <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
+        <span style="color:#078;font-weight:bold">int</span> addrlen <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">sizeof</span>(addr);
+        <span style="color:#078;font-weight:bold">int</span> received;
 
-        received = recvfrom(sock, buf, sizeof(buf)-1, 0,
-                            (struct sockaddr *) &amp;addr, (socklen_t *) &amp;addrlen);
-        if (received == -1)
-            continue;
+        received <span style="color:#555">=</span> recvfrom(sock, buf, <span style="color:#069;font-weight:bold">sizeof</span>(buf)<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>,
+                            (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, (socklen_t <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addrlen);
+        <span style="color:#069;font-weight:bold">if</span> (received <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
+            <span style="color:#069;font-weight:bold">continue</span>;
 
-        buf[received] = 0;
-        if (strcmp(buf, name) == 0)
-            sendto(sock, &quot;bingo&quot;, 5, 0, (struct sockaddr *) &amp;addr, addrlen);
+        buf[received] <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+        <span style="color:#069;font-weight:bold">if</span> (strcmp(buf, name) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
+            sendto(sock, <span style="color:#c30"></span><span style="color:#c30">&#34;bingo&#34;</span>, <span style="color:#f60">5</span>, <span style="color:#f60">0</span>, (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, addrlen);
     }
 }
 
-static void *waiton_response(void *arg)
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span><span style="color:#c0f">waiton_response</span>(<span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span>arg)
 {
-    char *name = (char *) arg;
+    <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name <span style="color:#555">=</span> (<span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>) arg;
 
-    while (1) {
-        char buf[BUFSIZ+1];
-        struct sockaddr_in addr;
-        socklen_t addrlen = sizeof(addr);
-        int received;
+    <span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">1</span>) {
+        <span style="color:#078;font-weight:bold">char</span> buf[BUFSIZ<span style="color:#555">+</span><span style="color:#f60">1</span>];
+        <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
+        socklen_t addrlen <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">sizeof</span>(addr);
+        <span style="color:#078;font-weight:bold">int</span> received;
 
-        received = recvfrom(sock, buf, sizeof(buf)-1, 0,
-                            (struct sockaddr *) &amp;addr, &amp;addrlen);
-        if (received == -1)
-            continue;
-        buf[received] = 0;
-        if (strcmp(buf, &quot;bingo&quot;) == 0) {
-            printf(&quot;Got. %s's address is %s.\n&quot;,
+        received <span style="color:#555">=</span> recvfrom(sock, buf, <span style="color:#069;font-weight:bold">sizeof</span>(buf)<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>,
+                            (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, <span style="color:#555">&amp;</span>addrlen);
+        <span style="color:#069;font-weight:bold">if</span> (received <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
+            <span style="color:#069;font-weight:bold">continue</span>;
+        buf[received] <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+        <span style="color:#069;font-weight:bold">if</span> (strcmp(buf, <span style="color:#c30"></span><span style="color:#c30">&#34;bingo&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>) {
+            printf(<span style="color:#c30"></span><span style="color:#c30">&#34;Got. %s&#39;s address is %s.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
                    name, inet_ntoa(addr.sin_addr));
-            exit(0);
+            exit(<span style="color:#f60">0</span>);
         }
     }
 
-    return NULL;
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">NULL</span>;
 }
 
-static void client(const char *name)
+<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">client</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name)
 {
-    int bcast = 1;
+    <span style="color:#078;font-weight:bold">int</span> bcast <span style="color:#555">=</span> <span style="color:#f60">1</span>;
     pthread_t tid;
     pthread_attr_t attr;
-    struct sockaddr_in addr;
-    int i;
+    <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
+    <span style="color:#078;font-weight:bold">int</span> i;
 
-    setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &amp;bcast, sizeof(bcast));
+    setsockopt(sock, SOL_SOCKET, SO_BROADCAST, <span style="color:#555">&amp;</span>bcast, <span style="color:#069;font-weight:bold">sizeof</span>(bcast));
 
-    pthread_attr_init(&amp;attr);
-    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);
+    pthread_attr_init(<span style="color:#555">&amp;</span>attr);
+    pthread_attr_setdetachstate(<span style="color:#555">&amp;</span>attr, PTHREAD_CREATE_DETACHED);
 
-    addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = 0xffffffff;
-    addr.sin_port = htons(PORT);
+    addr.sin_family <span style="color:#555">=</span> AF_INET;
+    addr.sin_addr.s_addr <span style="color:#555">=</span> <span style="color:#f60">0xffffffff</span>;
+    addr.sin_port <span style="color:#555">=</span> htons(PORT);
 
-    for (i = 0; i &lt; 6; i++) {
-        printf(&quot;Searching...\n&quot;);
+    <span style="color:#069;font-weight:bold">for</span> (i <span style="color:#555">=</span> <span style="color:#f60">0</span>; i <span style="color:#555">&lt;</span> <span style="color:#f60">6</span>; i<span style="color:#555">++</span>) {
+        printf(<span style="color:#c30"></span><span style="color:#c30">&#34;Searching...</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>);
 
-        sendto(sock, name, strlen(name), 0,
-               (struct sockaddr *) &amp;addr, sizeof(addr));
-        if (i == 0)
-            pthread_create(&amp;tid, &amp;attr, waiton_response, (void *) name);
-        sleep(5);
+        sendto(sock, name, strlen(name), <span style="color:#f60">0</span>,
+               (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, <span style="color:#069;font-weight:bold">sizeof</span>(addr));
+        <span style="color:#069;font-weight:bold">if</span> (i <span style="color:#555">==</span> <span style="color:#f60">0</span>)
+            pthread_create(<span style="color:#555">&amp;</span>tid, <span style="color:#555">&amp;</span>attr, waiton_response, (<span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span>) name);
+        sleep(<span style="color:#f60">5</span>);
     }
 
-    printf(&quot;Cannot find the machine.\n&quot;);
-    pthread_attr_destroy(&amp;attr);
+    printf(<span style="color:#c30"></span><span style="color:#c30">&#34;Cannot find the machine.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>);
+    pthread_attr_destroy(<span style="color:#555">&amp;</span>attr);
 }
 
-int main(int argc, char **argv)
+<span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>(<span style="color:#078;font-weight:bold">int</span> argc, <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">**</span>argv)
 {
-    progname = argv[0];
-    sock = udp_socket();
+    progname <span style="color:#555">=</span> argv[<span style="color:#f60">0</span>];
+    sock <span style="color:#555">=</span> udp_socket();
 
-    if (argc != 3)
+    <span style="color:#069;font-weight:bold">if</span> (argc <span style="color:#555">!=</span> <span style="color:#f60">3</span>)
         usage();
-    if (strcmp(argv[1], &quot;-s&quot;) == 0)
-        server(argv[2]);
-    else if (strcmp(argv[1], &quot;-c&quot;) == 0)
-        client(argv[2]);
-    else
+    <span style="color:#069;font-weight:bold">if</span> (strcmp(argv[<span style="color:#f60">1</span>], <span style="color:#c30"></span><span style="color:#c30">&#34;-s&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
+        server(argv[<span style="color:#f60">2</span>]);
+    <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (strcmp(argv[<span style="color:#f60">1</span>], <span style="color:#c30"></span><span style="color:#c30">&#34;-c&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
+        client(argv[<span style="color:#f60">2</span>]);
+    <span style="color:#069;font-weight:bold">else</span>
         usage();
 
-    return 0;
-}
-</code></pre>
-
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+}</code></pre></td></tr></table>
+</div>
+</div>
 <p>PS. 最近 gist.github.com 好像不是很给力，用它贴代码的话，不翻墙就看不到，只好直接贴这里了。</p>
 
   
