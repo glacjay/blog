@@ -45,6 +45,8 @@
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
   
+    <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
+  
   
 
 </head>
@@ -197,6 +199,55 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/">Linux 下有关环境变量与换行符的一个小问题</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2011-03-05 00:00</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/shell">shell</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>最近在工作中，老是遇到一个莫名其妙的问题。我有一个用来设置一些环境变量的脚本，结果经常发现这个脚本设过的环境变量乱七八糟的，像 PATH 这种，就是之前的值跟后面添加的值重叠在了一起。直到后来才发现，原来是换行符搞的鬼。</p>
+
+<p>这样说还不太清楚，上代码吧。编辑文本文件 <code>test.sh</code> 如下，记得以 DOS 换行符的模式来保存：</p>
+
+<p></p>
+  </p>
+
+  
+  <footer>
+    <a href="/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -640,53 +691,6 @@
   
   <footer>
     <a href="/post/2009-12-05/%E4%BD%BF%E7%94%A8-visual-studio-2008-%E4%B8%BA-windows-ce-%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91-openssl/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-07-14/%E5%9C%A8-haskell-%E4%B8%AD%E5%AE%9E%E7%8E%B0-generic-zip-%E5%87%BD%E6%95%B0/">在 Haskell 中实现 Generic zip 函数</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2009-07-14 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/haskell">haskell</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>其实嗫，这个问题已经有标准和其他的解决方案了。标准解决方案参见 <code>Control.Applicative</code> 中的 <code>ZipList</code> ，不过这东东用起来蛮麻烦的说；其他解决方案见 bff 库的 <code>Data.Zippable</code> 模块，嗯，我还没搞明白这玩意怎么用，不过总感觉杀鸡用牛刀了有点（Template Haskell ，以及其他依赖）。</p>
-
-<p>所以，如果你只是跟我一样，看 <code>Data.List</code> 中的那一砣 <code>zipn</code> 不顺眼的话（其实也只是看着不顺哈，用着还是蛮顺的，反正实现不用我写），一个更简单的方案在此：</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2009-07-14/%E5%9C%A8-haskell-%E4%B8%AD%E5%AE%9E%E7%8E%B0-generic-zip-%E5%87%BD%E6%95%B0/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.glacjay.info/post/2017-12-18/quasar-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/post/2016-04-23/firefox-%E6%8F%92%E4%BB%B6toomanytabs/</loc>
     <lastmod>2016-04-23T10:33:22+08:00</lastmod>
   </url>
@@ -206,6 +211,12 @@
   </url>
   
   <url>
+    <loc>https://blog.glacjay.info/tags/cordova/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/tags/erlang/</loc>
     <lastmod>2010-11-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -254,6 +265,12 @@
   </url>
   
   <url>
+    <loc>https://blog.glacjay.info/tags/mobile/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/tags/network/</loc>
     <lastmod>2014-06-22T01:09:12+08:00</lastmod>
     <priority>0</priority>
@@ -285,7 +302,7 @@
   
   <url>
     <loc>https://blog.glacjay.info/post/</loc>
-    <lastmod>2016-04-23T10:33:22+08:00</lastmod>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -296,8 +313,14 @@
   </url>
   
   <url>
+    <loc>https://blog.glacjay.info/tags/quasar/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/</loc>
-    <lastmod>2016-04-23T10:33:22+08:00</lastmod>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -310,6 +333,12 @@
   <url>
     <loc>https://blog.glacjay.info/tags/shell/</loc>
     <lastmod>2011-03-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.glacjay.info/tags/spring/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -338,8 +367,14 @@
   </url>
   
   <url>
+    <loc>https://blog.glacjay.info/tags/vue/</loc>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.glacjay.info/tags/web/</loc>
-    <lastmod>2014-06-19T00:23:16+08:00</lastmod>
+    <lastmod>2017-12-18T23:30:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   

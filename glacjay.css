@@ -1,0 +1,19 @@
+code {
+    background: whitesmoke;
+    padding: 0 4px;
+    border-radius: 3px;
+}
+
+blockquote code {
+    background: initial;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+img[src$='#center'] {
+    display: block;
+    margin: 5px auto;
+}

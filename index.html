@@ -45,6 +45,8 @@
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
   
+    <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
+  
   
 
 </head>
@@ -197,6 +199,61 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2017-12-18/quasar-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">quasar 开发中的跨域问题</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2017-12-18 23:30</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/mobile">mobile</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vue">vue</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/quasar">quasar</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/cordova">cordova</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/spring">spring</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>最近在用 vue 三件套 + quasar 开发 hybrid app，遇到了一个跨域问题，简单记录一下。</p>
+
+<p></p>
+  </p>
+
+  
+  <footer>
+    <a href="/post/2017-12-18/quasar-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -646,63 +703,6 @@
   
   <footer>
     <a href="/post/2011-07-26/%E8%BD%AC%E8%BD%BD-compilers-what-are-you-thinking-about/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2011-05-21/%E7%BF%BB%E8%AF%91-%E7%94%A8-ruby-%E5%86%99%E7%BC%96%E8%AF%91%E5%99%A8%E4%B9%8B%E5%85%AD%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-lambda/">[翻译] 用 Ruby 写编译器之六：匿名函数 lambda</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-05-21 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/compiler">compiler</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/ruby">ruby</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-6.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-6.html</a></p>
-
-<hr />
-
-<p>既然上次已经提到说，我们其实是在从 Lisp、Scheme 还有类似的其他语言中借鉴各种要实现的功能（我没想过要把这个项目做成原创的⋯⋯或者至少也要等到以后再说吧），那么现在也<strong>是时候</strong>实现一些更加强大的功能了。</p>
-
-<h2 id="那就来做延迟求值以及匿名函数吧">那就来做延迟求值以及匿名函数吧</h2>
-
-<p>Lambda ，又名匿名函数，可以像普通的数值或者字符串类型那样被当作函数参数来到处传递，也可以在需要的时候才调用（当然不调也可以）。同时，外层函数（也就是定义匿名函数的函数）作为它们的运行环境，在其中定义的局部变量可以被这些匿名函数所访问。这就形成了[一个闭包](<a href="http://en.wikipedia.org/wiki/Closure_(computer_science))。我们这次**并不是**要实现完整的闭包功能，只是开头的一小步而已，完整的实现要等到再后面了。">http://en.wikipedia.org/wiki/Closure_(computer_science))。我们这次**并不是**要实现完整的闭包功能，只是开头的一小步而已，完整的实现要等到再后面了。</a></p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2011-05-21/%E7%BF%BB%E8%AF%91-%E7%94%A8-ruby-%E5%86%99%E7%BC%96%E8%AF%91%E5%99%A8%E4%B9%8B%E5%85%AD%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0-lambda/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

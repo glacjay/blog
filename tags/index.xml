@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Cordova</title>
+      <link>https://blog.glacjay.info/tags/cordova/</link>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/tags/cordova/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Erlang</title>
       <link>https://blog.glacjay.info/tags/erlang/</link>
       <pubDate>Mon, 22 Nov 2010 00:00:00 +0000</pubDate>
@@ -111,6 +120,15 @@
     </item>
     
     <item>
+      <title>Mobile</title>
+      <link>https://blog.glacjay.info/tags/mobile/</link>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/tags/mobile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Network</title>
       <link>https://blog.glacjay.info/tags/network/</link>
       <pubDate>Sun, 22 Jun 2014 01:09:12 +0800</pubDate>
@@ -165,6 +183,15 @@
     </item>
     
     <item>
+      <title>Quasar</title>
+      <link>https://blog.glacjay.info/tags/quasar/</link>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/tags/quasar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ruby</title>
       <link>https://blog.glacjay.info/tags/ruby/</link>
       <pubDate>Sat, 21 May 2011 00:00:00 +0000</pubDate>
@@ -179,6 +206,15 @@
       <pubDate>Sat, 05 Mar 2011 00:00:00 +0000</pubDate>
       
       <guid>https://blog.glacjay.info/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>https://blog.glacjay.info/tags/spring/</link>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/tags/spring/</guid>
       <description></description>
     </item>
     
@@ -210,9 +246,18 @@
     </item>
     
     <item>
+      <title>Vue</title>
+      <link>https://blog.glacjay.info/tags/vue/</link>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/tags/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Web</title>
       <link>https://blog.glacjay.info/tags/web/</link>
-      <pubDate>Thu, 19 Jun 2014 00:23:16 +0800</pubDate>
+      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
       
       <guid>https://blog.glacjay.info/tags/web/</guid>
       <description></description>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31.1" />
+
+  <title>quasar 开发中的跨域问题 &middot; Random Stuff from GlacJAY</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+
+  <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
+
+  
+    <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">GlacJAY</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>归档</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/tags/"><i class='fa fa-tags fa-fw'></i>标签</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small></small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>quasar 开发中的跨域问题</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2017-12-18 23:30</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/mobile">mobile</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vue">vue</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/quasar">quasar</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/cordova">cordova</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/spring">spring</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>最近在用 vue 三件套 + quasar 开发 hybrid app，遇到了一个跨域问题，简单记录一下。</p>
+
+<p></p>
+
+<p>用 H5 开发手机应用的一种自然选择就是 server-less 啰，就是把所有的 HTML/CSS/JS 文件作为资源文件打包到最终的应用包中，开个 WebView 直接加载本地文件就好了。这样跑起来的 JS 代码本身并不是运行在哪个 web 服务器环境中的，自然也就可以随便访问其他域名下的网络资源啰。</p>
+
+<p>然而用 vue(quasar) 默认模板生成的工程在编译的时候（<code>npm run build</code>）会提示：</p>
+
+<blockquote>
+<p><code>Built files are meant to be served over an HTTP server.</code></p>
+
+<p><code>Opening index.html over file:// won't work.</code></p>
+</blockquote>
+
+<p>意思就是：虽然这是个 server-less 应用，但你要么在手机上用 cordova 来跑（quasar），要么在主机上就放在一个 web server 里面跑，我们是不支持直接用浏览器打开编译好的 index.html 文件来访问哟。</p>
+
+<p>不过它说是这么说，实际行不行还是要实测一下的。大概试了下，vue 应用是可以直接打开文件跑的，简单点点也没啥问题，不知道会不会有啥高级操作会有坑；quasar 直接打开就是一片空白了，简单搜了下是启动时的一个 cordova 环境检测条件通不过，然而去掉这个检测之后依然空白，后面也就懒得深究了。</p>
+
+<p>嘛，这个限制倒也可以理解啦，毕竟我们开发的本质上也就是个 web 应用，并且放在 web server 上跑还能热更新啥的。vue(quasar) 应用比较方便的开发姿势就是 <code>npm run dev</code> 啰，可以自动检测文件变动然后自动刷新啥的，开个 chrome 然后把开发者工具开在右边就可以愉快地模拟出手机坚屏效果搞搞搞了，不需要每次改个啥都费力八唆地编译部署到手机或者模拟器上弄了。</p>
+
+<p><img src="/img/2017-12-19-quasar.png#center" alt="quasar in chrome" /></p>
+
+<p>然而在用 axios 访问我们的 REST 服务时，浏览器就不干了，并不认人返回回来的正经应答：</p>
+
+<blockquote>
+<p><code>Failed to load http://xxx.xxx:11001/yyy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.</code></p>
+</blockquote>
+
+<p>天真的我第一时间就去搜 Access-Control-Allow-Origin 的解决方案啦，毕竟以前刚好看到过 CORS 这个名词来着，然后就开始折腾我们的测试服务器了。spring boot 本身加 CORS 支持还是挺简单的，然而加上之后，应答的默认编码却莫名地变成了 latin-1；改了全局的默认应答编码，则又会出现其他问题，搞得我头大不已 😂</p>
+
+<p>终于，在某一次神奇的洗澡时间里，我忽然就想通了，这明明就是浏览器不认那个应答而已，又不是应答本身有啥问题，那我关了浏览器的这个检查不就好了嘛 😂 反正也只是在开发时会有这个问题而已，正常（手机）使用又没事，怎么能这样就对服务端乱搞不是 😂</p>
+
+<p>于是赶紧上网搜了搜，发现 firefox 想关这个还有点儿麻烦，而 chrome 就简单多了，启动时加个参数 <code>--disable-web-security</code> 即可；然而这个是全局的，为了不影响正常使用，我又去单搞了个 portable chrome 用来专职开发。</p>
+
+<p><img src="/img/perfect.png#center" alt="完美" /></p>
+
+<p>（原来我还挺啰嗦的，小时候有这种凑字数能力多好 😂</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://blog.glacjay.info/post/2016-04-23/firefox-%E6%8F%92%E4%BB%B6toomanytabs/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://blog.glacjay.info/post/2016-04-23/firefox-%E6%8F%92%E4%BB%B6toomanytabs/">Firefox 插件：TooManyTabs</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'glacjay';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="https://blog.glacjay.info/js/ui.js"></script>
+
+
+
+
+
+
+</body>
+</html>
+
