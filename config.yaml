@@ -6,6 +6,7 @@ author: "GlacJAY"
 languageCode: "zh-cn"
 metaDataFormat: "yaml"
 theme: "blackburn"
+enableEmoji: true
 
 pygmentsOptions: "linenos=table"
 pygmentsCodeFences: true
@@ -38,6 +39,8 @@ params:
     truncate: true
     dateFormat: "2006-01-02 15:04"
     disqus: "glacjay"
+    custom_css:
+        -   "glacjay.css"
 
 social:
     github: "glacjay"
