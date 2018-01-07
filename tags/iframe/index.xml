@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vue on Random Stuff from GlacJAY</title>
-    <link>https://blog.glacjay.info/tags/vue/</link>
-    <description>Recent content in Vue on Random Stuff from GlacJAY</description>
+    <title>Iframe on Random Stuff from GlacJAY</title>
+    <link>https://blog.glacjay.info/tags/iframe/</link>
+    <description>Recent content in Iframe on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 07 Jan 2018 14:09:22 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.glacjay.info/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.glacjay.info/tags/iframe/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -24,17 +24,6 @@ PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 web
 但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 &amp;lt;iframe&amp;gt; 的 @load 事件（vue 写法，对应于 JS 接口里面的 onload 事件），示例代码如下：
  要点：
  第 15 行：在 @load 事件回调方法 onIframeLoad 中，iframe 控件本身可以从 event.target 中得到，不需要用 vue 的 ref 之类的。 第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 message 事件来实现，那么在外部的 HTML 环境中就要通过 window.</description>
-    </item>
-    
-    <item>
-      <title>quasar 开发中的跨域问题</title>
-      <link>https://blog.glacjay.info/post/2017-12-18/quasar-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Mon, 18 Dec 2017 23:30:22 +0800</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2017-12-18/quasar-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;最近在用 vue 三件套 + quasar 开发 hybrid app，遇到了一个跨域问题，简单记录一下。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

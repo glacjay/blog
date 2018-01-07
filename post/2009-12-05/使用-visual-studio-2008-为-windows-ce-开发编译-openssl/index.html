@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.31.1" />
+  <meta name="generator" content="Hugo 0.32.2" />
 
   <title>使用 Visual Studio 2008 为 Windows CE 开发编译 OpenSSL &middot; Random Stuff from GlacJAY</title>
 
@@ -264,7 +264,7 @@
 <table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
 <td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:\program\wcecompat&gt; perl config.pl</code></pre></td></tr></table>
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\wcecompat</span><span style="color:#09f;font-style:italic">&gt; perl config.pl</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>这样会生成需要的 <code>makefile</code> 文件，不过还不能直接用它来编译，要手动改一下，删掉或注释掉其中的 <code>src/winmain.cpp \</code> 这一行，不然后面链进我们的程序时会报找不到 WinMain 所需的 <code>main</code> 函数这个错（大概是这样说的）。</p>
@@ -274,7 +274,7 @@
 <table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
 <td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:\program\wcecompat&gt; nmake</code></pre></td></tr></table>
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\wcecompat</span><span style="color:#09f;font-style:italic">&gt; nmake</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>开始编译。完成之后，就会在 <code>lib</code> 目录中生成两个库文件 <code>wcecompat.lib</code> 和 <code>wcecompatex.lib</code> ，都是静态链接库。</p>
@@ -286,9 +286,9 @@
 <table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
 <td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:\program\openssl-0.9.8e&gt; perl Configure VC-CE
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; perl Configure VC-CE</span>
 ...
-D:\program\openssl-0.9.8e&gt; ms\do_ms.bat
+D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; ms\do_ms.bat</span>
 ...</code></pre></td></tr></table>
 </div>
 </div>
@@ -297,7 +297,7 @@ D:\program\openssl-0.9.8e&gt; ms\do_ms.bat
 <table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
 <td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:\program\openssl-0.9.8e&gt; nmake -f ms\ce.mak
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; nmake -f ms\ce.mak</span>
 ...</code></pre></td></tr></table>
 </div>
 </div>

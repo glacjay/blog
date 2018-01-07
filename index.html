@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.31.1" />
+  <meta name="generator" content="Hugo 0.32.2" />
 
   <title>Random Stuff from GlacJAY</title>
 
@@ -199,6 +199,59 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/">vue 集成 iframe</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2018-01-07 14:09</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vue">vue</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/iframe">iframe</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  书接上回：最近不是在用 vue 开发 H5 App 嘛（再后来又加上了 react-native 😂，这个以后有机会说），我们有个接口返回的是 HTML 页面，在原来的原生 App 里面自然是用个 WebView 控件来展示啦，但我们现在整个应用都是 H5 了，HTML 里面嵌另一个 HTML，那第一反应自然就是 iframe 啰。
+PS. H5 里面是嵌不了原生控件的对吧？react-native 是可以的，有时确实是要方便一些的……吧
+PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 web components，也是用来做内嵌的吧，但对浏览器的版本要求应该比较高（虽然也是有 polyfill 的啦），记得我当时好像也是试了一下的，但是没成功 😂，也不记得是啥问题了，而且 iframe 也能满足要求啦，所以就没弄这个了。回头有机会再研究下吧。
+如果只是简单的页面展示的话，直接通过 &lt;iframe&gt; 控件的 :src 属性绑定页面 URL 就完事啦。
+但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 &lt;iframe&gt; 的 @load 事件（vue 写法，对应于 JS 接口里面的 onload 事件），示例代码如下：
+ 要点：
+ 第 15 行：在 @load 事件回调方法 onIframeLoad 中，iframe 控件本身可以从 event.target 中得到，不需要用 vue 的 ref 之类的。 第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 message 事件来实现，那么在外部的 HTML 环境中就要通过 window.
+  </p>
+
+  
+  <footer>
+    <a href="/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -648,61 +701,6 @@
   
   <footer>
     <a href="/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2011-07-26/%E8%BD%AC%E8%BD%BD-compilers-what-are-you-thinking-about/">[转载] Compilers: what are you thinking about?</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-07-26 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/compiler">compiler</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>最近在翻看以前加星的 Google Reader 文章，把有用的整理出来打标签，然后就看到了这篇。原文作者的博客现在不知道被丢到哪边去了，搜也搜不到，转到这里，权当保存一下吧。</p>
-
-<p>原文链接：<a href="http://www.onebadseed.com/blog/?p=119">Compilers: what are you thinking about?</a>。当然，已经打不开了。</p>
-
-<hr />
-
-<h2 id="compilers-what-are-you-thinking-about">Compilers: what are you thinking about?</h2>
-
-<p>Author: Rotten Cotton</p>
-
-<p>My recent post <a href="http://www.onebadseed.com/blog/?p=103">Compiler bibliography</a>, a motley list of compiler papers that had been sitting in a box in my attic, generated a surprising amount of traffic: over a thousand unique visitors. But no comments. For those of you interested in compiler design, I ask, what are you trying to understand? What are you trying to do?</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2011-07-26/%E8%BD%AC%E8%BD%BD-compilers-what-are-you-thinking-about/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

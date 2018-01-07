@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.32.2" />
 
-  <title>Vim &middot; Random Stuff from GlacJAY</title>
+  <title>Iframe &middot; Random Stuff from GlacJAY</title>
 
   
   
@@ -37,7 +37,7 @@
 
   
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/vim/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/iframe/index.xml" />
   
 
   
@@ -89,7 +89,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/vim/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/iframe/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
     </li>
     
 
@@ -194,20 +194,20 @@
 
 
 <div class="header">
-  <h1>Vim</h1>
+  <h1>Iframe</h1>
 </div>
 
 <div class="content">
   
     <article>
   <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">让 Vim 在保存时自动调用外部命令进行格式化</a></h2>
+    <h2><a href="https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/">vue 集成 iframe</a></h2>
 
     <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>2009-12-13 00:00</time>
+    <time>2018-01-07 14:09</time>
   </div>
 
   
@@ -220,9 +220,11 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/go">go</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vim">vim</a>
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vue">vue</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/iframe">iframe</a>
     
   </div>
   
@@ -233,16 +235,18 @@
   </header>
 
   <p>
-  <p>肯定有许多人遇到过这个问题，也肯定有许多现成的解决方案被发现，可是我没找到（或者说没耐心找）。无所谓，自己找到的话，得到的就不仅仅是最终结果了。</p>
-
-<p>闲话少说。其实以前也干过类似的事情，就是在保存的时候自动去掉所有的行末空白；不过这个操作使用 Vim 本身的功能就能实现，不需要借助于外部程序，所以只要简单地设一个 <code>BufWrite</code> 时的自动命令就行了。但当需要借助外部程序的时候，在 <code>BufWrite</code> 或者 <code>BufWritePre</code> 或者 <code>FileWritePre</code> 时执行的自动命令就不行了，老是提示说什么文件本身已更改，是否确定写入。我在这上面反覆试了好多次，才发现是自己没有搞清楚底下到底发生了什么。要让外部程序对文件内容进行格式化（或者其他什么操作。我想调的是 gofmt，顺带一提），首先当然得要那个外部程序能看到你做过的，还没有保存的更改，所以说应该是先写入再操作的，即在 <code>BufWritePost</code> 的时候执行自动命令。而我一开始就把基本步骤给搞反了。</p>
-
-<p></p>
+  书接上回：最近不是在用 vue 开发 H5 App 嘛（再后来又加上了 react-native 😂，这个以后有机会说），我们有个接口返回的是 HTML 页面，在原来的原生 App 里面自然是用个 WebView 控件来展示啦，但我们现在整个应用都是 H5 了，HTML 里面嵌另一个 HTML，那第一反应自然就是 iframe 啰。
+PS. H5 里面是嵌不了原生控件的对吧？react-native 是可以的，有时确实是要方便一些的……吧
+PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 web components，也是用来做内嵌的吧，但对浏览器的版本要求应该比较高（虽然也是有 polyfill 的啦），记得我当时好像也是试了一下的，但是没成功 😂，也不记得是啥问题了，而且 iframe 也能满足要求啦，所以就没弄这个了。回头有机会再研究下吧。
+如果只是简单的页面展示的话，直接通过 &lt;iframe&gt; 控件的 :src 属性绑定页面 URL 就完事啦。
+但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 &lt;iframe&gt; 的 @load 事件（vue 写法，对应于 JS 接口里面的 onload 事件），示例代码如下：
+ 要点：
+ 第 15 行：在 @load 事件回调方法 onIframeLoad 中，iframe 控件本身可以从 event.target 中得到，不需要用 vue 的 ref 之类的。 第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 message 事件来实现，那么在外部的 HTML 环境中就要通过 window.
   </p>
 
   
   <footer>
-    <a href="/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
