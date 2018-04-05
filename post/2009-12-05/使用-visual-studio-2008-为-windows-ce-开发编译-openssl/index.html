@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>使用 Visual Studio 2008 为 Windows CE 开发编译 OpenSSL &middot; Random Stuff from GlacJAY</title>
 
@@ -232,17 +232,25 @@
 
 <p>首先要写个定义环境变量的脚本，以把 CE 的路径给配置好。 VS2008 的那个命令行启动脚本只配置了 VC 的环境变量，没有配 CE 的环境变量，因为这个是要根据用户需要来做的。我写的脚本内容如下，你可能要根据自己的 VS2008 相关安装目录做调整。</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">8</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat"><span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">PATH</span>=D:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Microsoft Visual Studio 9.0\VC\ce\bin\x86_arm;%PATH%</span>
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">INCLUDE</span>=D:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Microsoft Visual Studio 9.0\VC\ce\include;C:\Program Files\Windows Mobile 5.0 SDK R2\PocketPC\Include\Armv4i;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;%INCLUDE%</span>
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">LIB</span>=C:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Windows Mobile 5.0 SDK R2\PocketPC\Lib\ARMV4I;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\armv4i;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\lib\armv4i;%LIB%</span>
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bat" data-lang="bat"><span style="color:#069;font-weight:bold">set</span> <span style="color:#033">PATH</span>=D:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Microsoft Visual Studio 9.0\VC\ce\bin\x86_arm;%PATH%</span>
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">INCLUDE</span>=D:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Microsoft Visual Studio 9.0\VC\ce\include;C:\Program Files\Windows Mobile 5.0 SDK R2\PocketPC\Include\Armv4i;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;%INCLUDE%</span>
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">LIB</span>=C:<span style="color:#99f">\Program</span><span style="color:#09f;font-style:italic"> Files\Windows Mobile 5.0 SDK R2\PocketPC\Lib\ARMV4I;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\armv4i;D:\Program Files\Microsoft Visual Studio 9.0\VC\ce\lib\armv4i;%LIB%</span>
 
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">OSVERSION</span>=WCE501
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">TARGETCPU</span>=ARMV4I
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">PLATFORM</span>=VC-CE
-<span style="color:#069;font-weight:bold">set</span> <span style="color:#069;font-weight:bold"></span><span style="color:#033">WCECOMPAT</span>=D:<span style="color:#99f">\program\wcecompat</span><span style="color:#09f;font-style:italic"></span></code></pre></td></tr></table>
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">OSVERSION</span>=WCE501
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">TARGETCPU</span>=ARMV4I
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">PLATFORM</span>=VC-CE
+<span style="color:#069;font-weight:bold">set</span> <span style="color:#033">WCECOMPAT</span>=D:<span style="color:#99f">\program\wcecompat</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>其中 <code>PATH</code> 、 <code>INCLUDE</code> 、 <code>LIB</code> 都是 CE 相关的环境变量，在编译 WCECompat 和 OpenSSL 的时候都是需要的，后面的是 WCECompat 需要的，其中有些是 OpenSSL 也需要的。</p>
@@ -261,9 +269,10 @@
 
 <p>运行命令</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\wcecompat</span><span style="color:#09f;font-style:italic">&gt; perl config.pl</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -271,9 +280,10 @@
 
 <p>然后运行命令</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\wcecompat</span><span style="color:#09f;font-style:italic">&gt; nmake</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -283,9 +293,13 @@
 
 <p>还是同一个命令行窗口，进入 OpenSSL 的解压目录，我的是 <code>D:\program\openssl-0.9.8e</code> 。根据 <code>INSTALL.WCE</code> 文件中的说明，运行下列命令进行编译：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; perl Configure VC-CE</span>
 ...
 D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; ms\do_ms.bat</span>
@@ -294,9 +308,11 @@ D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f
 </div>
 <p>这一步完成之后，打开生成的 <code>ms\ce.mak</code> 文件，把第 <code>19</code> 行 <code>CFLAG</code> 的变量定义中的 <code>/WX</code> 选项给删掉，不然后面有编译警告会被当成错误，从而编译失败。</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f;font-style:italic">&gt; nmake -f ms\ce.mak</span>
 ...</code></pre></td></tr></table>
 </div>
@@ -309,9 +325,11 @@ D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f
 
 <p>打开个源文件（比如某个事件处理函数定义的地方），在最开始的地方加进去 OpenSSL 的头文件包含</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#099">#define NO_SYS_TYPES_H
 </span><span style="color:#099">#include</span> <span style="color:#099">&lt;openssl/ssl.h&gt;</span></code></pre></td></tr></table>
 </div>
@@ -320,9 +338,10 @@ D:<span style="color:#99f">\program\openssl-0.9.8e</span><span style="color:#09f
 
 <p>然后在事件处理函数中加条语句</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">SSL_CTX <span style="color:#555">*</span>ctx <span style="color:#555">=</span> SSL_CTX_new(SSLv23_method());</code></pre></td></tr></table>
 </div>
 </div>

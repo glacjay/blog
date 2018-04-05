@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>OpenVPN 的握手协议分析 &middot; Random Stuff from GlacJAY</title>
 
@@ -234,9 +234,16 @@
 
 <p>不过在 Erlang 这个语言中，甚至就连 <code>socketpair</code> 这个调用都没封。搜了一下它的源码，才发现自己实现一个也非常的简单，怪不得。下面摘自 <code>otp_src_R14B/lib/kernel/test/inet_sockopt_SUITE.erl</code> 文件：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang"><span style="color:#c0f">create_socketpair</span>(<span style="color:#033">ListenOptions</span>,<span style="color:#033">ConnectOptions</span>) -<span style="color:#a00;background-color:#faa">&gt;
 </span><span style="color:#a00;background-color:#faa">    ?</span><span style="color:#999;font-weight:bold">line</span> {ok,<span style="color:#033">LS</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">gen_tcp</span>:<span style="color:#c0f">listen</span>(<span style="color:#f60">0</span>,<span style="color:#033">ListenOptions</span>),
     <span style="color:#555">?</span>line {ok,<span style="color:#033">Port</span>}<span style="color:#555">=</span><span style="color:#0cf;font-weight:bold">inet</span>:<span style="color:#c0f">port</span>(<span style="color:#033">LS</span>),

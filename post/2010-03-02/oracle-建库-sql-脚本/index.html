@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>Oracle 建库 SQL 脚本 &middot; Random Stuff from GlacJAY</title>
 
@@ -221,9 +221,79 @@
 </div>
 
   <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">15</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">16</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">17</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">18</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">19</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">20</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">21</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">22</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">23</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">24</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">25</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">26</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">27</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">28</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">29</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">30</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">31</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">32</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">33</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">34</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">35</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">36</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">37</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">38</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">39</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">40</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">41</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">42</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">43</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">44</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">45</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">46</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">47</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">48</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">49</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">50</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">51</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">52</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">53</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">54</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">55</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">56</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">57</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">58</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">59</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">60</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">61</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">62</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">63</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">64</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">65</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">66</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">67</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">68</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">69</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">70</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#09f;font-style:italic">-- 首先是删除该数据库中该用户名下的所有表、序列与触发器，
 </span><span style="color:#09f;font-style:italic">-- 其中触发器是通过表格级联删除的。
 </span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">declare</span>
@@ -249,16 +319,16 @@
 
 <span style="color:#09f;font-style:italic">-- 然后，就是一砣……的建表语句啦，
 </span><span style="color:#09f;font-style:italic">-- 比方说下面就是两个含外键的表。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#fc3">&#34;A&#34;</span> (
-  <span style="color:#fc3">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
-  <span style="color:#fc3">&#34;NAME&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>         <span style="color:#09f;font-style:italic">-- nvarchar2类型支持UTF8
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#c30">&#34;A&#34;</span> (
+  <span style="color:#c30">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
+  <span style="color:#c30">&#34;NAME&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>         <span style="color:#09f;font-style:italic">-- nvarchar2类型支持UTF8
 </span><span style="color:#09f;font-style:italic"></span>);
 <span style="color:#09f;font-style:italic">-- Oracle中的表名与字段名最好写成这样引号加全大写的形式。
 </span><span style="color:#09f;font-style:italic"></span>
-<span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#fc3">&#34;B&#34;</span> (
-  <span style="color:#fc3">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
-  <span style="color:#fc3">&#34;A&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span> <span style="color:#069;font-weight:bold">references</span> <span style="color:#fc3">&#34;B&#34;</span> <span style="color:#069;font-weight:bold">on</span> <span style="color:#069;font-weight:bold">delete</span> <span style="color:#069;font-weight:bold">cascade</span>,
-  <span style="color:#fc3">&#34;VALUE&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>
+<span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#c30">&#34;B&#34;</span> (
+  <span style="color:#c30">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
+  <span style="color:#c30">&#34;A&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span> <span style="color:#069;font-weight:bold">references</span> <span style="color:#c30">&#34;B&#34;</span> <span style="color:#069;font-weight:bold">on</span> <span style="color:#069;font-weight:bold">delete</span> <span style="color:#069;font-weight:bold">cascade</span>,
+  <span style="color:#c30">&#34;VALUE&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>
 );
 
 <span style="color:#09f;font-style:italic">-- 接下来是第三部分，为所有的表创建对应的序列和触发器，以实现自增主键。
@@ -291,9 +361,9 @@
 <span style="color:#555">/</span>
 
 <span style="color:#09f;font-style:italic">-- 最后当然就是测试数据啦。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#fc3">&#34;A&#34;</span> (ID, NAME) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#c30">&#39;first name&#39;</span>);
-<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#fc3">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;Jay&#39;</span>);
-<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#fc3">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;杰&#39;</span>);</code></pre></td></tr></table>
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;A&#34;</span> (ID, NAME) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#c30">&#39;first name&#39;</span>);
+<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;Jay&#39;</span>);
+<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;杰&#39;</span>);</code></pre></td></tr></table>
 </div>
 </div>
 

@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>[翻译] 用 Ruby 写编译器之六：匿名函数 lambda &middot; Random Stuff from GlacJAY</title>
 
@@ -242,9 +242,11 @@
 
 <p>我们现在所要增加的是像下面这样的东西：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cl" data-lang="cl"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cl" data-lang="cl"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cl" data-lang="cl">(<span style="color:#033">lambda</span> (<span style="color:#033">args</span>) <span style="color:#033">body</span>)
 (<span style="color:#033">call</span> <span style="color:#033">f</span> (<span style="color:#033">args</span>))</code></pre></td></tr></table>
 </div>
@@ -265,13 +267,20 @@
 
 <p>首先是对 lambda 表达式本身进行处理的方法：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile_lambda</span> args, body
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">compile_lambda</span> args, body
     <span style="color:#366">name</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;lambda__</span><span style="color:#a00">#{</span>@seq<span style="color:#a00">}</span><span style="color:#c30">&#34;</span>
     @seq <span style="color:#555">+=</span> <span style="color:#f60">1</span>
-    <span style="color:#555"></span>compile_defun(<span style="color:#366">name</span>, args,body)
+    compile_defun(<span style="color:#366">name</span>, args,body)
     <span style="color:#366">puts</span> <span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">movl</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">$</span><span style="color:#a00">#{</span><span style="color:#366">name</span><span style="color:#a00">}</span><span style="color:#c30">,%eax&#34;</span>
     <span style="color:#069;font-weight:bold">return</span> <span style="color:#555">[</span><span style="color:#fc3">:subexpr</span><span style="color:#555">]</span>
   <span style="color:#069;font-weight:bold">end</span></code></pre></td></tr></table>
@@ -283,10 +292,17 @@
 
 <p>之后是一些重构。你也许已经注意到了， <code>#compile_exp</code> 中的代码有点乱，因为要处理不同类型的参数。让我们把这部分代码给提取出来：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">7</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile_eval_arg</span> arg
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">compile_eval_arg</span> arg
     atype, aparam <span style="color:#555">=</span> get_arg(arg)
     <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;$.LC</span><span style="color:#a00">#{</span>aparam<span style="color:#a00">}</span><span style="color:#c30">&#34;</span> <span style="color:#069;font-weight:bold">if</span> atype <span style="color:#555">==</span> <span style="color:#fc3">:strconst</span>
     <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;$</span><span style="color:#a00">#{</span>aparam<span style="color:#a00">}</span><span style="color:#c30">&#34;</span> <span style="color:#069;font-weight:bold">if</span> atype <span style="color:#555">==</span> <span style="color:#fc3">:int</span>
@@ -297,23 +313,38 @@
 </div>
 <p>要注意的是，这里又出现了一个新的 <code>:atom</code> 类型。借助于此，我们就可以把一个 C 函数的地址传给 <code>:call</code> 指令了。反正实现起来也很简单。当然，我们还要在 <code>#get_arg</code> 方法中加上如下代码，以使其生效：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">    <span style="color:#069;font-weight:bold">return</span> <span style="color:#555">[</span><span style="color:#fc3">:atom</span>, a<span style="color:#555">]</span> <span style="color:#069;font-weight:bold">if</span> (a<span style="color:#555">.</span>is_a?(<span style="color:#360">Symbol</span>))</code></pre></td></tr></table>
 </div>
 </div>
 <p>然后，作为重构的一部分，对 <code>:call</code> 的处理被分离了出来，成为一个单独的方法：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">14</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile_call</span> func, args
-    stack_adjustment <span style="color:#555">=</span> <span style="color:#360">PTR_SIZE</span> <span style="color:#555">+</span> (((args<span style="color:#555">.</span>length<span style="color:#555">+</span><span style="color:#f60">0</span><span style="color:#555">.</span><span style="color:#f60">5</span><span style="color:#555"></span>)<span style="color:#555">*</span><span style="color:#360">PTR_SIZE</span><span style="color:#3aa">/(4.0*PTR_SIZE)).round) * (4*PTR_SIZE)
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">compile_call</span> func, args
+    stack_adjustment <span style="color:#555">=</span> <span style="color:#360">PTR_SIZE</span> <span style="color:#555">+</span> (((args<span style="color:#555">.</span>length<span style="color:#555">+</span><span style="color:#f60">0</span><span style="color:#555">.</span><span style="color:#f60">5</span>)<span style="color:#555">*</span><span style="color:#360">PTR_SIZE</span><span style="color:#3aa">/(4.0*PTR_SIZE)).round) * (4*PTR_SIZE)
 </span><span style="color:#3aa">    puts &#34;\tsubl\t$</span><span style="color:#a00">#{</span>stack_adjustment<span style="color:#a00">}</span><span style="color:#3aa">, %esp&#34;
 </span><span style="color:#3aa">    args.each_with_index do |a,i|
 </span><span style="color:#3aa">      param = compile_eval_arg(a)
-</span><span style="color:#3aa">      puts &#34;\tmovl\t</span><span style="color:#a00">#{</span>param<span style="color:#a00">}</span><span style="color:#3aa">, </span><span style="color:#a00">#{</span>i<span style="color:#555">&gt;</span><span style="color:#f60">0</span> <span style="color:#555">?</span> i<span style="color:#555">*</span><span style="color:#f60">4</span> <span style="color:#555"></span>: <span style="color:#c30">&#34;&#34;</span><span style="color:#a00">}</span><span style="color:#3aa">(%esp)&#34;
+</span><span style="color:#3aa">      puts &#34;\tmovl\t</span><span style="color:#a00">#{</span>param<span style="color:#a00">}</span><span style="color:#3aa">, </span><span style="color:#a00">#{</span>i<span style="color:#555">&gt;</span><span style="color:#f60">0</span> <span style="color:#555">?</span> i<span style="color:#555">*</span><span style="color:#f60">4</span> : <span style="color:#c30">&#34;&#34;</span><span style="color:#a00">}</span><span style="color:#3aa">(%esp)&#34;
 </span><span style="color:#3aa">    end
 </span><span style="color:#3aa">
 </span><span style="color:#3aa">    res = compile_eval_arg(func)
@@ -330,16 +361,29 @@
 
 <p>那么，现在的 <code>#compile_exp</code> 方法变成什么样子了呢？简单来说就是，变得整齐多了：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 6</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 7</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 8</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;"> 9</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">10</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">11</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">12</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">13</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile_do</span>(<span style="color:#555">*</span>exp)
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">compile_do</span>(<span style="color:#555">*</span>exp)
     exp<span style="color:#555">.</span>each { <span style="color:#555">|</span>e<span style="color:#555">|</span> compile_exp(e) }
     <span style="color:#069;font-weight:bold">return</span> <span style="color:#555">[</span><span style="color:#fc3">:subexpr</span><span style="color:#555">]</span>
   <span style="color:#069;font-weight:bold">end</span>
-  <span style="color:#069;font-weight:bold">def</span> <span style="color:#0a8;font-weight:bold"></span><span style="color:#555"></span><span style="color:#c0f">compile_exp</span>(exp)
+  <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">compile_exp</span>(exp)
     <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">!</span>exp <span style="color:#555">||</span> exp<span style="color:#555">.</span>size <span style="color:#555">==</span> <span style="color:#f60">0</span>
-    <span style="color:#555"></span><span style="color:#069;font-weight:bold">return</span> compile_do(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:do</span>
+    <span style="color:#069;font-weight:bold">return</span> compile_do(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:do</span>
     <span style="color:#069;font-weight:bold">return</span> compile_defun(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:defun</span>
     <span style="color:#069;font-weight:bold">return</span> compile_ifelse(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:if</span>
     <span style="color:#069;font-weight:bold">return</span> compile_lambda(<span style="color:#555">*</span>exp<span style="color:#555">[</span><span style="color:#f60">1</span><span style="color:#555">..-</span><span style="color:#f60">1</span><span style="color:#555">]</span>) <span style="color:#069;font-weight:bold">if</span> exp<span style="color:#555">[</span><span style="color:#f60">0</span><span style="color:#555">]</span> <span style="color:#555">==</span> <span style="color:#fc3">:lambda</span>
@@ -352,9 +396,12 @@
 
 <p>那么就来简单地测试一下吧：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">prog <span style="color:#555">=</span> <span style="color:#555">[</span><span style="color:#fc3">:do</span>,
   <span style="color:#555">[</span><span style="color:#fc3">:call</span>, <span style="color:#555">[</span><span style="color:#fc3">:lambda</span>, <span style="color:#555">[]</span>, <span style="color:#555">[</span><span style="color:#fc3">:puts</span>, <span style="color:#c30">&#34;Test&#34;</span><span style="color:#555">]]</span>, <span style="color:#555">[]</span> <span style="color:#555">]</span>
 <span style="color:#555">]</span></code></pre></td></tr></table>
@@ -364,9 +411,15 @@
 
 <p>编译运行之：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style=";border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;"><tr><td style=";vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">1</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">2</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">3</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">4</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">5</span><span style="color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;">6</span></code></pre></td>
-<td style=";vertical-align:top;padding:0;margin:0;border:0;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ ruby step6.rb &gt;step6.s
 $ make step6
 cc      step6.s  -o step6

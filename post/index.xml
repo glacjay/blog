@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 07 Jan 2018 14:09:22 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 05 Apr 2018 16:25:07 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.glacjay.info/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cmder 颜色配置</title>
+      <link>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 05 Apr 2018 16:25:07 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</guid>
+      <description>工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 cmder，一个非常好用的 Windows 终端环境。
+PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵，当然最重要的是 Windows 上游戏多啊😂。
+跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。
+PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 scoop，虽然没有 Chocoletey 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。
+emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.</description>
+    </item>
     
     <item>
       <title>vue 集成 iframe</title>
@@ -459,7 +472,7 @@
       <pubDate>Tue, 02 Mar 2010 00:00:00 +0000</pubDate>
       
       <guid>https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/</guid>
-      <description>12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970 -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &amp;#39;BIN$%&amp;#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &amp;#39;drop table &amp;#39; || next_row.table_name || &amp;#39; cascade constraints&amp;#39;; end loop; for next_row in usersequences loop execute immediate &amp;#39;drop sequence &amp;#39; || next_row.sequence_name; end loop; end; / -- 然后，就是一砣……的建表语句啦， -- 比方说下面就是两个含外键的表。 create table &amp;#34;A&amp;#34; ( &amp;#34;ID&amp;#34; integer primary key, &amp;#34;NAME&amp;#34; nvarchar2(64) not null -- nvarchar2类型支持UTF8 ); -- Oracle中的表名与字段名最好写成这样引号加全大写的形式。  create table &amp;#34;B&amp;#34; ( &amp;#34;ID&amp;#34; integer primary key, &amp;#34;A&amp;#34; integer not null references &amp;#34;B&amp;#34; on delete cascade, &amp;#34;VALUE&amp;#34; nvarchar2(64) not null ); -- 接下来是第三部分，为所有的表创建对应的序列和触发器，以实现自增主键。 declare cursor usertables is select cols.</description>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &amp;#39;BIN$%&amp;#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &amp;#39;drop table &amp;#39; || next_row.</description>
     </item>
     
     <item>
@@ -578,17 +591,19 @@
 
 &lt;hr /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
-&lt;table style=&#34;;border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%skeleton &amp;#34;lalr1.cc&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;可以用&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
-&lt;table style=&#34;;border-spacing:0;padding:0;margin:0;border:0;width:100%;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;color:#7f7f7f;margin-right:0.4em;padding:00.4em00.4em;display:block;&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%language &amp;#34;c++&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;

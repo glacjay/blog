@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>Random Stuff from GlacJAY</title>
 
@@ -199,6 +199,59 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/">总结一下学到的 LVS 相关知识（ NAT 模式）</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2011-03-12 00:00</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/network">network</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/lvs">lvs</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>LVS，即 Linux Virtual Server 的简称，是 Linux 下用来实现负载均衡的一个项目。它支持三种负载模式，分别为 NAT 、 DR 以及 TUN 。</p>
+
+<p>注意，我这里讲的都是针对的 2.6 的内核， 2.4 、 2.2 、 2.0 版内核的实现方法和配置方法都各有不一样的地方。还好我不需要维护历史遗留系统（擦汗）。</p>
+
+<p>首先是最简单的 NAT 模式。这种模式跟普通的 NAT 防火墙的原理差不多，只不过它会根据指定的分配策略，为每一个新的客户端连接选择一个不同的真实服务，而不是像 NAT 防火墙那样只映射到后台的同一个真实服务。</p>
+
+<p></p>
+  </p>
+
+  
+  <footer>
+    <a href="/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -587,7 +640,7 @@
   </header>
 
   <p>
-  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970 -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &#39;BIN$%&#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &#39;drop table &#39; || next_row.table_name || &#39; cascade constraints&#39;; end loop; for next_row in usersequences loop execute immediate &#39;drop sequence &#39; || next_row.sequence_name; end loop; end; / -- 然后，就是一砣……的建表语句啦， -- 比方说下面就是两个含外键的表。 create table &#34;A&#34; ( &#34;ID&#34; integer primary key, &#34;NAME&#34; nvarchar2(64) not null -- nvarchar2类型支持UTF8 ); -- Oracle中的表名与字段名最好写成这样引号加全大写的形式。  create table &#34;B&#34; ( &#34;ID&#34; integer primary key, &#34;A&#34; integer not null references &#34;B&#34; on delete cascade, &#34;VALUE&#34; nvarchar2(64) not null ); -- 接下来是第三部分，为所有的表创建对应的序列和触发器，以实现自增主键。 declare cursor usertables is select cols.
+  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &#39;BIN$%&#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &#39;drop table &#39; || next_row.
   </p>
 
   
@@ -642,55 +695,6 @@
   
   <footer>
     <a href="/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">让 Vim 在保存时自动调用外部命令进行格式化</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2009-12-13 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/go">go</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/vim">vim</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>肯定有许多人遇到过这个问题，也肯定有许多现成的解决方案被发现，可是我没找到（或者说没耐心找）。无所谓，自己找到的话，得到的就不仅仅是最终结果了。</p>
-
-<p>闲话少说。其实以前也干过类似的事情，就是在保存的时候自动去掉所有的行末空白；不过这个操作使用 Vim 本身的功能就能实现，不需要借助于外部程序，所以只要简单地设一个 <code>BufWrite</code> 时的自动命令就行了。但当需要借助外部程序的时候，在 <code>BufWrite</code> 或者 <code>BufWritePre</code> 或者 <code>FileWritePre</code> 时执行的自动命令就不行了，老是提示说什么文件本身已更改，是否确定写入。我在这上面反覆试了好多次，才发现是自己没有搞清楚底下到底发生了什么。要让外部程序对文件内容进行格式化（或者其他什么操作。我想调的是 gofmt，顺带一提），首先当然得要那个外部程序能看到你做过的，还没有保存的更改，所以说应该是先写入再操作的，即在 <code>BufWritePost</code> 的时候执行自动命令。而我一开始就把基本步骤给搞反了。</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

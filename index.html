@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>Random Stuff from GlacJAY</title>
 
@@ -199,6 +199,53 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/">cmder 颜色配置</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2018-04-05 16:25</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/windows">windows</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 cmder，一个非常好用的 Windows 终端环境。
+PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵，当然最重要的是 Windows 上游戏多啊😂。
+跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。
+PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 scoop，虽然没有 Chocoletey 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。
+emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.
+  </p>
+
+  
+  <footer>
+    <a href="/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -665,57 +712,6 @@
   
   <footer>
     <a href="/post/2011-09-17/%E4%BF%AE%E6%94%B9-openvpn-%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8D%8F%E5%95%86/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/">编写自己的 Web 版 Google Reader 客户端</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-08-11 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/php">php</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>最近花在路上的时间明显变多了，手机就成了我打发这些路上时间的利器。小说神马的看太多也会腻，正好 Google Reader 中也积累了大量的未读文章，因此用手机看看订阅文章就成了一个比较好的选择。</p>
-
-<p>但多次使用下来，却也发现了很多 Google 原版 Web 界面的不方便之处。Google 提供了两个版本的 Reader 界面给手机，一个是苹果风格的 <code>/i/</code> 界面，设计得很漂亮，功能也很全，用 Nokia 手机也能看，但太费流量（未证实，只是感觉，大概是因为一次加载了很多的文章吧），而且在网络状况不好的时候，体验不太好。另一个是 <code>/m/</code> 界面，很简洁，选项不多，但也总有些这样那样的细节另我不太满意，下面详述。然后又去找 Nokia 的 S60v3 客户端软件，总之是没一个喜欢啦。作为一个 Geek （至少是自称），在这种情况下，最佳选择自然就是打造一个自己专属的解决方案啦。</p>
-
-<p>正好蹭着同学的一个 PHP 空间（其实也有 Python 和 Ruby 可选啦，但总觉得会很折腾，还是 PHP 好点，虽然折腾也少不了，见下），于是花了几天时间，连复习 PHP （以前只学过没用过，主要还是看 w3schools 的教程和查 php.net 的函数文档）、研究 OAuth （参见<a href="http://www.ioncannon.net/programming/1443/google-oauth-for-installed-apps-php-example/">这篇文章</a>，不过 Web 应用稍有不同）、研究 Google Reader API （参见<a href="http://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1/">这系列文章</a>）、编写代码，终于搞定了一个很阳春的 Google Reader Mobile 版，刚刚满足我的手机阅读需要。</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

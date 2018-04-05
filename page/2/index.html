@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.32.2" />
+  <meta name="generator" content="Hugo 0.38" />
 
   <title>Random Stuff from GlacJAY</title>
 
@@ -199,6 +199,57 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/">编写自己的 Web 版 Google Reader 客户端</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2011-08-11 00:00</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/php">php</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/web">web</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>最近花在路上的时间明显变多了，手机就成了我打发这些路上时间的利器。小说神马的看太多也会腻，正好 Google Reader 中也积累了大量的未读文章，因此用手机看看订阅文章就成了一个比较好的选择。</p>
+
+<p>但多次使用下来，却也发现了很多 Google 原版 Web 界面的不方便之处。Google 提供了两个版本的 Reader 界面给手机，一个是苹果风格的 <code>/i/</code> 界面，设计得很漂亮，功能也很全，用 Nokia 手机也能看，但太费流量（未证实，只是感觉，大概是因为一次加载了很多的文章吧），而且在网络状况不好的时候，体验不太好。另一个是 <code>/m/</code> 界面，很简洁，选项不多，但也总有些这样那样的细节另我不太满意，下面详述。然后又去找 Nokia 的 S60v3 客户端软件，总之是没一个喜欢啦。作为一个 Geek （至少是自称），在这种情况下，最佳选择自然就是打造一个自己专属的解决方案啦。</p>
+
+<p>正好蹭着同学的一个 PHP 空间（其实也有 Python 和 Ruby 可选啦，但总觉得会很折腾，还是 PHP 好点，虽然折腾也少不了，见下），于是花了几天时间，连复习 PHP （以前只学过没用过，主要还是看 w3schools 的教程和查 php.net 的函数文档）、研究 OAuth （参见<a href="http://www.ioncannon.net/programming/1443/google-oauth-for-installed-apps-php-example/">这篇文章</a>，不过 Web 应用稍有不同）、研究 Google Reader API （参见<a href="http://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1/">这系列文章</a>）、编写代码，终于搞定了一个很阳春的 Google Reader Mobile 版，刚刚满足我的手机阅读需要。</p>
+
+<p></p>
+  </p>
+
+  
+  <footer>
+    <a href="/post/2011-08-11/%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-web-%E7%89%88-google-reader-%E5%AE%A2%E6%88%B7%E7%AB%AF/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -682,59 +733,6 @@
   
   <footer>
     <a href="/post/2011-03-13/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-dr-%E6%A8%A1%E5%BC%8F/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/">总结一下学到的 LVS 相关知识（ NAT 模式）</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-03-12 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/network">network</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/lvs">lvs</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>LVS，即 Linux Virtual Server 的简称，是 Linux 下用来实现负载均衡的一个项目。它支持三种负载模式，分别为 NAT 、 DR 以及 TUN 。</p>
-
-<p>注意，我这里讲的都是针对的 2.6 的内核， 2.4 、 2.2 、 2.0 版内核的实现方法和配置方法都各有不一样的地方。还好我不需要维护历史遗留系统（擦汗）。</p>
-
-<p>首先是最简单的 NAT 模式。这种模式跟普通的 NAT 防火墙的原理差不多，只不过它会根据指定的分配策略，为每一个新的客户端连接选择一个不同的真实服务，而不是像 NAT 防火墙那样只映射到后台的同一个真实服务。</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

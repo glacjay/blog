@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.38" />
 
-  <title>利用 XMPP 协议实现 VPN &middot; Random Stuff from GlacJAY</title>
+  <title>cmder 颜色配置 &middot; Random Stuff from GlacJAY</title>
 
   
   
@@ -188,7 +188,7 @@
 
 
 <div class="header">
-  <h1>利用 XMPP 协议实现 VPN</h1>
+  <h1>cmder 颜色配置</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -197,7 +197,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>2009-12-19 00:00</time>
+    <time>2018-04-05 16:25</time>
   </div>
 
   
@@ -210,9 +210,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/xmpp">xmpp</a>
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/windows">windows</a>
     
   </div>
   
@@ -220,33 +218,42 @@
 
 </div>
 
-  <p>这主意是我<a href="http://chenyufei.info">一同学</a>想到的（至少是他告诉我的），基于一种实际的需要。假设你有两台内网机，都没有公网地址，你想从一台机器访问另一台机器的服务，这时要怎么办呢？当然很可能是我无知了，就我所知，网上倒是有一些提供这类服务的网站，但都是基于 Windows 的远程桌面的，至于 Linux ，我没找过。</p>
+  <p>工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 <a href="http://cmder.net">cmder</a>，一个非常好用的 Windows 终端环境。</p>
 
-<p>于是那家伙联想到了 IM Bot 这种东西。现在网上有各种各样的 IM Bot ，可以通过与之聊天执行各种各样的自动化任务，那为什么不能让它把发过去的命令交给另一台机器的 Shell 执行，并把结果返回呢？这不就实现了一个简单的 Telnet 了吗？这就是最初的想法了（我没去找现成实现，因为我也该练练手了）。而我刚好才折腾过 OpenVPN ，于是就有了标题所说的这个最终想法。这样的话，就能一下子从只支持一种应用协议到支持几乎所有的应用协议了，而且实现的工作量也同时减到了最低。真是好主意啊，自我夸奖一下 :-)</p>
+<p>PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵<del>，当然最重要的是 Windows 上游戏多啊😂</del>。</p>
 
-<p></p>
+<p>跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。</p>
 
-<p>其实真正解释起来是很简单的想法啦，就是把从虚拟网卡读到的 IP 包，base64 一下，当聊天内容发给对端就万事 OK 。</p>
+<p>PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 <a href="http://scoop.sh">scoop</a>，虽然没有 <a href="https://chocolatey.org">Chocoletey</a> 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。</p>
 
-<p>选择 XMPP 当然不仅是因为它的开放性，最重要的原因就是有一个现成的冤大头给我们利用，就是 Google 啦，而且还有在线的聊天记录供调试用，何乐而不为呢 :-)</p>
+<p>emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.js 时总会有些输出的前景色跟背景色一样导致有些字符显示不出来了😂：</p>
 
-<p>实现这个想法的关键就两点，一是 XMPP 协议库，Python 的有好几个；二是对虚拟网卡的读写，Linux 下有现成的虚拟网卡，Windows 也有，不过要另装，而 Python 的标准库就完全能实现对其的读写了。不愧是胶水语言啊。</p>
+<p><img src="/img/2018-04-05/cmder-initial.png#center" alt="初始的 Tomorrow 配色" /></p>
 
-<p>目前来说，一个还只支持 Linux 的阳春版已经实现出来啦，在<a href="http://code.google.com/p/xtunnel">这里</a>，欢迎大牛们前去参观。</p>
+<p>从上图可以看出（其实我也是过了一段时间才注意到的😂，因为记得我一开始遇到这个问题的时候，还没有这个显眼的背影色来着，也不记得当时用的是啥配色了😂），画红圈的地方就有字符没能正常显示出来。</p>
 
-<p>之后的开发可能会转向 C 也可能不会，就看 Python 在 Windows 下的表现啦（当然也可能是应用户需求）。</p>
+<p>经过摸索，只要按照下图中的配置就可以把这个颜色问题给修正过来了：</p>
+
+<p><img src="/img/2018-04-05/cmder-settings.png#center" alt="相关的 cmder 配置项" /></p>
+
+<p>下面是最终效果图：</p>
+
+<p><img src="/img/2018-04-05/cmder-final.png#center" alt="最终效果图" /></p>
+
+<p>嘛，虽然原来的背景色没了，不过至少能看了不是😂</p>
+
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://blog.glacjay.info/post/2009-12-13/%E8%AE%A9-vim-%E5%9C%A8%E4%BF%9D%E5%AD%98%E6%97%B6%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">让 Vim 在保存时自动调用外部命令进行格式化</a>
+      <a href="https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/">vue 集成 iframe</a>
     </nav>
     
   </div>
@@ -255,14 +262,8 @@
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/">Oracle 建库 SQL 脚本</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
