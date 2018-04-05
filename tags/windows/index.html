@@ -231,17 +231,33 @@
   </header>
 
   <p>
-  工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 cmder，一个非常好用的 Windows 终端环境。
-PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵，当然最重要的是 Windows 上游戏多啊😂。
-跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。
-PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 scoop，虽然没有 Chocoletey 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。
-emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.
+  <p>工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 <a href="http://cmder.net">cmder</a>，一个非常好用的 Windows 终端环境。</p>
+
+<p>PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵<del>，当然最重要的是 Windows 上游戏多啊😂</del>。</p>
+
+<p>跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。</p>
+
+<p>PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 <a href="http://scoop.sh">scoop</a>，虽然没有 <a href="https://chocolatey.org">Chocoletey</a> 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。</p>
+
+<p>emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.js 时总会有些输出的前景色跟背景色一样导致有些字符显示不出来了😂：</p>
+
+<p><img src="/img/2018-04-05/cmder-initial.png#center" alt="初始的 Tomorrow 配色" /></p>
+
+<p>从上图可以看出（其实我也是过了一段时间才注意到的😂，因为记得我一开始遇到这个问题的时候，还没有这个显眼的背影色来着，也不记得当时用的是啥配色了😂），画红圈的地方就有字符没能正常显示出来。</p>
+
+<p>经过摸索，只要按照下图中的配置就可以把这个颜色问题给修正过来了：</p>
+
+<p><img src="/img/2018-04-05/cmder-settings.png#center" alt="相关的 cmder 配置项" /></p>
+
+<p>下面是最终效果图：</p>
+
+<p><img src="/img/2018-04-05/cmder-final.png#center" alt="最终效果图" /></p>
+
+<p>嘛，虽然原来的背景色没了，不过至少能看了不是😂</p>
+
+<p></p>
   </p>
 
-  
-  <footer>
-    <a href="/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
   
 </article>
 
