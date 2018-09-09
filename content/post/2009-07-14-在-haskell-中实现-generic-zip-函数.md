@@ -29,7 +29,7 @@ tags:
 
 这里的 `map` 所对应的自然就是 `Control.Applicative` 中的啦。
 
-还有更好玩的哦，如果再加上[上一篇博]({{< relref "post/2009-05-06-haskell-中的可变长参数列表.md" >}})中的不定参函数的话呢：
+还有更好玩的哦，如果再加上[上一篇博]({{< relref "/post/2009-05-06-haskell-中的可变长参数列表.md" >}})中的不定参函数的话呢：
 
 ``` haskell
 *Main> buildList `map` [1,2,3] `z` [4,5,6] :: [[Int]]
