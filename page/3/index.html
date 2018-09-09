@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.38" />
+  <meta name="generator" content="Hugo 0.48" />
 
   <title>Random Stuff from GlacJAY</title>
 
@@ -36,6 +36,9 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
   
   <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/index.xml" />
   
@@ -45,7 +48,9 @@
   <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
 
   
-    <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
+    
+        <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
+    
   
   
 
@@ -199,6 +204,53 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://blog.glacjay.info/post/2011-03-13/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-dr-%E6%A8%A1%E5%BC%8F/">总结一下学到的 LVS 相关知识（ DR 模式）</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2011-03-13 00:00</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>不喜欢看长的 Blog 文章，当然更不喜欢写，所以就分开写啦。另，因为 TUN 模式限制更多，实际很可能用不到，所以不一定会写。</p>
+
+<p>所以这次要讲的是 DR 模式的负载均衡啦。 DR 模式，也就是 Direct Route ，其基本原理就是不对包做任何处理，直接转给所分配的真实服务；回包则由真实服务直接发给客户端而不走负载机。因为不像 NAT 模式那样有相似的架构可以参考，所以这次就上图来说明啦（注，该图偷自<a href="http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.LVS-DR.html">这里</a>）。</p>
+
+<p></p>
+  </p>
+
+  
+  <footer>
+    <a href="/post/2011-03-13/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-dr-%E6%A8%A1%E5%BC%8F/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -651,55 +703,6 @@
 </article>
 
   
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">利用 XMPP 协议实现 VPN</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2009-12-19 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/xmpp">xmpp</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>这主意是我<a href="http://chenyufei.info">一同学</a>想到的（至少是他告诉我的），基于一种实际的需要。假设你有两台内网机，都没有公网地址，你想从一台机器访问另一台机器的服务，这时要怎么办呢？当然很可能是我无知了，就我所知，网上倒是有一些提供这类服务的网站，但都是基于 Windows 的远程桌面的，至于 Linux ，我没找过。</p>
-
-<p>于是那家伙联想到了 IM Bot 这种东西。现在网上有各种各样的 IM Bot ，可以通过与之聊天执行各种各样的自动化任务，那为什么不能让它把发过去的命令交给另一台机器的 Shell 执行，并把结果返回呢？这不就实现了一个简单的 Telnet 了吗？这就是最初的想法了（我没去找现成实现，因为我也该练练手了）。而我刚好才折腾过 OpenVPN ，于是就有了标题所说的这个最终想法。这样的话，就能一下子从只支持一种应用协议到支持几乎所有的应用协议了，而且实现的工作量也同时减到了最低。真是好主意啊，自我夸奖一下 :-)</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
 
   
 
@@ -708,7 +711,7 @@
   
   <a href="/page/2/"><i class="fa fa-chevron-left"></i></a>
   
-  <span>&nbsp;3 / 4&nbsp;</span>
+  <span>&nbsp;3 / 5&nbsp;</span>
   
   <a href="/page/4/"><i class="fa fa-chevron-right"></i></a>
   

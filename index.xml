@@ -6,10 +6,45 @@
     <description>Recent content on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 05 Apr 2018 16:25:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Sep 2018 00:01:18 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.glacjay.info/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>纯软件共享有线键鼠</title>
+      <link>https://blog.glacjay.info/post/2018-09-09/%E7%BA%AF%E8%BD%AF%E4%BB%B6%E5%85%B1%E4%BA%AB%E6%9C%89%E7%BA%BF%E9%94%AE%E9%BC%A0/</link>
+      <pubDate>Sun, 09 Sep 2018 00:01:18 +0800</pubDate>
+      
+      <guid>https://blog.glacjay.info/post/2018-09-09/%E7%BA%AF%E8%BD%AF%E4%BB%B6%E5%85%B1%E4%BA%AB%E6%9C%89%E7%BA%BF%E9%94%AE%E9%BC%A0/</guid>
+      <description>&lt;p&gt;嗯……我决定暂时忽略我那个已经攒了二十多条 TODO 项的待写博客标题，还是想到啥写啥吧。&lt;/p&gt;
+
+&lt;p&gt;话说我现在也算是个用上了机械键盘的正经程序员了嘛，然后就也像其他人一样再也回不去普通键盘的那种手感了。然额我买的这个是有线键盘，只能接在我的主力工作机上用，需要做 iOS 相关开发的时候就不得不用回我那将近十年高龄的 MBP 自带键盘了，总不能每次切换的时候都来回插拔吧，一度令我很是烦恼。&lt;/p&gt;
+
+&lt;p&gt;PS. 之前挑选键盘的时候就发现，为啥现在 84 键的键盘这么少呢，明明既有 87 键的键位完备性，又并不比 60% 键盘大多少来着😜，光是能找到一个合适的入门款就已经不错了，更别提有没有蓝牙款的可选了。不过就算有估计我也不会考虑，因为我还是不太喜欢充电或者换电池这种事情😜&lt;/p&gt;
+
+&lt;p&gt;前天……唔已经是大前天了，决定再搜一次看看有没有什么方便的解决办法。靠自己只想到了两个搜索方向，一个是 KVM，好歹我以前也是进过机房的人嘛，优点是连显示器都能共享（我的工作机显示器还是挺大的，比 MBP 不知道高到哪里去了呀），缺点是又要连好几根线，我看了看桌面上已然乱七八糟的走线，决定作罢。&lt;/p&gt;
+
+&lt;p&gt;另一个就是有线转蓝牙了，然后就在网上一通搜，还真有这种东东，比如&lt;a href=&#34;http://scl13.com/aten-cs533-tap/&#34;&gt;这个&lt;/a&gt;跟&lt;a href=&#34;https://detail.tmall.com/item.htm?spm=a230r.1.14.6.71c938f12f6mUc&amp;amp;id=572409896395&amp;amp;cm_id=140105335569ed55e27b&amp;amp;abbucket=19&amp;amp;sku_properties=5919063:6536025&#34;&gt;这个&lt;/a&gt;，不过都有点儿小贵呀，都快赶上我这键盘的价格了，而且我也不需要接手机的，犹豫的时候还听到有群友说蓝牙连接其实也不怎么稳定好用来着，于是也作罢了。&lt;/p&gt;
+
+&lt;p&gt;这时有群友向我推荐了 &lt;a href=&#34;https://symless.com/synergy&#34;&gt;synergy&lt;/a&gt;，我才知道原来还有通过无线 WIFI 配合软件来实现共享的点子，真是妙啊为啥我之前就想不到呢。哎呀不过这个软件也是要钱的，还是先上 &lt;a href=&#34;https://alternativeto.net&#34;&gt;alternativeTo&lt;/a&gt; 找找看有没有免费的吧😜。支持跨平台的替代中，先是试了下 &lt;a href=&#34;http://www.keyboard-and-mouse-sharing.com/&#34;&gt;ShareMouse&lt;/a&gt;，因为有个人免费版可用，不过后来发现这东东限制一台电脑只能有最多一个显示器，而我今年刚好给主力机配了个 &lt;a href=&#34;http://www.dasung.com/front/detail/id/223&#34;&gt;Paperlike HD&lt;/a&gt;，所以就用不了这个了。&lt;/p&gt;
+
+&lt;p&gt;然后就是现在在用的 &lt;a href=&#34;https://github.com/debauchee/barrier&#34;&gt;barrier&lt;/a&gt; 啦。虽然一开始看到这东东是开源的还挺有好感的，不过扫了一眼主页发现貌似只能自己编译感觉好麻烦还是有点儿想放弃的来着。不过好歹咱也是个程序猿啊，编译都搞不定的话怎么说得过去，于是就开搞了。&lt;/p&gt;
+
+&lt;p&gt;先是 Windows。需要的编译工具有 cmake、Visual Studio（Community 即可）、Qt、Bonjour SDK for Windows 等，还好这些在 Windows 下也都挺好装的（虽然只有 cmake 可以通过 &lt;a href=&#34;https://scoop.sh/&#34;&gt;scoop&lt;/a&gt; 来装😂），然后按照 &lt;code&gt;./clean_build.bat&lt;/code&gt; 里面的代码创建一个 &lt;code&gt;build_env.bat&lt;/code&gt; 文件，来设置下所需的环境变量，就可以执行 &lt;code&gt;./clean_build.bat&lt;/code&gt; 来编译了。嘛反正在我这儿编译还算顺利（除了搞清楚 Qt 要用最新的 5.11.1 才行，还有缺的那个 &lt;code&gt;dns_sd.h&lt;/code&gt; 是出自 Bonjour 之外😂），也能直接跑起来，然后我就又去编 macOS 版本的了。&lt;/p&gt;
+
+&lt;p&gt;macOS 的依赖准备也差不多，确保你有 Xcode，然后用 Homebrew 装了 cmake、qt 就够了，Bonjour 本就是苹果家的，应该是算在 Xcode 自带里的吧。同样也需要创建个 &lt;code&gt;build_env.sh&lt;/code&gt; 文件，不过就不需要设置依赖路径啥的了，只要指定个 Release 就好。不过编完之后的 &lt;code&gt;barrier&lt;/code&gt; 命令不能直接运行，要通过 &lt;code&gt;./build/bundle&lt;/code&gt; 目录下的 Barrier.app 来执行才行，把它拖到 Applications 里即可（我一开始没指定编译成 Release，编译出来的 Barrier.app 是运行不了的😂）。&lt;/p&gt;
+
+&lt;p&gt;然后就可以跑起来试试啦。Windows 这边指定为服务端，macOS 指定为客户端，Barrier 可以自己通过局域网相互搜索到对方，不过我的 Windows 会被检测出好几个 IP 地址，而对应 Wifi 的那个地址并不是首选的，所以客户端连过来有困难。不过我的 Windows Wifi 地址是固定的，所以只要在客户端手动填下服务端地址就能搞定，就不折腾了。&lt;/p&gt;
+
+&lt;p&gt;最后就是服务端的问题了，一直是 starting 状态，从日志看也是要连个啥东西，我猜应该是 Windows Service？然额找了半天也没搞懂该怎么手动安装 service，只好继续去 github 仓库翻翻看有啥提示没。这一翻不要紧，原来 Barrier 仓库的 wiki 是有内容的😂，不只有编译说明（虽然自己摸索也不是很难吧😂（虽然自己摸索出来的 Windows 版不能正常工作吧😂）），还有安装包的下载地址😂😂，当时我就惊了啊，这么重要的东西你为啥不放在首页啊😂。然后我就选择弃疗了，直接下载了 Windows 的安装包搞定，直接跑起来就可以用了😂。&lt;/p&gt;
+
+&lt;p&gt;用起来还是挺好的，指定下相对位置后，用鼠标就可以直接在两个屏幕间移来移去啦，然后鼠标在哪个屏幕，键盘焦点就在哪台电脑上，丝般顺滑（好吧鼠标在客户端那边说不上有那么顺滑，毕竟是通过软件和 Wifi 二传手之后的信号😂，不过够用啦），这下不仅能愉快地在两台电脑上都用上我的机械键盘，在切换时也不用再挪椅子啦😂&lt;/p&gt;
+
+&lt;p&gt;而且说实话，有时候还是会觉得鼠标比触摸板要更好用一些的，就算是苹果的触摸板（逃&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>cmder 颜色配置</title>
