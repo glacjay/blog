@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Random Stuff from GlacJAY</title>
+    <title>python on Random Stuff from GlacJAY</title>
     <link>https://blog.glacjay.info/tags/python/</link>
-    <description>Recent content in Python on Random Stuff from GlacJAY</description>
+    <description>Recent content in python on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 18 Sep 2010 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.glacjay.info/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 18 Sep 2010 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用 Python 操作虚拟网卡</title>
       <link>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</link>
@@ -18,10 +14,7 @@
       
       <guid>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid>
       <description>&lt;p&gt;在我的 &lt;a href=&#34;https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/&#34;&gt;XTunnel&lt;/a&gt; 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p&gt;
-
-&lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,10 +24,7 @@
       
       <guid>https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/</guid>
       <description>&lt;p&gt;这主意是我&lt;a href=&#34;http://chenyufei.info&#34;&gt;一同学&lt;/a&gt;想到的（至少是他告诉我的），基于一种实际的需要。假设你有两台内网机，都没有公网地址，你想从一台机器访问另一台机器的服务，这时要怎么办呢？当然很可能是我无知了，就我所知，网上倒是有一些提供这类服务的网站，但都是基于 Windows 的远程桌面的，至于 Linux ，我没找过。&lt;/p&gt;
-
-&lt;p&gt;于是那家伙联想到了 IM Bot 这种东西。现在网上有各种各样的 IM Bot ，可以通过与之聊天执行各种各样的自动化任务，那为什么不能让它把发过去的命令交给另一台机器的 Shell 执行，并把结果返回呢？这不就实现了一个简单的 Telnet 了吗？这就是最初的想法了（我没去找现成实现，因为我也该练练手了）。而我刚好才折腾过 OpenVPN ，于是就有了标题所说的这个最终想法。这样的话，就能一下子从只支持一种应用协议到支持几乎所有的应用协议了，而且实现的工作量也同时减到了最低。真是好主意啊，自我夸奖一下 :-)&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;于是那家伙联想到了 IM Bot 这种东西。现在网上有各种各样的 IM Bot ，可以通过与之聊天执行各种各样的自动化任务，那为什么不能让它把发过去的命令交给另一台机器的 Shell 执行，并把结果返回呢？这不就实现了一个简单的 Telnet 了吗？这就是最初的想法了（我没去找现成实现，因为我也该练练手了）。而我刚好才折腾过 OpenVPN ，于是就有了标题所说的这个最终想法。这样的话，就能一下子从只支持一种应用协议到支持几乎所有的应用协议了，而且实现的工作量也同时减到了最低。真是好主意啊，自我夸奖一下 :-)&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
-  <title>Network &middot; Random Stuff from GlacJAY</title>
+  <title>network &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -40,7 +42,8 @@
 
  
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/network/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY"
+    href='/tags/network/index.xml' />
   
 
   
@@ -94,7 +97,8 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/network/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='/tags/network/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
     
 
@@ -102,7 +106,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -150,7 +154,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -199,7 +203,7 @@
 
 
 <div class="header">
-  <h1>Network</h1>
+  <h1>network</h1>
 </div>
 
 <div class="content">
@@ -237,14 +241,9 @@
 
   <p>
   <p>三连更有木有！（对不起我网文看多了，而且中间其实断过两天的，我不会告诉你其实是我把这事儿给忘了的）</p>
-
 <p>另，这篇照例是工作需要。</p>
-
-<hr />
-
+<hr>
 <p>使用 Keepalived 实现多机热备（无负载均衡）时，除了对网口状态的监控外，一般还要对系统关键进程（如 Web 服务器的话就是 nginx 或者 httpd 之类的）进行监控，这时就要用到 <code>vrrp_script</code> 配置。网上能找到的 <code>vrrp_script</code> 示例都使用了 <code>weight</code> 选项，以实现基于优先级机制的切换，我在使用中遇到了一点儿问题，总结一下。</p>
-
-<p></p>
   </p>
 
   
@@ -292,12 +291,8 @@
 
   <p>
   <p>今天才发现，这里已经两年多没有被照看过了，估计连树都要长出来了吧。</p>
-
-<hr />
-
+<hr>
 <p>在用 Windows 的 WSAEventSelect 模式进行网络编程时，比较固定的一个模式是这样的：</p>
-
-<p></p>
   </p>
 
   
@@ -345,12 +340,8 @@
 
   <p>
   <p>LVS，即 Linux Virtual Server 的简称，是 Linux 下用来实现负载均衡的一个项目。它支持三种负载模式，分别为 NAT 、 DR 以及 TUN 。</p>
-
 <p>注意，我这里讲的都是针对的 2.6 的内核， 2.4 、 2.2 、 2.0 版内核的实现方法和配置方法都各有不一样的地方。还好我不需要维护历史遗留系统（擦汗）。</p>
-
 <p>首先是最简单的 NAT 模式。这种模式跟普通的 NAT 防火墙的原理差不多，只不过它会根据指定的分配策略，为每一个新的客户端连接选择一个不同的真实服务，而不是像 NAT 防火墙那样只映射到后台的同一个真实服务。</p>
-
-<p></p>
   </p>
 
   
@@ -366,6 +357,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

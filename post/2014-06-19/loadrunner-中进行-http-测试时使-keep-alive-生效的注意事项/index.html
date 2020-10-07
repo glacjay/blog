@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>LoadRunner 中进行 HTTP 测试时使 Keep-Alive 生效的注意事项 &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -224,14 +226,54 @@
 </div>
 
   <p>工作需要，在使用 LoadRunner 进行 HTTP 测试时，为了使每个虚拟用户在不同的循环周期中都能保持长连接，则除了要打开 Keep-Alive 运行时配置（默认打开）之外，还有两个选项需要修改，这两个选项都在运行时配置的「Browser - Browser Simulation」中：</p>
-
 <ul>
-<li><p>Simulate browser cache ：取消勾选。禁用对浏览器缓存机制的模拟，令虚拟用户确实的每次都真正发起与 Web 服务器的对话，而不是只读取一下缓存。</p></li>
-
-<li><p>Simulate a new user on each iteration ：取消勾选。不要在每次执行 Action 之前重置虚拟用户的状态，不然会把原来的 TCP 长连接也重置掉，Keep-Alive 就没用了（更准确地说，是在不同循环周期之间就没用了）。</p></li>
+<li>
+<p>Simulate browser cache ：取消勾选。禁用对浏览器缓存机制的模拟，令虚拟用户确实的每次都真正发起与 Web 服务器的对话，而不是只读取一下缓存。</p>
+</li>
+<li>
+<p>Simulate a new user on each iteration ：取消勾选。不要在每次执行 Action 之前重置虚拟用户的状态，不然会把原来的 TCP 长连接也重置掉，Keep-Alive 就没用了（更准确地说，是在不同循环周期之间就没用了）。</p>
+</li>
+</ul>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2014-06-19%2floadrunner-%25E4%25B8%25AD%25E8%25BF%259B%25E8%25A1%258C-http-%25E6%25B5%258B%25E8%25AF%2595%25E6%2597%25B6%25E4%25BD%25BF-keep-alive-%25E7%2594%259F%25E6%2595%2588%25E7%259A%2584%25E6%25B3%25A8%25E6%2584%258F%25E4%25BA%258B%25E9%25A1%25B9%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
 </ul>
 
-<p></p>
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -291,6 +333,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

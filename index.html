@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -40,7 +42,8 @@
 
  
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY"
+    href='/index.xml' />
   
 
   
@@ -94,7 +97,8 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
     
 
@@ -102,7 +106,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -150,7 +154,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -207,6 +211,39 @@
   
     <article>
   <header>
+    <h2><a href="https://blog.glacjay.info/post/2020-10-07/%E8%B8%A9%E5%9D%91%E8%AE%B0mobx-react-%E6%B2%A1%E6%9C%89%E8%A7%A6%E5%8F%91%E9%87%8D%E7%BB%98%E7%9A%84%E9%97%AE%E9%A2%98/">踩坑记：Mobx React 没有触发重绘的问题</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2020-10-07 14:53</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  <p>来水一发：正在学习 <a href="https://mobx.js.org">MobX</a>，用 <code>makeAutoObserverable</code> 写了个 store class，结果发现设置了里面的字段后触发不了重绘，折腾了一圈后发现这字段就没监听上，因为没给初始值（对，懒了，<code>null</code> 都没给😂️），那初始值应该就是 <code>undefined</code> 了，导致被 MobX 忽略掉了😂️</p>
+<p>记得看文档的时候也并没有强调过这个，感觉可以加一下，防止新手踩坑吧……不过最近 MobX 正好在整新版，也许文档正好还不完善吧。</p>
+  </p>
+
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://blog.glacjay.info/post/2018-09-09/%E7%BA%AF%E8%BD%AF%E4%BB%B6%E5%85%B1%E4%BA%AB%E6%9C%89%E7%BA%BF%E9%94%AE%E9%BC%A0/">纯软件共享有线键鼠</a></h2>
 
     <div class="post-meta">
@@ -231,32 +268,18 @@
 
   <p>
   <p>嗯……我决定暂时忽略我那个已经攒了二十多条 TODO 项的待写博客标题，还是想到啥写啥吧。</p>
-
 <p>话说我现在也算是个用上了机械键盘的正经程序员了嘛，然后就也像其他人一样再也回不去普通键盘的那种手感了。然额我买的这个是有线键盘，只能接在我的主力工作机上用，需要做 iOS 相关开发的时候就不得不用回我那将近十年高龄的 MBP 自带键盘了，总不能每次切换的时候都来回插拔吧，一度令我很是烦恼。</p>
-
 <p>PS. 之前挑选键盘的时候就发现，为啥现在 84 键的键盘这么少呢，明明既有 87 键的键位完备性，又并不比 60% 键盘大多少来着😜，光是能找到一个合适的入门款就已经不错了，更别提有没有蓝牙款的可选了。不过就算有估计我也不会考虑，因为我还是不太喜欢充电或者换电池这种事情😜</p>
-
 <p>前天……唔已经是大前天了，决定再搜一次看看有没有什么方便的解决办法。靠自己只想到了两个搜索方向，一个是 KVM，好歹我以前也是进过机房的人嘛，优点是连显示器都能共享（我的工作机显示器还是挺大的，比 MBP 不知道高到哪里去了呀），缺点是又要连好几根线，我看了看桌面上已然乱七八糟的走线，决定作罢。</p>
-
 <p>另一个就是有线转蓝牙了，然后就在网上一通搜，还真有这种东东，比如<a href="http://scl13.com/aten-cs533-tap/">这个</a>跟<a href="https://detail.tmall.com/item.htm?spm=a230r.1.14.6.71c938f12f6mUc&amp;id=572409896395&amp;cm_id=140105335569ed55e27b&amp;abbucket=19&amp;sku_properties=5919063:6536025">这个</a>，不过都有点儿小贵呀，都快赶上我这键盘的价格了，而且我也不需要接手机的，犹豫的时候还听到有群友说蓝牙连接其实也不怎么稳定好用来着，于是也作罢了。</p>
-
 <p>这时有群友向我推荐了 <a href="https://symless.com/synergy">synergy</a>，我才知道原来还有通过无线 WIFI 配合软件来实现共享的点子，真是妙啊为啥我之前就想不到呢。哎呀不过这个软件也是要钱的，还是先上 <a href="https://alternativeto.net">alternativeTo</a> 找找看有没有免费的吧😜。支持跨平台的替代中，先是试了下 <a href="http://www.keyboard-and-mouse-sharing.com/">ShareMouse</a>，因为有个人免费版可用，不过后来发现这东东限制一台电脑只能有最多一个显示器，而我今年刚好给主力机配了个 <a href="http://www.dasung.com/front/detail/id/223">Paperlike HD</a>，所以就用不了这个了。</p>
-
 <p>然后就是现在在用的 <a href="https://github.com/debauchee/barrier">barrier</a> 啦。虽然一开始看到这东东是开源的还挺有好感的，不过扫了一眼主页发现貌似只能自己编译感觉好麻烦还是有点儿想放弃的来着。不过好歹咱也是个程序猿啊，编译都搞不定的话怎么说得过去，于是就开搞了。</p>
-
 <p>先是 Windows。需要的编译工具有 cmake、Visual Studio（Community 即可）、Qt、Bonjour SDK for Windows 等，还好这些在 Windows 下也都挺好装的（虽然只有 cmake 可以通过 <a href="https://scoop.sh/">scoop</a> 来装😂），然后按照 <code>./clean_build.bat</code> 里面的代码创建一个 <code>build_env.bat</code> 文件，来设置下所需的环境变量，就可以执行 <code>./clean_build.bat</code> 来编译了。嘛反正在我这儿编译还算顺利（除了搞清楚 Qt 要用最新的 5.11.1 才行，还有缺的那个 <code>dns_sd.h</code> 是出自 Bonjour 之外😂），也能直接跑起来，然后我就又去编 macOS 版本的了。</p>
-
 <p>macOS 的依赖准备也差不多，确保你有 Xcode，然后用 Homebrew 装了 cmake、qt 就够了，Bonjour 本就是苹果家的，应该是算在 Xcode 自带里的吧。同样也需要创建个 <code>build_env.sh</code> 文件，不过就不需要设置依赖路径啥的了，只要指定个 Release 就好。不过编完之后的 <code>barrier</code> 命令不能直接运行，要通过 <code>./build/bundle</code> 目录下的 Barrier.app 来执行才行，把它拖到 Applications 里即可（我一开始没指定编译成 Release，编译出来的 Barrier.app 是运行不了的😂）。</p>
-
 <p>然后就可以跑起来试试啦。Windows 这边指定为服务端，macOS 指定为客户端，Barrier 可以自己通过局域网相互搜索到对方，不过我的 Windows 会被检测出好几个 IP 地址，而对应 Wifi 的那个地址并不是首选的，所以客户端连过来有困难。不过我的 Windows Wifi 地址是固定的，所以只要在客户端手动填下服务端地址就能搞定，就不折腾了。</p>
-
 <p>最后就是服务端的问题了，一直是 starting 状态，从日志看也是要连个啥东西，我猜应该是 Windows Service？然额找了半天也没搞懂该怎么手动安装 service，只好继续去 github 仓库翻翻看有啥提示没。这一翻不要紧，原来 Barrier 仓库的 wiki 是有内容的😂，不只有编译说明（虽然自己摸索也不是很难吧😂（虽然自己摸索出来的 Windows 版不能正常工作吧😂）），还有安装包的下载地址😂😂，当时我就惊了啊，这么重要的东西你为啥不放在首页啊😂。然后我就选择弃疗了，直接下载了 Windows 的安装包搞定，直接跑起来就可以用了😂。</p>
-
 <p>用起来还是挺好的，指定下相对位置后，用鼠标就可以直接在两个屏幕间移来移去啦，然后鼠标在哪个屏幕，键盘焦点就在哪台电脑上，丝般顺滑（好吧鼠标在客户端那边说不上有那么顺滑，毕竟是通过软件和 Wifi 二传手之后的信号😂，不过够用啦），这下不仅能愉快地在两台电脑上都用上我的机械键盘，在切换时也不用再挪椅子啦😂</p>
-
 <p>而且说实话，有时候还是会觉得鼠标比触摸板要更好用一些的，就算是苹果的触摸板（逃</p>
-
-<p></p>
   </p>
 
   
@@ -296,30 +319,17 @@
 
   <p>
   <p>工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 <a href="http://cmder.net">cmder</a>，一个非常好用的 Windows 终端环境。</p>
-
-<p>PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵<del>，当然最重要的是 Windows 上游戏多啊😂</del>。</p>
-
+<p>PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵~~，当然最重要的是 Windows 上游戏多啊😂~~。</p>
 <p>跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。</p>
-
 <p>PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 <a href="http://scoop.sh">scoop</a>，虽然没有 <a href="https://chocolatey.org">Chocoletey</a> 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。</p>
-
 <p>emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.js 时总会有些输出的前景色跟背景色一样导致有些字符显示不出来了😂：</p>
-
-<p><img src="/img/2018-04-05/cmder-initial.png#center" alt="初始的 Tomorrow 配色" /></p>
-
+<p><img src="/img/2018-04-05/cmder-initial.png#center" alt="初始的 Tomorrow 配色"></p>
 <p>从上图可以看出（其实我也是过了一段时间才注意到的😂，因为记得我一开始遇到这个问题的时候，还没有这个显眼的背影色来着，也不记得当时用的是啥配色了😂），画红圈的地方就有字符没能正常显示出来。</p>
-
 <p>经过摸索，只要按照下图中的配置就可以把这个颜色问题给修正过来了：</p>
-
-<p><img src="/img/2018-04-05/cmder-settings.png#center" alt="相关的 cmder 配置项" /></p>
-
+<p><img src="/img/2018-04-05/cmder-settings.png#center" alt="相关的 cmder 配置项"></p>
 <p>下面是最终效果图：</p>
-
-<p><img src="/img/2018-04-05/cmder-final.png#center" alt="最终效果图" /></p>
-
+<p><img src="/img/2018-04-05/cmder-final.png#center" alt="最终效果图"></p>
 <p>嘛，虽然原来的背景色没了，不过至少能看了不是😂</p>
-
-<p></p>
   </p>
 
   
@@ -363,19 +373,12 @@
 
   <p>
   <p>书接上回：最近不是在用 <a href="https://vuejs.org/">vue</a> 开发 H5 App 嘛（再后来又加上了 react-native 😂，这个以后有机会说），我们有个接口返回的是 HTML 页面，在原来的原生 App 里面自然是用个 WebView 控件来展示啦，但我们现在整个应用都是 H5 了，HTML 里面嵌另一个 HTML，那第一反应自然就是 iframe 啰。</p>
-
 <p>PS. H5 里面是嵌不了原生控件的对吧？react-native 是可以的，有时确实是要方便一些的……吧</p>
-
 <p>PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 <a href="https://www.webcomponents.org/">web components</a>，也是用来做内嵌的吧，但对浏览器的版本要求应该比较高（虽然也是有 polyfill 的啦），记得我当时好像也是试了一下的，但是没成功 😂，也不记得是啥问题了，而且 iframe 也能满足要求啦，所以就没弄这个了。回头有机会再研究下吧。</p>
-
 <p>如果只是简单的页面展示的话，直接通过 <code>&lt;iframe&gt;</code> 控件的 <code>:src</code> 属性绑定页面 URL 就完事啦。</p>
-
 <p>但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 <code>&lt;iframe&gt;</code> 的 <code>@load</code> 事件（vue 写法，对应于 JS 接口里面的 <code>onload</code> 事件），示例代码如下：</p>
-
-<script src="https://gist.github.com/glacjay/3c320321b1709454fdb7e06e26b0132c.js"></script>
-
+<!-- raw HTML omitted -->
 <p>要点：</p>
-
 <ul>
 <li>第 15 行：在 <code>@load</code> 事件回调方法 <code>onIframeLoad</code> 中，iframe 控件本身可以从 <code>event.target</code> 中得到，不需要用 vue 的 ref 之类的。</li>
 <li>第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 <code>message</code> 事件来实现，那么在外部的 HTML 环境中就要通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>window.addEventListener()</code></a> 来设置对该事件的监听函数。这里的 <code>window</code> 对象就是 iframe 外部 vue 所在的浏览器对象。</li>
@@ -384,10 +387,7 @@
 <li>第 19 行：在 iframe 环境中，<code>window.parent</code> 就是其外部环境的 <code>window</code> 对象啦，调用其 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage"><code>postMessage</code></a> 方法就可以往外边发 <code>message</code> 事件了，所传参数会最终变成该事件的 <code>data</code> 字段。</li>
 <li>第 30 行：最终接收到 iframe 传出来的 <code>message</code> 事件，然后就……该干嘛干嘛啰。</li>
 </ul>
-
 <p>OK，以上就是本次的 vue 集成 iframe 并实现互操作的方法总结啦。</p>
-
-<p></p>
   </p>
 
   
@@ -437,8 +437,6 @@
 
   <p>
   <p>最近在用 vue 三件套 + quasar 开发 hybrid app，遇到了一个跨域问题，简单记录一下。</p>
-
-<p></p>
   </p>
 
   
@@ -482,16 +480,10 @@
 
   <p>
   <p><a href="https://addons.mozilla.org/en-US/firefox/addon/toomanytabs-saves-your-memory/">TooManyTabs</a> 简直是标(tuo)签(yan)党(zheng)的福音啊！每每在一大堆待读标签里面翻找要看的网页简直要疯掉！包括我和我的内存 ▔fﾟﾟ▔</p>
-
 <p>但只是简单的插件介绍的话是不足以让我这个万年懒癌晚期开工写博的，主要是这货配合 Firefox 的帐户同步功能的时候有点儿坑：一开始没有给分组重命名的时候，几个电脑的 TooManyTabs 一同步就全乱套了；直到我把各个电脑的分组都分别命名，然后又费了老劲儿地整理一番之后才搞定。</p>
-
 <p>让我觉得这个插件很神奇的是，它是用 Firefox 的书签功能来保存标签的，但又不是简单地保存网址，因为标签恢复之后其前进后退的历史也都一并恢复了。看来 Firefox 的书签还有很多的隐藏功能有待发掘啊。</p>
-
 <p>最后的最后，既然是通过书签功能来保存和同步的，那如果 Firefox Android 的书签功能能再给点儿力就好了，让我可以直接把网址保存到指定的分组下面，这样就不用先发送到电脑上再（能用电脑时）TooManyTabs 了（再加上 Firefox Android 的发送标签功能有时还会丢标签）。</p>
-
 <p>以上</p>
-
-<p></p>
   </p>
 
   
@@ -533,16 +525,10 @@
 
   <p>
   <p>嗯，这次的标题终于没那么长了 ;-)</p>
-
-<hr />
-
+<hr>
 <p>给我的 MBP 换 SSD 已经是很久之前的事了，当时就已经折腾过一次优化了，不过没有相应的记录。最近发现了新装的 Yosemite 的一些老是搞不定而且连原因都不知道的问题（其中一个可以参见<a href="http://apple.stackexchange.com/questions/163500/when-i-want-to-install-teamviewer-10-why-cant-i-select-my-system-disk-as-the-d" title="AskDifferent: When I want to install TeamViewer 10, why can't I select my system disk as the distination?">我在 AskDifferent 上的提问</a>），一怒之下重装之，自然对 SSD 的优化也要重新搞一遍。搞的过程中发现有的手段能用，有的却不行，特此记录。</p>
-
 <p>优化手段的主要来源是<a href="http://chenyufei.info/blog/2011-09-06/13-%E5%AF%B8-macbook-pro-%E6%8B%86%E5%85%89%E9%A9%B1%E6%9B%B4%E6%8D%A2-ssd/" title="13 寸 Macbook Pro 拆光驱更换 SSD">朋友的一篇博文</a>及其中的链接。</p>
-
 <p><strong>注意：操作有风险，动手须谨慎哟。因为我是不（lan）会（de）做太多解释的，所以你一定要在操作前搞清楚那些个命令的作用哟，特别是像 <code>rm</code> 啦 <code>mv</code> 啦之类的危险命令哟，可别说我没提醒你哟 -_-</strong></p>
-
-<p></p>
   </p>
 
   
@@ -586,14 +572,9 @@
 
   <p>
   <p>三连更有木有！（对不起我网文看多了，而且中间其实断过两天的，我不会告诉你其实是我把这事儿给忘了的）</p>
-
 <p>另，这篇照例是工作需要。</p>
-
-<hr />
-
+<hr>
 <p>使用 Keepalived 实现多机热备（无负载均衡）时，除了对网口状态的监控外，一般还要对系统关键进程（如 Web 服务器的话就是 nginx 或者 httpd 之类的）进行监控，这时就要用到 <code>vrrp_script</code> 配置。网上能找到的 <code>vrrp_script</code> 示例都使用了 <code>weight</code> 选项，以实现基于优先级机制的切换，我在使用中遇到了一点儿问题，总结一下。</p>
-
-<p></p>
   </p>
 
   
@@ -637,14 +618,14 @@
 
   <p>
   <p>工作需要，在使用 LoadRunner 进行 HTTP 测试时，为了使每个虚拟用户在不同的循环周期中都能保持长连接，则除了要打开 Keep-Alive 运行时配置（默认打开）之外，还有两个选项需要修改，这两个选项都在运行时配置的「Browser - Browser Simulation」中：</p>
-
 <ul>
-<li><p>Simulate browser cache ：取消勾选。禁用对浏览器缓存机制的模拟，令虚拟用户确实的每次都真正发起与 Web 服务器的对话，而不是只读取一下缓存。</p></li>
-
-<li><p>Simulate a new user on each iteration ：取消勾选。不要在每次执行 Action 之前重置虚拟用户的状态，不然会把原来的 TCP 长连接也重置掉，Keep-Alive 就没用了（更准确地说，是在不同循环周期之间就没用了）。</p></li>
+<li>
+<p>Simulate browser cache ：取消勾选。禁用对浏览器缓存机制的模拟，令虚拟用户确实的每次都真正发起与 Web 服务器的对话，而不是只读取一下缓存。</p>
+</li>
+<li>
+<p>Simulate a new user on each iteration ：取消勾选。不要在每次执行 Action 之前重置虚拟用户的状态，不然会把原来的 TCP 长连接也重置掉，Keep-Alive 就没用了（更准确地说，是在不同循环周期之间就没用了）。</p>
+</li>
 </ul>
-
-<p></p>
   </p>
 
   
@@ -684,65 +665,9 @@
 
   <p>
   <p>又是惯例的长了好长时间的草，今天先来篇短的。</p>
-
 <p>工作需要，在使用 VS2010 开发调试 IE ActiveX 插件时，默认条件下下的断点不起作用，这是因为选错了调试器，在工程属性 - Debugging 中的 Debugger to launch 项，选择 Web Browser Debugger ，然后在 HTTP URL 项填本地 HTML 文件的绝对路径，以 file:/// 打头就可以了。</p>
-
-<p></p>
   </p>
 
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/">OpenSSL 与 WinSock2 配合使用时遇到的一个坑</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2014-03-29 23:06</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/openssl">openssl</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/windows">windows</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/network">network</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>今天才发现，这里已经两年多没有被照看过了，估计连树都要长出来了吧。</p>
-
-<hr />
-
-<p>在用 Windows 的 WSAEventSelect 模式进行网络编程时，比较固定的一个模式是这样的：</p>
-
-<p></p>
-  </p>
-
-  
-  <footer>
-    <a href="/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
   
 </article>
 
@@ -768,6 +693,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>[转载] Compilers: what are you thinking about? &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -224,32 +226,58 @@
 </div>
 
   <p>最近在翻看以前加星的 Google Reader 文章，把有用的整理出来打标签，然后就看到了这篇。原文作者的博客现在不知道被丢到哪边去了，搜也搜不到，转到这里，权当保存一下吧。</p>
-
 <p>原文链接：<a href="http://www.onebadseed.com/blog/?p=119">Compilers: what are you thinking about?</a>。当然，已经打不开了。</p>
-
-<hr />
-
+<hr>
 <h2 id="compilers-what-are-you-thinking-about">Compilers: what are you thinking about?</h2>
-
 <p>Author: Rotten Cotton</p>
-
 <p>My recent post <a href="http://www.onebadseed.com/blog/?p=103">Compiler bibliography</a>, a motley list of compiler papers that had been sitting in a box in my attic, generated a surprising amount of traffic: over a thousand unique visitors. But no comments. For those of you interested in compiler design, I ask, what are you trying to understand? What are you trying to do?</p>
-
-<p></p>
-
 <p>I imagine some of you are interested in understanding how compilers work and, more importantly, how to build them. The first step in learning to design compilers is to build one. (Tautologous, no?) To start, I recommend following the syllabus of a compiler design course. Googling “<a href="http://www.google.com/search?hl=en&amp;q=compiler+syllabus&amp;aq=f&amp;oq=&amp;aqi=g1">compiler syllabus</a>” returns a massive list of syllabi for compiler for compiler classes. The first link, a <a href="http://web.cecs.pdx.edu/~harry/compilers/syllabus.html">compiler design</a> class, at Portand State University, follows Louden’s book <a href="http://www.amazon.com/gp/product/0534939724?ie=UTF8&amp;tag=wwwonebadseec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0534939724">Compiler Construction</a> to build a SPARC compiler for a toy programming language, <a href="http://web.cecs.pdx.edu/~harry/compilers/PCATLangSpec.pdf">PCAT</a> (pdf). MIT’s compiler design class, <a href="http://ocw.mit.edu/OcwWeb/Electrical-Engineering-and-Computer-Science/6-035Fall-2005/CourseHome/">6.035</a>, is on <a href="http://ocw.mit.edu/">OCW</a>. Following one of these classes will teach you the basic challenges involved in designing a compiler and the organizational principles that have emerged to solve these problems. If you’re ambitious, start with a free C front end and build a C compiler for your favorite architecture. There is <a href="http://www.smlnj.org/doc/ckit/index.html">ckit</a> for ML, <a href="http://www.sivity.net/projects/language.c/">Language.C</a> for Haskell or <a href="http://clang.llvm.org/">clang</a> (part of the <a href="http://llvm.org/">LLVM</a> project) written in, I think, C++. There are others, no doubt. This way, you won’t have to write a front-end and you will have a huge source of potential examples on which to test your compiler and, when your start to design optimizations (the fun part), explore your compiler’s performance.</p>
-
 <p>For a few years after I first took 6.035, whenever the course was taught again and the project (toy language) for that semester was announced, I would spend a long caffeine-fueled weekend hacking out a new compiler. I must have build three or four compilers this way, targeting different architectures and exploring various design choices. This was a very valuable experience.</p>
-
 <p>Once you understand the basics of compiler design, what’s next? There are a number of directions you can go.</p>
-
 <p>You can study programming language features and their implementation in a compiler and runtime. For this, I recommend a book like Scott’s <a href="http://www.amazon.com/gp/product/0123745144?ie=UTF8&amp;tag=wwwonebadseec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0123745144">Programming Language Pragmatics</a> or Turbak and Gifford’s <a href="http://www.amazon.com/gp/product/0262201755?ie=UTF8&amp;tag=wwwonebadseec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0262201755">Design Concepts in Programming Languages</a>. I used a draft version of the latter in MIT’s Programming Languages class, 6.821. This will move beyond compiling the standard C- or Pascal-like toy languages standard in most first-year compiler courses. Learn about semantics: denotational, operational and axiomatic. This is important if you (a) want to build a correct compiler, and (b) as a theoretical foundation for program analysis.</p>
-
 <p>At the other end of the spectrum are computer architectures. Go learn about computer architecture: instruction set architectures and micro-architectures, their implementation. There are many interesting architectures out there to study. Write assembly language programs by hand. Learn to extract maximal performance form an architecture on small examples. Pay attention to the techniques used to extract performance when hand-coding. These will be the basis for compiler optimizations. The standard text for computer architecture is probably Hennessy and Patterson’s text, <a href="http://www.amazon.com/gp/product/0123704901?ie=UTF8&amp;tag=wwwonebadseec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0123704901">Computer Architecture: A Quantitative Approach</a>.</p>
-
 <p>A deep understanding of both the semantics of your input programming language and your target (micro-)architectures is essential to building a compiler that generates high-performance code. Program analysis and optimization is the bridge between the input program and assembly language. Start with a book on advanced compiler design like Muchnick’s <a href="http://www.amazon.com/gp/product/1558603204?ie=UTF8&amp;tag=wwwonebadseec-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1558603204">Advanced Compiler Design and Implementation</a> (or maybe the new dragon book, I haven’t looked at it) or start diving into the literature or program analysis and optimization.</p>
-
 <p>What are you trying to understand about compilers?</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-07-26%2f%25E8%25BD%25AC%25E8%25BD%25BD-compilers-what-are-you-thinking-about%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -309,6 +337,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

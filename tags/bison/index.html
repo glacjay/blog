@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
-  <title>Bison &middot; Random Stuff from GlacJAY</title>
+  <title>bison &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -40,7 +42,8 @@
 
  
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/bison/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY"
+    href='/tags/bison/index.xml' />
   
 
   
@@ -94,7 +97,8 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/bison/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='/tags/bison/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
     
 
@@ -102,7 +106,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -150,7 +154,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -199,7 +203,7 @@
 
 
 <div class="header">
-  <h1>Bison</h1>
+  <h1>bison</h1>
 </div>
 
 <div class="content">
@@ -239,8 +243,6 @@
 
   <p>
   <p>我正在看<a href="http://www.cs.princeton.edu/~appel/modern/java/">虎书</a>，在这本书中所给出的那个 <a href="http://www.cambridge.org/us/features/052182060X/">MiniJava</a> 语言的语法并不是 LALR(1) 语法，因此在某些情况下，所生成的语法分析器会对正确的输入给出语法解析错误。不过 Bison 提供了一个简单而又强大的<a href="http://www.gnu.org/software/bison/manual/html_mono/bison.html#Generalized-LR-Parsing">解决方案</a>，可以轻易的解决掉这个问题。</p>
-
-<p></p>
   </p>
 
   
@@ -253,7 +255,7 @@
   
     <article>
   <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/">对 Bison 手册中的 C&#43;&#43; 的例子的总结</a></h2>
+    <h2><a href="https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c-%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/">对 Bison 手册中的 C&#43;&#43; 的例子的总结</a></h2>
 
     <div class="post-meta">
 
@@ -288,33 +290,16 @@
 
   <p>
   <p>注意，我用的软件版本为：Bison - 2.4.1，Flex - 2.5.35 。至于老的版本会怎样我就不深究了。工具不是重点。</p>
-
-<hr />
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%skeleton &#34;lalr1.cc&#34;</code></pre></td></tr></table>
-</div>
-</div>
-<p>可以用</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bison" data-lang="bison">%language &#34;c++&#34;</code></pre></td></tr></table>
-</div>
-</div>
-<p>来代替了，其中参数 &ldquo;c++&rdquo; 不区分大小写。</p>
-
-<p></p>
+<hr>
+<pre><code class="language-bison" data-lang="bison">%skeleton &quot;lalr1.cc&quot;
+</code></pre><p>可以用</p>
+<pre><code class="language-bison" data-lang="bison">%language &quot;c++&quot;
+</code></pre><p>来代替了，其中参数 &ldquo;c++&rdquo; 不区分大小写。</p>
   </p>
 
   
   <footer>
-    <a href="/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c-%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -355,12 +340,8 @@
 
   <p>
   <p>今天在用 Bison 手册中的 C++ 例子作为一个编译器前端实现的起点时发现，这个官方示例居然编译通不过，具体错误为在 Bison 生成的头文件中，没有 Driver 类的声明。按照 POSIX Yacc 标准，位于 <code>%union</code> 块之前的 Prologue 区中的代码，应该会被拷到头文件中的啊，于是 google 半天，在某个地方的 Bison ChangeLog 中找到了线索。</p>
-
 <p>原来，POSIX Yacc 确实应该符合上述行为，可是 Bison 这家伙为了统一性，从 2.3a 版开始，就把所有 Prologue 中的代码，不管是 %union 前的还是之后的，统统只拷到实现文件中而不管头文件了。而为了对应不同的需求，又新增了一套 Prologue 语法，就是 <code>%before-header</code> 等四个新的 directive。好吧，这样也不错，以显式的统一格式的声明代替了可能会让人抓狂的隐规则。遂试之，结果告诉我说语法错误。接着往上看 ChangeLog 才发现，到了 2.3b 就又改了，把 <code>%before-header</code> 改成了 <code>%code</code> 之类的。这回终于没问题了。</p>
-
 <p>我说，这也太不厚道了吧，这种兼容性改动，我在它的文档里面扒了半天都没看到半个字，而且还是出现在流行度这么高的软件中。于是深刻体会到「错文档不如无文档」的道理啊。由此看来，要做好软件还是需要有相当的责任感的啊。</p>
-
-<p></p>
   </p>
 
   
@@ -372,6 +353,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

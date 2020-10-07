@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>Haskell 中的可变长参数列表 &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -224,13 +226,10 @@
 </div>
 
   <p>说实话，我之前有就这个题目很有激情地写了很长很罗嗦的一篇草稿的，哦，确切来说是大半篇，直到被打断，激情不再，这篇草稿也就此躺了两个多月。好吧，其实是我还不是八卦那块料，就不卖弄了，直接总结。</p>
-
 <p>要在 Haskell 中实现可变长参数列表，就是利用其 Typeclass 系统，对函数进行最终结果类型和中间函数类型之间的重载，然后利用 Haskell 的类型推导机制为我们自动调用合适的重载版本。嗯，就这么简单。下面是一个最简单的例子：</p>
-
-<p></p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -242,30 +241,27 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#555">|</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">a</span> <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildList&#39;</span> <span style="color:#000;font-weight:bold">::</span> [<span style="color:#c0f">a</span>] <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildList</span> a r <span style="color:#555">|</span> r <span style="color:#000;font-weight:bold">-&gt;</span> a <span style="color:#069;font-weight:bold">where</span>
+    buildList&#39; <span style="color:#000;font-weight:bold">::</span> [a] <span style="color:#000;font-weight:bold">-&gt;</span> r
 
-<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> [<span style="color:#c0f">a</span>] <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildList&#39;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">id</span>
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> a [a] <span style="color:#069;font-weight:bold">where</span>
+    buildList&#39; <span style="color:#000;font-weight:bold">=</span> id
 
-<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> (<span style="color:#c0f">a</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>) <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildList&#39;</span> <span style="color:#c0f">as</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\a</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">buildList&#39;</span> <span style="color:#555">$</span> <span style="color:#c0f">as</span> <span style="color:#555">++</span> [<span style="color:#c0f">a</span>]
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildList</span> a r <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildList</span> a (a <span style="color:#000;font-weight:bold">-&gt;</span> r) <span style="color:#069;font-weight:bold">where</span>
+    buildList&#39; as <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\</span>a <span style="color:#000;font-weight:bold">-&gt;</span> buildList&#39; <span style="color:#555">$</span> as <span style="color:#555">++</span> [a]
 
-<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildList</span> <span style="color:#c0f">a</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#c0f">r</span>
-<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">buildList&#39;</span> <span style="color:#078;font-weight:bold">[]</span></code></pre></td></tr></table>
+<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildList</span> a r <span style="color:#000;font-weight:bold">=&gt;</span> r
+<span style="color:#c0f">buildList</span> <span style="color:#000;font-weight:bold">=</span> buildList&#39; <span style="color:#078;font-weight:bold">[]</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>好吧，这个例子我是从<a href="http://okmij.org/ftp/Haskell/vararg-fn.lhs">这里</a>看到的，或者说我就是从这里学到这个东东的。在此友情提醒那些和我一样不怎么有耐心的家伙一句，原理解释在后面。</p>
-
+</div><p>好吧，这个例子我是从<a href="http://okmij.org/ftp/Haskell/vararg-fn.lhs">这里</a>看到的，或者说我就是从这里学到这个东东的。在此友情提醒那些和我一样不怎么有耐心的家伙一句，原理解释在后面。</p>
 <p>按照我的想法，上面这个例子应该还可以进一步简化以去掉对两个语言扩展的依赖的，就是写一个 <code>buildIntList</code> 的特化版本，结果不幸地失败了。有知道的大大告诉我一声，在下洗耳恭听。</p>
-
-<hr />
-
+<hr>
 <p><strong>Update</strong>: 不需要大大们来告诉我了，我已经知道该怎么简化上面的这个 <code>buildList</code> 了，不过简化后的版本是 <code>buildCharList</code> ，也就是 <code>buildString</code> 啦，而不是原先说的 <code>buildIntList</code> 。先看实现：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -277,57 +273,96 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildString&#39;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#069;font-weight:bold">class</span> <span style="color:#078;font-weight:bold">BuildString</span> r <span style="color:#069;font-weight:bold">where</span>
+    buildString&#39; <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span> <span style="color:#000;font-weight:bold">-&gt;</span> r
 
 <span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildString</span> [<span style="color:#078;font-weight:bold">Char</span>] <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildString&#39;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">id</span>             <span style="color:#09f;font-style:italic">-- or whatever you want</span>
+    buildString&#39; <span style="color:#000;font-weight:bold">=</span> id             <span style="color:#09f;font-style:italic">-- or whatever you want</span>
 
-<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildString</span> (<span style="color:#078;font-weight:bold">Char</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">r</span>) <span style="color:#069;font-weight:bold">where</span>
-    <span style="color:#c0f">buildString&#39;</span> <span style="color:#c0f">cs</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\c</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#c0f">buildString&#39;</span> <span style="color:#555">$</span> <span style="color:#c0f">cs</span> <span style="color:#555">++</span> [<span style="color:#c0f">c</span>]
+<span style="color:#069;font-weight:bold">instance</span> <span style="color:#078;font-weight:bold">BuildString</span> r <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#078;font-weight:bold">BuildString</span> (<span style="color:#078;font-weight:bold">Char</span> <span style="color:#000;font-weight:bold">-&gt;</span> r) <span style="color:#069;font-weight:bold">where</span>
+    buildString&#39; cs <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">\</span>c <span style="color:#000;font-weight:bold">-&gt;</span> buildString&#39; <span style="color:#555">$</span> cs <span style="color:#555">++</span> [c]
 
-<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildString</span> <span style="color:#c0f">r</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#c0f">r</span>
-<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#c0f">buildString&#39;</span> <span style="color:#078;font-weight:bold">[]</span></code></pre></td></tr></table>
+<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">BuildString</span> r <span style="color:#000;font-weight:bold">=&gt;</span> r
+<span style="color:#c0f">buildString</span> <span style="color:#000;font-weight:bold">=</span> buildString&#39; <span style="color:#078;font-weight:bold">[]</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这样就把对 <code>MultiParameterTypeClass</code> 和 <code>FunctionalDependency</code> 的依赖给简化掉了，可是又同时增加了对 <code>-XFlexibleInstances</code> 选项的需要（因为 <code>instance BuildString [Char] where</code> 这一行；如果你想把 <code>[Char]</code> 写成 <code>String</code> 的话，就还要再加上个 <code>-XTypeSynonymInstances</code>），暂时想不到更好的办法了。</p>
-
+</div><p>这样就把对 <code>MultiParameterTypeClass</code> 和 <code>FunctionalDependency</code> 的依赖给简化掉了，可是又同时增加了对 <code>-XFlexibleInstances</code> 选项的需要（因为 <code>instance BuildString [Char] where</code> 这一行；如果你想把 <code>[Char]</code> 写成 <code>String</code> 的话，就还要再加上个 <code>-XTypeSynonymInstances</code>），暂时想不到更好的办法了。</p>
 <p>另外，关于我在这里为什么要用 <code>Char</code> 而不是 <code>Int</code> 呢，是因为 <code>'a'</code> 的类型很明确，就是 <code>Char</code> ，而 <code>5</code> 的类型就不明确了，因此，你可以这样调用 <code>buildString</code> ：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildString</span> <span style="color:#c30">&#39;a&#39;</span> <span style="color:#c30">&#39;b&#39;</span> <span style="color:#c30">&#39;c&#39;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span>
-<span style="color:#c30">&#34;abc&#34;</span></code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> buildString <span style="color:#c30">&#39;a&#39;</span> <span style="color:#c30">&#39;b&#39;</span> <span style="color:#c30">&#39;c&#39;</span> <span style="color:#000;font-weight:bold">::</span> <span style="color:#078;font-weight:bold">String</span>
+<span style="color:#c30">&#34;abc&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可是却必须这样调用 <code>buildIntList</code> ：</p>
+</div><p>可是却必须这样调用 <code>buildIntList</code> ：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> <span style="color:#c0f">buildIntList</span> (<span style="color:#f60">1</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">2</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">3</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) <span style="color:#000;font-weight:bold">::</span> [<span style="color:#078;font-weight:bold">Int</span>]
-[<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>]</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#555">*</span><span style="color:#078;font-weight:bold">TestVarargs</span><span style="color:#555">&gt;</span> buildIntList (<span style="color:#f60">1</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">2</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) (<span style="color:#f60">3</span><span style="color:#000;font-weight:bold">::</span><span style="color:#078;font-weight:bold">Int</span>) <span style="color:#000;font-weight:bold">::</span> [<span style="color:#078;font-weight:bold">Int</span>]
+[<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span>]
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>虽然在我看来，GHC 应该可以倒推出每个参数的类型的，可他就是不认，我暂时也没什么办法。</p>
+</div><p>虽然在我看来，GHC 应该可以倒推出每个参数的类型的，可他就是不认，我暂时也没什么办法。</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2009-05-06%2fhaskell-%25E4%25B8%25AD%25E7%259A%2584%25E5%258F%25AF%25E5%258F%2598%25E9%2595%25BF%25E5%258F%2582%25E6%2595%25B0%25E5%2588%2597%25E8%25A1%25A8%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c---%E4%B8%AD%E7%9A%84-do--...--while-0-%E6%83%AF%E7%94%A8%E6%B3%95/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c-%E4%B8%AD%E7%9A%84-do-...-while-0-%E6%83%AF%E7%94%A8%E6%B3%95/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c---%E4%B8%AD%E7%9A%84-do--...--while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">有关 C/C&#43;&#43; 中的 do { ... } while (0) 惯用法</a>
+      <a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c-%E4%B8%AD%E7%9A%84-do-...-while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">有关 C/C&#43;&#43; 中的 do { ... } while (0) 惯用法</a>
     </nav>
     
   </div>
@@ -375,10 +410,16 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
 
 
 
 
+
+
+<script src="/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>

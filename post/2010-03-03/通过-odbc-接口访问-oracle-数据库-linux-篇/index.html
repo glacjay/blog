@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇 &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -224,15 +226,11 @@
 </div>
 
   <p>首先，你要安装好 UnixODBC 软件包，这个就不多说了。</p>
-
 <p>然后，安装 Oracle 官方客户端，因为我的使用环境为 Fedora 12 ，所以我下载安装的是 <code>oracle-xe-client-10.2.0.1-1.0.i386.rpm</code> 。</p>
-
 <p>装好之后，要设置一些环境变量，我是用的一个 Shell 脚本来完成这项工作的，你可以把它放在 <code>/etc/profile.d/</code> 目录下并加上可执行权限来让其在系统启动时自动执行，也可以直接运行这个脚本来使其立即生效。脚本如下：</p>
-
-<p></p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -241,36 +239,35 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#09f;font-style:italic"># File: oracle.sh
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#366">export</span> <span style="color:#033">ORACLE_HOME</span><span style="color:#555">=</span>/usr/lib/oracle/xe/app/oracle/product/10.2.0/client
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#09f;font-style:italic"># File: oracle.sh</span>
+<span style="color:#366">export</span> <span style="color:#033">ORACLE_HOME</span><span style="color:#555">=</span>/usr/lib/oracle/xe/app/oracle/product/10.2.0/client
 <span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:<span style="color:#033">$ORACLE_HOME</span>/bin
 <span style="color:#366">export</span> <span style="color:#033">LD_LIBRARY_PATH</span><span style="color:#555">=</span><span style="color:#033">$LD_LIBRARY_PATH</span>:<span style="color:#033">$ORACLE_HOME</span>/lib
 <span style="color:#366">export</span> <span style="color:#033">TNS_ADMIN</span><span style="color:#555">=</span><span style="color:#033">$ORACLE_HOME</span>/network/admin
 <span style="color:#366">export</span> <span style="color:#033">TWO_TASK</span><span style="color:#555">=</span><span style="color:#366">test</span>
 <span style="color:#366">export</span> <span style="color:#033">NLS_LANG</span><span style="color:#555">=</span>”Simplified Chinese_china.UTF8”
-<span style="color:#366">export</span> <span style="color:#033">NLS_DATE_FORMAT</span><span style="color:#555">=</span><span style="color:#c30">&#34;YYYY-MM-DD HH24:MI:SS&#34;</span></code></pre></td></tr></table>
+<span style="color:#366">export</span> <span style="color:#033">NLS_DATE_FORMAT</span><span style="color:#555">=</span><span style="color:#c30">&#34;YYYY-MM-DD HH24:MI:SS&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>其中 <code>TWO_TASK</code> 变量的值应设为 <code>tnsnames.ora</code> 文件中的那个键名（下面再讲）， <code>NLS_LANG</code> 是为了 UTF-8 编码，而 <code>NLS_DATE_FORMAT</code> 设的是 <code>DATE</code> 类型的数据在插入和显示时所用的格式，这里设的是我比较习惯的一种。</p>
-
+</div><p>其中 <code>TWO_TASK</code> 变量的值应设为 <code>tnsnames.ora</code> 文件中的那个键名（下面再讲）， <code>NLS_LANG</code> 是为了 UTF-8 编码，而 <code>NLS_DATE_FORMAT</code> 设的是 <code>DATE</code> 类型的数据在插入和显示时所用的格式，这里设的是我比较习惯的一种。</p>
 <p>然后在 <code>$ORACLE_HOME</code> 目录中建一个子目录 <code>network/admin</code> ，并在其中新建两个文本文件如下：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"># File: sqlnet.ora
 SQLNET.AUTHENTICATION_SERVICES = (NTS)
-NAMES.DIRECTORY_PATH = (TNSNAMES, EZCONNECT)</code></pre></td></tr></table>
+NAMES.DIRECTORY_PATH = (TNSNAMES, EZCONNECT)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这个文件中的都是一些固定的配置，其中 <code>TNSNAMES</code> 和 <code>EZCONNECT</code> 分别为我所用到的两种指定连接目标的方式。另一个文件：</p>
+</div><p>这个文件中的都是一些固定的配置，其中 <code>TNSNAMES</code> 和 <code>EZCONNECT</code> 分别为我所用到的两种指定连接目标的方式。另一个文件：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -283,7 +280,7 @@ NAMES.DIRECTORY_PATH = (TNSNAMES, EZCONNECT)</code></pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"># File: tnsnames.ora
 test =
   (DESCRIPTION =
@@ -295,82 +292,115 @@ test =
     (CONNECT_DATA =
       (SID = test)
     )
-  )</code></pre></td></tr></table>
+  )
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>第二行中的 <code>test</code> 就是 <code>TWO_TASK</code> 环境变量的值， <code>SID</code> 就是数据库名，其它的就不需要说明了。当然，在这个文件中可以配置多个数据库连接，用不同的名称来标识（ <code>TWO_TASK</code> 就是用来选择的），这个例子中只有一个配置。</p>
-
+</div><p>第二行中的 <code>test</code> 就是 <code>TWO_TASK</code> 环境变量的值， <code>SID</code> 就是数据库名，其它的就不需要说明了。当然，在这个文件中可以配置多个数据库连接，用不同的名称来标识（ <code>TWO_TASK</code> 就是用来选择的），这个例子中只有一个配置。</p>
 <p>以上的步骤主要是 Oracle 相关，都完成了之后，可以先测一下 Oracle 客户端是不是能正常使用了：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ sqlplus username/password@test</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ sqlplus username/password@test
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这个命令可以连接数据库。这种参数格式就是上面提到的 <code>TNSNAMES</code> 方式，而 <code>EZCONNECT</code> 方式则是下面的样子（这种方式就不需要在 <code>tnsnames.ora</code> 文件中进行配置了）：</p>
+</div><p>这个命令可以连接数据库。这种参数格式就是上面提到的 <code>TNSNAMES</code> 方式，而 <code>EZCONNECT</code> 方式则是下面的样子（这种方式就不需要在 <code>tnsnames.ora</code> 文件中进行配置了）：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ sqlplus username/password@192.168.0.2:1521/test</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">$ sqlplus username/password@192.168.0.2:1521/test
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>成功之后可以试试下面的 SQL 语句：</p>
+</div><p>成功之后可以试试下面的 SQL 语句：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#555">&gt;</span> <span style="color:#069;font-weight:bold">select</span> <span style="color:#555">*</span> <span style="color:#069;font-weight:bold">from</span> some_table;</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#555">&gt;</span> <span style="color:#069;font-weight:bold">select</span> <span style="color:#555">*</span> <span style="color:#069;font-weight:bold">from</span> some_table;
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>接下来就是配置 UnixODBC 了。首先是 <code>odbcinst.ini</code> 文件：</p>
+</div><p>接下来就是配置 UnixODBC 了。首先是 <code>odbcinst.ini</code> 文件：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#069;font-weight:bold">[oracle]</span>
-<span style="color:#309">Driver</span> <span style="color:#555">=</span> <span style="color:#c30">/usr/lib/oracle/xe/app/oracle/product/10.2.0/client/lib/libsqora.so.10.1</span></code></pre></td></tr></table>
+<span style="color:#309">Driver</span> <span style="color:#555">=</span> <span style="color:#c30">/usr/lib/oracle/xe/app/oracle/product/10.2.0/client/lib/libsqora.so.10.1</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后是 <code>odbc.ini</code> 文件：</p>
+</div><p>然后是 <code>odbc.ini</code> 文件：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#069;font-weight:bold">[oracle]</span>
-<span style="color:#309">Driver</span> <span style="color:#555">=</span> <span style="color:#c30">oracle</span></code></pre></td></tr></table>
+<span style="color:#309">Driver</span> <span style="color:#555">=</span> <span style="color:#c30">oracle</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>都没什么可配的。</p>
-
+</div><p>都没什么可配的。</p>
 <p>最后就是程序了，跟其它的 ODBC 程序没什么不同，除了连接字符串，需要写成这个样子：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">&#34;DSN=oracle;UID=username;PWD=password&#34;</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">&#34;DSN=oracle;UID=username;PWD=password&#34;
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>DSN</code> 就是 ODBC Data Source 名，也就是上面 <code>odbc.ini</code> 文件中方括号内的名字； <code>UID</code> 就是用户名， <code>PWD</code> 就是密码。</p>
-
+</div><p><code>DSN</code> 就是 ODBC Data Source 名，也就是上面 <code>odbc.ini</code> 文件中方括号内的名字； <code>UID</code> 就是用户名， <code>PWD</code> 就是密码。</p>
 <p>好了，就这么多。</p>
-
 <p>PS. 我和另一位同事分别碰到过一次一个特别令人头痛的问题，就是在连接时， UnixODBC 说 <code>libsqora.so.10.1</code> （就是在 <code>odbcinst.ini</code> 文件中指定的那个）找不到，虽然这个文件明明就在那边；用 <code>ldd</code> 命令查看该文件的结果是说“这不是一个动态可执行文件”。更不幸的是，我不知怎么在我的机器上把这个问题给莫名其妙地解决了，却想破头都不知道是怎么解决的。太失败了。</p>
-
-<hr />
-
+<hr>
 <p><strong>Update:</strong> 问题解决了，出问题的都是新装的 Fedora 12 机器，后来做了次全系统的更新，再建个链接，就好了。只是不知道倒底是哪个软件包的版本太老，试了 <code>glibc</code> 、 <code>libtool</code> 、 <code>kernel</code> 都不是。</p>
-
 <p><strong>Update 2012-12-31:</strong> 找到问题的原因了，都是 SELinux 惹的祸，关之即可，或者配下相关的策略啥的。</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-03%2f%25E9%2580%259A%25E8%25BF%2587-odbc-%25E6%258E%25A5%25E5%258F%25A3%25E8%25AE%25BF%25E9%2597%25AE-oracle-%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593-linux-%25E7%25AF%2587%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -430,10 +460,16 @@ test =
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
 
 
 
 
+
+
+<script src="/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>

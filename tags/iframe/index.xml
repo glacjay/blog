@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Iframe on Random Stuff from GlacJAY</title>
+    <title>iframe on Random Stuff from GlacJAY</title>
     <link>https://blog.glacjay.info/tags/iframe/</link>
-    <description>Recent content in Iframe on Random Stuff from GlacJAY</description>
+    <description>Recent content in iframe on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 07 Jan 2018 14:09:22 +0800</lastBuildDate>
-    
-	<atom:link href="https://blog.glacjay.info/tags/iframe/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 07 Jan 2018 14:09:22 +0800</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/iframe/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vue 集成 iframe</title>
       <link>https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/</link>
@@ -18,19 +14,12 @@
       
       <guid>https://blog.glacjay.info/post/2018-01-07/vue-%E9%9B%86%E6%88%90-iframe/</guid>
       <description>&lt;p&gt;书接上回：最近不是在用 &lt;a href=&#34;https://vuejs.org/&#34;&gt;vue&lt;/a&gt; 开发 H5 App 嘛（再后来又加上了 react-native 😂，这个以后有机会说），我们有个接口返回的是 HTML 页面，在原来的原生 App 里面自然是用个 WebView 控件来展示啦，但我们现在整个应用都是 H5 了，HTML 里面嵌另一个 HTML，那第一反应自然就是 iframe 啰。&lt;/p&gt;
-
 &lt;p&gt;PS. H5 里面是嵌不了原生控件的对吧？react-native 是可以的，有时确实是要方便一些的……吧&lt;/p&gt;
-
 &lt;p&gt;PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 &lt;a href=&#34;https://www.webcomponents.org/&#34;&gt;web components&lt;/a&gt;，也是用来做内嵌的吧，但对浏览器的版本要求应该比较高（虽然也是有 polyfill 的啦），记得我当时好像也是试了一下的，但是没成功 😂，也不记得是啥问题了，而且 iframe 也能满足要求啦，所以就没弄这个了。回头有机会再研究下吧。&lt;/p&gt;
-
 &lt;p&gt;如果只是简单的页面展示的话，直接通过 &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; 控件的 &lt;code&gt;:src&lt;/code&gt; 属性绑定页面 URL 就完事啦。&lt;/p&gt;
-
 &lt;p&gt;但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; 的 &lt;code&gt;@load&lt;/code&gt; 事件（vue 写法，对应于 JS 接口里面的 &lt;code&gt;onload&lt;/code&gt; 事件），示例代码如下：&lt;/p&gt;
-
-&lt;script src=&#34;https://gist.github.com/glacjay/3c320321b1709454fdb7e06e26b0132c.js&#34;&gt;&lt;/script&gt;
-
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;要点：&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;第 15 行：在 &lt;code&gt;@load&lt;/code&gt; 事件回调方法 &lt;code&gt;onIframeLoad&lt;/code&gt; 中，iframe 控件本身可以从 &lt;code&gt;event.target&lt;/code&gt; 中得到，不需要用 vue 的 ref 之类的。&lt;/li&gt;
 &lt;li&gt;第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 &lt;code&gt;message&lt;/code&gt; 事件来实现，那么在外部的 HTML 环境中就要通过 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener&#34;&gt;&lt;code&gt;window.addEventListener()&lt;/code&gt;&lt;/a&gt; 来设置对该事件的监听函数。这里的 &lt;code&gt;window&lt;/code&gt; 对象就是 iframe 外部 vue 所在的浏览器对象。&lt;/li&gt;
@@ -39,10 +28,7 @@
 &lt;li&gt;第 19 行：在 iframe 环境中，&lt;code&gt;window.parent&lt;/code&gt; 就是其外部环境的 &lt;code&gt;window&lt;/code&gt; 对象啦，调用其 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage&#34;&gt;&lt;code&gt;postMessage&lt;/code&gt;&lt;/a&gt; 方法就可以往外边发 &lt;code&gt;message&lt;/code&gt; 事件了，所传参数会最终变成该事件的 &lt;code&gt;data&lt;/code&gt; 字段。&lt;/li&gt;
 &lt;li&gt;第 30 行：最终接收到 iframe 传出来的 &lt;code&gt;message&lt;/code&gt; 事件，然后就……该干嘛干嘛啰。&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;OK，以上就是本次的 vue 集成 iframe 并实现互操作的方法总结啦。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;OK，以上就是本次的 vue 集成 iframe 并实现互操作的方法总结啦。&lt;/p&gt;</description>
     </item>
     
   </channel>

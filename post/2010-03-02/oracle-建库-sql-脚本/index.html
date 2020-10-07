@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>Oracle 建库 SQL 脚本 &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -227,7 +229,7 @@
 
   <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -298,7 +300,7 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#09f;font-style:italic">-- 首先是删除该数据库中该用户名下的所有表、序列与触发器，
 </span><span style="color:#09f;font-style:italic">-- 其中触发器是通过表格级联删除的。
 </span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">declare</span>
@@ -368,9 +370,50 @@
 <span style="color:#09f;font-style:italic">-- 最后当然就是测试数据啦。
 </span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;A&#34;</span> (ID, NAME) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#c30">&#39;first name&#39;</span>);
 <span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;Jay&#39;</span>);
-<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;杰&#39;</span>);</code></pre></td></tr></table>
+<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;杰&#39;</span>);
+</code></pre></td></tr></table>
 </div>
 </div>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -392,13 +435,13 @@
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93----linux-%E7%AF%87/">通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</a>
+      <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/">通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93----linux-%E7%AF%87/"><i class="fa fa-chevron-right"></i></a>
+    <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -430,10 +473,16 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
 
 
 
 
+
+
+<script src="/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>

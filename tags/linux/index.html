@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
-  <title>Linux &middot; Random Stuff from GlacJAY</title>
+  <title>linux &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -40,7 +42,8 @@
 
  
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/linux/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY"
+    href='/tags/linux/index.xml' />
   
 
   
@@ -94,7 +97,8 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/linux/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='/tags/linux/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
     
 
@@ -102,7 +106,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -150,7 +154,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -199,7 +203,7 @@
 
 
 <div class="header">
-  <h1>Linux</h1>
+  <h1>linux</h1>
 </div>
 
 <div class="content">
@@ -241,16 +245,10 @@
 
   <p>
   <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-6.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-6.html</a></p>
-
-<hr />
-
+<hr>
 <p>既然上次已经提到说，我们其实是在从 Lisp、Scheme 还有类似的其他语言中借鉴各种要实现的功能（我没想过要把这个项目做成原创的⋯⋯或者至少也要等到以后再说吧），那么现在也<strong>是时候</strong>实现一些更加强大的功能了。</p>
-
 <h2 id="那就来做延迟求值以及匿名函数吧">那就来做延迟求值以及匿名函数吧</h2>
-
-<p>Lambda ，又名匿名函数，可以像普通的数值或者字符串类型那样被当作函数参数来到处传递，也可以在需要的时候才调用（当然不调也可以）。同时，外层函数（也就是定义匿名函数的函数）作为它们的运行环境，在其中定义的局部变量可以被这些匿名函数所访问。这就形成了[一个闭包](<a href="http://en.wikipedia.org/wiki/Closure_(computer_science))。我们这次**并不是**要实现完整的闭包功能，只是开头的一小步而已，完整的实现要等到再后面了。">http://en.wikipedia.org/wiki/Closure_(computer_science))。我们这次**并不是**要实现完整的闭包功能，只是开头的一小步而已，完整的实现要等到再后面了。</a></p>
-
-<p></p>
+<p>Lambda ，又名匿名函数，可以像普通的数值或者字符串类型那样被当作函数参数来到处传递，也可以在需要的时候才调用（当然不调也可以）。同时，外层函数（也就是定义匿名函数的函数）作为它们的运行环境，在其中定义的局部变量可以被这些匿名函数所访问。这就形成了[一个闭包](<a href="http://en.wikipedia.org/wiki/Closure_(computer_science">http://en.wikipedia.org/wiki/Closure_(computer_science</a>))。我们这次<strong>并不是</strong>要实现完整的闭包功能，只是开头的一小步而已，完整的实现要等到再后面了。</p>
   </p>
 
   
@@ -298,16 +296,10 @@
 
   <p>
   <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-5.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-5.html</a></p>
-
-<hr />
-
+<hr>
 <p>上次我承诺会发布的更快一些，不过还是失败了⋯⋯作为补偿，这章的内容将会是原计划中的第 5，6，7 章内容的合并，因为这三章确实都很短。闲话少叙：</p>
-
 <h2 id="处理数字常量">处理数字常量</h2>
-
 <p>到目前为止，我们只处理了一些实现所必须的数字常量，也就是当一个外部函数的返回值是数字的情况，而且没有做任何形式的类型检查。</p>
-
-<p></p>
   </p>
 
   
@@ -355,16 +347,10 @@
 
   <p>
   <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-4.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-4.html</a></p>
-
-<hr />
-
+<hr>
 <p>抱歉，又拖了很长时间。要忙的事情实在很多。正如上一篇文章末尾提到的那样，这次要讲的是自定义函数，以及一个简单的“运行时库”。</p>
-
 <h2 id="自定义函数">自定义函数</h2>
-
 <p>一门编程语言如果连函数和方法都没有的话，那也就不能算是一门语言了。而且，实践表明，一门面向对象语言中的所有特性都可以通过过程式的语言要素来实现：一个方法也只不过是以一个对象为额外参数的函数而已。因此，增加对函数的支持就是实现一门语言的核心所在。</p>
-
-<p></p>
   </p>
 
   
@@ -412,12 +398,8 @@
 
   <p>
   <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up---step-3.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up&mdash;step-3.html</a></p>
-
-<hr />
-
+<hr>
 <p><strong>我本来是想要早点发表的，可是我这周又不行了 &ndash; 虽然整理一篇旧文只需要半个小时。不管怎样，这是第三章，而且我会在末尾大概列一下之后的大纲。由于我会试着把一些小的步骤组合成更有内容的章节（下面就有个这样的例子），因此原来的 30 篇文章已经被我给减到了 20 篇左右（当然，这只是我已经完成了的，后面还有新的呢）。</strong></p>
-
-<p></p>
   </p>
 
   
@@ -465,16 +447,10 @@
 
   <p>
   <p>原文地址：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-2.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-2.html</a></p>
-
-<hr />
-
+<hr>
 <p>我会选择 Ruby 来作为我的实现语言并没有什么特别的理由。在现阶段，语言的选择并不重要；不过，我确实很喜欢 Ruby。</p>
-
 <p>在这之后，我会采取一系列的步骤令所实现的语言向其实现语言靠拢。我的意思是，我想将编译器实现为可以<strong>自举</strong>的，即它应该能够编译自身。</p>
-
 <p>而这也就意味着，要么我的编译器需要至少支持 Ruby 语言的一个子集，要么就需要一个中间的翻译步骤，来将编译器中的实现翻译成它自己可以编译的语言。</p>
-
-<p></p>
   </p>
 
   
@@ -522,14 +498,9 @@
 
   <p>
   <p>原文链接：<a href="http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-1.html">http://www.hokstad.com/writing-a-compiler-in-ruby-bottom-up-step-1.html</a></p>
-
 <p>[译者抱怨：翻译好麻烦啊。]</p>
-
-<hr />
-
+<hr>
 <p>我已经将这件事情搁置了很长时间了 &ndash; 这个系列中最早的文章甚至可以追溯到 2005 年的早期，而那时我还没有开始写这个博客呢。</p>
-
-<p></p>
   </p>
 
   
@@ -573,10 +544,7 @@
 
   <p>
   <p>不喜欢看长的 Blog 文章，当然更不喜欢写，所以就分开写啦。另，因为 TUN 模式限制更多，实际很可能用不到，所以不一定会写。</p>
-
 <p>所以这次要讲的是 DR 模式的负载均衡啦。 DR 模式，也就是 Direct Route ，其基本原理就是不对包做任何处理，直接转给所分配的真实服务；回包则由真实服务直接发给客户端而不走负载机。因为不像 NAT 模式那样有相似的架构可以参考，所以这次就上图来说明啦（注，该图偷自<a href="http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.LVS-DR.html">这里</a>）。</p>
-
-<p></p>
   </p>
 
   
@@ -624,12 +592,8 @@
 
   <p>
   <p>LVS，即 Linux Virtual Server 的简称，是 Linux 下用来实现负载均衡的一个项目。它支持三种负载模式，分别为 NAT 、 DR 以及 TUN 。</p>
-
 <p>注意，我这里讲的都是针对的 2.6 的内核， 2.4 、 2.2 、 2.0 版内核的实现方法和配置方法都各有不一样的地方。还好我不需要维护历史遗留系统（擦汗）。</p>
-
 <p>首先是最简单的 NAT 模式。这种模式跟普通的 NAT 防火墙的原理差不多，只不过它会根据指定的分配策略，为每一个新的客户端连接选择一个不同的真实服务，而不是像 NAT 防火墙那样只映射到后台的同一个真实服务。</p>
-
-<p></p>
   </p>
 
   
@@ -675,12 +639,8 @@
 
   <p>
   <p>在工作中，经常需要远程登录到机房中的设备上进行调试与开发，走的是工作局域网。由于这些设备的地址也是动态获取的，因此在遇到一些意外事故，如网线松了、网络不稳定之类的，这些地址可能就变了。每当这时，我们就得跑到机房，给设备连上显示器（我们连 KVM 都没有，命苦啊），查看 IP ，然后再跑回去重新连。太麻烦了。</p>
-
 <p>我知道有支持动态地址的 DNS 服务，可是我们没权限操作 DNS 服务器，而且设备也都是不固定的，没必要惊动网络管理员（好吧，我甚至都不知道谁是网络管理员，作为三年的“老”员工，我面壁去了。好吧，其实我就是想写写程序练练手），所以我就写了个小程序，用来查找一台特定设备的 IP 地址。</p>
-
 <p>原理其实很简单啦。客户端（也就是我的笔记本）发个 UDP 广播报文，里面有要找的主机的名字。服务端呢，启动时则指定一个主机名字。当服务端收到一个 UDP 广播报文，并且发现找的就是自己呢，就返回一个 <code>bingo</code> 报文。这样，客户端就知道这个主机的 IP 地址啦。</p>
-
-<p></p>
   </p>
 
   
@@ -726,10 +686,7 @@
 
   <p>
   <p>最近在工作中，老是遇到一个莫名其妙的问题。我有一个用来设置一些环境变量的脚本，结果经常发现这个脚本设过的环境变量乱七八糟的，像 PATH 这种，就是之前的值跟后面添加的值重叠在了一起。直到后来才发现，原来是换行符搞的鬼。</p>
-
 <p>这样说还不太清楚，上代码吧。编辑文本文件 <code>test.sh</code> 如下，记得以 DOS 换行符的模式来保存：</p>
-
-<p></p>
   </p>
 
   
@@ -779,10 +736,7 @@
 
   <p>
   <p>在我的 <a href="/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">XTunnel</a> 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。</p>
-
 <p>在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 <code>TUN/TAP</code> 虚拟网卡的驱动程序，看一下有没有 <code>/dev/net/tun</code> 这个文件就可以知道了。如果没有，就执行一下 <code>sudo modprobe tun</code> 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：</p>
-
-<p></p>
   </p>
 
   
@@ -798,6 +752,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

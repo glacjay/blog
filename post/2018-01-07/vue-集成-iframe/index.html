@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>vue 集成 iframe &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -228,19 +230,12 @@
 </div>
 
   <p>书接上回：最近不是在用 <a href="https://vuejs.org/">vue</a> 开发 H5 App 嘛（再后来又加上了 react-native 😂，这个以后有机会说），我们有个接口返回的是 HTML 页面，在原来的原生 App 里面自然是用个 WebView 控件来展示啦，但我们现在整个应用都是 H5 了，HTML 里面嵌另一个 HTML，那第一反应自然就是 iframe 啰。</p>
-
 <p>PS. H5 里面是嵌不了原生控件的对吧？react-native 是可以的，有时确实是要方便一些的……吧</p>
-
 <p>PSS. 除了 iframe 之外呢，最近好像还有一个比较新的标准是 <a href="https://www.webcomponents.org/">web components</a>，也是用来做内嵌的吧，但对浏览器的版本要求应该比较高（虽然也是有 polyfill 的啦），记得我当时好像也是试了一下的，但是没成功 😂，也不记得是啥问题了，而且 iframe 也能满足要求啦，所以就没弄这个了。回头有机会再研究下吧。</p>
-
 <p>如果只是简单的页面展示的话，直接通过 <code>&lt;iframe&gt;</code> 控件的 <code>:src</code> 属性绑定页面 URL 就完事啦。</p>
-
 <p>但我们这是个 App 嘛，页面里面也是有一些可交互元素的，比如点击跳转到详情页之类的，这时就要绑定 <code>&lt;iframe&gt;</code> 的 <code>@load</code> 事件（vue 写法，对应于 JS 接口里面的 <code>onload</code> 事件），示例代码如下：</p>
-
-<script src="https://gist.github.com/glacjay/3c320321b1709454fdb7e06e26b0132c.js"></script>
-
+<!-- raw HTML omitted -->
 <p>要点：</p>
-
 <ul>
 <li>第 15 行：在 <code>@load</code> 事件回调方法 <code>onIframeLoad</code> 中，iframe 控件本身可以从 <code>event.target</code> 中得到，不需要用 vue 的 ref 之类的。</li>
 <li>第 16 行：要从 iframe 页面中访问外部提供的接口，可以通过发送 <code>message</code> 事件来实现，那么在外部的 HTML 环境中就要通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>window.addEventListener()</code></a> 来设置对该事件的监听函数。这里的 <code>window</code> 对象就是 iframe 外部 vue 所在的浏览器对象。</li>
@@ -249,10 +244,47 @@
 <li>第 19 行：在 iframe 环境中，<code>window.parent</code> 就是其外部环境的 <code>window</code> 对象啦，调用其 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage"><code>postMessage</code></a> 方法就可以往外边发 <code>message</code> 事件了，所传参数会最终变成该事件的 <code>data</code> 字段。</li>
 <li>第 30 行：最终接收到 iframe 传出来的 <code>message</code> 事件，然后就……该干嘛干嘛啰。</li>
 </ul>
-
 <p>OK，以上就是本次的 vue 集成 iframe 并实现互操作的方法总结啦。</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2018-01-07%2fvue-%25E9%259B%2586%25E6%2588%2590-iframe%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
 
-<p></p>
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -312,6 +344,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

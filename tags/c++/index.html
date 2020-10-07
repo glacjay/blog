@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
-  <title>C&#43;&#43; &middot; Random Stuff from GlacJAY</title>
+  <title>c&#43;&#43; &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -40,7 +42,8 @@
 
  
   
-  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY" href="https://blog.glacjay.info/tags/c&#43;&#43;/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Random Stuff from GlacJAY"
+    href='/tags/c&#43;&#43;/index.xml' />
   
 
   
@@ -94,7 +97,8 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://blog.glacjay.info/tags/c&#43;&#43;/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='/tags/c&#43;&#43;/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
     
 
@@ -102,7 +106,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -150,7 +154,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -199,7 +203,7 @@
 
 
 <div class="header">
-  <h1>C&#43;&#43;</h1>
+  <h1>c&#43;&#43;</h1>
 </div>
 
 <div class="content">
@@ -239,12 +243,8 @@
 
   <p>
   <p>在工作中，经常需要远程登录到机房中的设备上进行调试与开发，走的是工作局域网。由于这些设备的地址也是动态获取的，因此在遇到一些意外事故，如网线松了、网络不稳定之类的，这些地址可能就变了。每当这时，我们就得跑到机房，给设备连上显示器（我们连 KVM 都没有，命苦啊），查看 IP ，然后再跑回去重新连。太麻烦了。</p>
-
 <p>我知道有支持动态地址的 DNS 服务，可是我们没权限操作 DNS 服务器，而且设备也都是不固定的，没必要惊动网络管理员（好吧，我甚至都不知道谁是网络管理员，作为三年的“老”员工，我面壁去了。好吧，其实我就是想写写程序练练手），所以我就写了个小程序，用来查找一台特定设备的 IP 地址。</p>
-
 <p>原理其实很简单啦。客户端（也就是我的笔记本）发个 UDP 广播报文，里面有要找的主机的名字。服务端呢，启动时则指定一个主机名字。当服务端收到一个 UDP 广播报文，并且发现找的就是自己呢，就返回一个 <code>bingo</code> 报文。这样，客户端就知道这个主机的 IP 地址啦。</p>
-
-<p></p>
   </p>
 
   
@@ -290,12 +290,8 @@
 
   <p>
   <p>我的编译环境是 Visual Studio Team System 2008 版本 9.0.21022.8 RTM ， Windows Mobile 5.0 SDK R2 （ VS2008 自带的版本）。当然， Perl 也是需要的，我装的是 ActivePerl 。我要编译的 OpenSSL 版本是 0.9.8e 。</p>
-
 <h2 id="vs2008-的安装">VS2008 的安装</h2>
-
 <p>那个 Web Developer Tools （好像叫这个）的安装会失败，又不能不装，根据网上的说明，要把它的目录单独从光盘上解压出来安装，且安装的时候要挂 Office 的安装光盘（我的 Office 版本是 2007 ）。这个装好了之后，再从光盘上安装 VS2008 就没有问题了。</p>
-
-<p></p>
   </p>
 
   
@@ -308,7 +304,7 @@
   
     <article>
   <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c---%E4%B8%AD%E7%9A%84-do--...--while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">有关 C/C&#43;&#43; 中的 do { ... } while (0) 惯用法</a></h2>
+    <h2><a href="https://blog.glacjay.info/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c-%E4%B8%AD%E7%9A%84-do-...-while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">有关 C/C&#43;&#43; 中的 do { ... } while (0) 惯用法</a></h2>
 
     <div class="post-meta">
 
@@ -339,15 +335,12 @@
 
   <p>
   <p>C/C++ 中的宏是个让人又爱又恨的家伙（感觉这句话好俗啊），在带给我们很强大的 Power 的同时，却也需要我们绝对的细心，而这也是在宏定义中诸多惯用法的由来。</p>
-
 <p>当我们要把一组语句定义成一个宏，并希望像用一条语句那样来使用它的时候，我们就可以这样做：</p>
-
-<p></p>
   </p>
 
   
   <footer>
-    <a href="/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c---%E4%B8%AD%E7%9A%84-do--...--while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="/post/2009-04-08/%E6%9C%89%E5%85%B3-c/c-%E4%B8%AD%E7%9A%84-do-...-while-0-%E6%83%AF%E7%94%A8%E6%B3%95/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -355,7 +348,7 @@
   
     <article>
   <header>
-    <h2><a href="https://blog.glacjay.info/post/2009-03-22/c---%E4%B8%AD%E7%9A%84%E7%BA%AF%E8%99%9A%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">C&#43;&#43; 中的纯虚析构函数与抽象类</a></h2>
+    <h2><a href="https://blog.glacjay.info/post/2009-03-22/c-%E4%B8%AD%E7%9A%84%E7%BA%AF%E8%99%9A%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/">C&#43;&#43; 中的纯虚析构函数与抽象类</a></h2>
 
     <div class="post-meta">
 
@@ -386,12 +379,8 @@
 
   <p>
   <p>我以前只知道，在 C++ 中，如果要表示一个类是抽象基类，只要为它定义一个纯虚析构函数就可以了，没想到今天用到的时候才发现，连接的时候通不过，说没有找到那个函数的定义。到网上一搜才知道，原来纯虚函数也是可以有定义的啊。在实现文件中加上它的空定义之后，一切就 OK 了。</p>
-
 <p>不过，因为我那个基类里面已经有了一个纯虚函数，所以貌似没必要把析构函数也定义成纯虚的。</p>
-
 <p>PS. 在 C++ 里面要实现 AST 还真是一件麻烦的体力劳动，要写那么多类，每个类还得写那么一砣的样板代码。幸好不是那种长期运行的服务器程序，不需要太考虑 memory leak 的问题，就不用写析构函数和 <code>delete</code> 了（实际上是懒得写），不然样板代码还要更大砣。不知道有什么更好的方法没。</p>
-
-<p></p>
   </p>
 
   
@@ -403,6 +392,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

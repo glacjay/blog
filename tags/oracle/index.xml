@@ -1,29 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Oracle on Random Stuff from GlacJAY</title>
+    <title>oracle on Random Stuff from GlacJAY</title>
     <link>https://blog.glacjay.info/tags/oracle/</link>
-    <description>Recent content in Oracle on Random Stuff from GlacJAY</description>
+    <description>Recent content in oracle on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 03 Mar 2010 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.glacjay.info/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 03 Mar 2010 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</title>
-      <link>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93----linux-%E7%AF%87/</link>
+      <link>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</link>
       <pubDate>Wed, 03 Mar 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93----linux-%E7%AF%87/</guid>
+      <guid>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</guid>
       <description>&lt;p&gt;首先，你要安装好 UnixODBC 软件包，这个就不多说了。&lt;/p&gt;
-
 &lt;p&gt;然后，安装 Oracle 官方客户端，因为我的使用环境为 Fedora 12 ，所以我下载安装的是 &lt;code&gt;oracle-xe-client-10.2.0.1-1.0.i386.rpm&lt;/code&gt; 。&lt;/p&gt;
-
-&lt;p&gt;装好之后，要设置一些环境变量，我是用的一个 Shell 脚本来完成这项工作的，你可以把它放在 &lt;code&gt;/etc/profile.d/&lt;/code&gt; 目录下并加上可执行权限来让其在系统启动时自动执行，也可以直接运行这个脚本来使其立即生效。脚本如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;装好之后，要设置一些环境变量，我是用的一个 Shell 脚本来完成这项工作的，你可以把它放在 &lt;code&gt;/etc/profile.d/&lt;/code&gt; 目录下并加上可执行权限来让其在系统启动时自动执行，也可以直接运行这个脚本来使其立即生效。脚本如下：&lt;/p&gt;</description>
     </item>
     
     <item>

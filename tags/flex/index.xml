@@ -1,45 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Flex on Random Stuff from GlacJAY</title>
+    <title>flex on Random Stuff from GlacJAY</title>
     <link>https://blog.glacjay.info/tags/flex/</link>
-    <description>Recent content in Flex on Random Stuff from GlacJAY</description>
+    <description>Recent content in flex on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 19 Mar 2009 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog.glacjay.info/tags/flex/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 19 Mar 2009 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/flex/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>对 Bison 手册中的 C&#43;&#43; 的例子的总结</title>
-      <link>https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</link>
+      <link>https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c-%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</link>
       <pubDate>Thu, 19 Mar 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c---%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://blog.glacjay.info/post/2009-03-19/%E5%AF%B9-bison-%E6%89%8B%E5%86%8C%E4%B8%AD%E7%9A%84-c-%E7%9A%84%E4%BE%8B%E5%AD%90%E7%9A%84%E6%80%BB%E7%BB%93/</guid>
       <description>&lt;p&gt;注意，我用的软件版本为：Bison - 2.4.1，Flex - 2.5.35 。至于老的版本会怎样我就不深究了。工具不是重点。&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
-&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%skeleton &amp;#34;lalr1.cc&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;可以用&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
-&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
-&lt;pre style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%language &amp;#34;c++&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;来代替了，其中参数 &amp;ldquo;c++&amp;rdquo; 不区分大小写。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%skeleton &amp;quot;lalr1.cc&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以用&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bison&#34; data-lang=&#34;bison&#34;&gt;%language &amp;quot;c++&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;来代替了，其中参数 &amp;ldquo;c++&amp;rdquo; 不区分大小写。&lt;/p&gt;</description>
     </item>
     
   </channel>

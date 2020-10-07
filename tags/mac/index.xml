@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mac on Random Stuff from GlacJAY</title>
+    <title>mac on Random Stuff from GlacJAY</title>
     <link>https://blog.glacjay.info/tags/mac/</link>
-    <description>Recent content in Mac on Random Stuff from GlacJAY</description>
+    <description>Recent content in mac on Random Stuff from GlacJAY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 Jan 2015 16:40:49 +0800</lastBuildDate>
-    
-	<atom:link href="https://blog.glacjay.info/tags/mac/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 17 Jan 2015 16:40:49 +0800</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的 MBP SSD 优化过程</title>
       <link>https://blog.glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</link>
@@ -18,16 +14,10 @@
       
       <guid>https://blog.glacjay.info/post/2015-01-17/%E6%88%91%E7%9A%84-mbp-ssd-%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/</guid>
       <description>&lt;p&gt;嗯，这次的标题终于没那么长了 ;-)&lt;/p&gt;
-
-&lt;hr /&gt;
-
+&lt;hr&gt;
 &lt;p&gt;给我的 MBP 换 SSD 已经是很久之前的事了，当时就已经折腾过一次优化了，不过没有相应的记录。最近发现了新装的 Yosemite 的一些老是搞不定而且连原因都不知道的问题（其中一个可以参见&lt;a href=&#34;http://apple.stackexchange.com/questions/163500/when-i-want-to-install-teamviewer-10-why-cant-i-select-my-system-disk-as-the-d&#34; title=&#34;AskDifferent: When I want to install TeamViewer 10, why can&#39;t I select my system disk as the distination?&#34;&gt;我在 AskDifferent 上的提问&lt;/a&gt;），一怒之下重装之，自然对 SSD 的优化也要重新搞一遍。搞的过程中发现有的手段能用，有的却不行，特此记录。&lt;/p&gt;
-
 &lt;p&gt;优化手段的主要来源是&lt;a href=&#34;http://chenyufei.info/blog/2011-09-06/13-%E5%AF%B8-macbook-pro-%E6%8B%86%E5%85%89%E9%A9%B1%E6%9B%B4%E6%8D%A2-ssd/&#34; title=&#34;13 寸 Macbook Pro 拆光驱更换 SSD&#34;&gt;朋友的一篇博文&lt;/a&gt;及其中的链接。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;注意：操作有风险，动手须谨慎哟。因为我是不（lan）会（de）做太多解释的，所以你一定要在操作前搞清楚那些个命令的作用哟，特别是像 &lt;code&gt;rm&lt;/code&gt; 啦 &lt;code&gt;mv&lt;/code&gt; 啦之类的危险命令哟，可别说我没提醒你哟 -_-&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;注意：操作有风险，动手须谨慎哟。因为我是不（lan）会（de）做太多解释的，所以你一定要在操作前搞清楚那些个命令的作用哟，特别是像 &lt;code&gt;rm&lt;/code&gt; 啦 &lt;code&gt;mv&lt;/code&gt; 啦之类的危险命令哟，可别说我没提醒你哟 -_-&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -37,10 +27,7 @@
       
       <guid>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid>
       <description>&lt;p&gt;在我的 &lt;a href=&#34;https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/&#34;&gt;XTunnel&lt;/a&gt; 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p&gt;
-
-&lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;</description>
     </item>
     
   </channel>

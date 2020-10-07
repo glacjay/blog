@@ -5,9 +5,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.76.0" />
 
   <title>OpenVPN 的初始化过程分析 &middot; Random Stuff from GlacJAY</title>
+
+    
 
   
   
@@ -30,7 +32,7 @@
   <link rel="stylesheet" href="/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -96,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
     </li>
     
 
@@ -144,7 +146,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
     </li>
     
 
@@ -226,28 +228,56 @@
 </div>
 
   <p>题外话：Eclipse CDT 很给力，至少在我用起来，比 gVim + Cscope 或者 SourceInsight 要来得给力，推荐一下。</p>
-
 <p>更准确的来说，是 OpenVPN 的客户端与服务端之间，从协商密钥、到推送配置，以及最后的网卡与路由配置生效，开始进行 IP 报文的传递，这整个的过程。</p>
-
 <p>完了。嗯，整个过程就像上面说的，这几个步骤而已。</p>
-
 <p>不过重点当然还是代码啦。以前一直以为 OpenVPN 的点对点模式下，两端会进行一个决定谁是客户端，谁是服务端的协商过程，一直都想知道是怎么做的。后来才知道，原来通过配置信息，就已经决定好这个了。当然，我下面说的是客户端-服务器模式。</p>
-
-<p></p>
-
 <p>那么先来看客户端的初始化。客户端进入的还是点对点模式，进入点，也是其事件循环的入口为 <code>tunnel_point_to_point()</code> 。然后是 <code>init_instance()</code> ，在这个函数中进行客户端自身的初始化，包括各种数据结构的建立，像分片啦、压缩啦、socket 啦、MTU 啦等。其中代码量最多的是 SSL 模块的初始化（ <code>do_init_crypto</code> 和 <code>do_init_frame_tls</code> ），要调很多的 OpenSSL 的函数；还有对 socket 的初始化，分为两个阶段，第一个阶段解析域名，第二个阶段发起连接（如果是 TCP 的话）。我一直搞不十分清楚的是 MTU ，也就是 <code>frame</code> 模块，因为太细节而且太分散了。</p>
-
 <p>然后通过 <code>pre_select()</code> 函数进入 <code>check_tls()</code> 过程。因为是客户端，这时就会准备好发送第一个握手报文，命令码为 <code>P_CONTROL_HARD_RESET_CLIENT_V1/2</code> 。按照<a href="/post/2010-11-22/openvpn-%E7%9A%84%E6%8F%A1%E6%89%8B%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">上篇</a>所说与服务器交换好了密钥之后，会在 <code>tls_process()</code> 函数的 <code>3852</code> 行，设置连接成功建立的标志 <code>connection_established</code> 。</p>
-
 <p>之后，还是在 <code>pre_select()</code> 的 <code>check_connection_established()</code> 函数中，初始化 <code>push_request_interval</code> 定时器，由客户端开始发送推送配置的请求报文。推送配置功能的报文走的是和交换密钥相同的 SSL 隧道，按理说蛮可靠的，不过还是实现了重传，不知道是基于什么考虑。通过 <code>check_incoming_control_channel()</code> 函数收到服务器推过来的额外配置之后，调用 <code>process_incoming_push_msg()</code> 函数解析一下收到的配置字符串，就要根据这些配置，调用 <code>do_up()</code> 函数进行最终的初始化工作了。</p>
-
 <p>在 <code>do_up()</code> 中，先调用 <code>do_open_tun()</code> ，根据由服务器发过来的所分配置的虚拟 IP 地址把虚拟网卡给起了，然后把 <code>route_wakeup</code> 定时器给激活一下，告诉 <code>check_add_routes()</code> 函数加一下路由，完了之后就是 <code>initialization_sequence_completed()</code> 了。</p>
-
 <p>服务器嘛，也就是顺序不一样。首先，虚拟网卡和系统路由可以先建起来，因为不需要等其他人推配置。然后就等着客户端发过来第一个报文了，然后握手，然后把配置推过去，然后就完了。</p>
-
 <p>然后就是在虚拟网卡跟物理网卡之间当搬运工啦。因为服务器要服务多个客户端，所以还用二叉树实现了一个调度器。</p>
-
 <p>就这样。</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-01-18%2fopenvpn-%25E7%259A%2584%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E8%25BF%2587%25E7%25A8%258B%25E5%2588%2586%25E6%259E%2590%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -307,6 +337,9 @@
 </div>
 </div>
 <script src="https://blog.glacjay.info/js/ui.js"></script>
+<script src="https://blog.glacjay.info/js/menus.js"></script>
+
+
 
 
 

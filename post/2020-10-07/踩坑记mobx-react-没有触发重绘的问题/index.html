@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.76.0" />
 
-  <title>[翻译] 用 Ruby 写编译器之零 &middot; Random Stuff from GlacJAY</title>
+  <title>踩坑记：Mobx React 没有触发重绘的问题 &middot; Random Stuff from GlacJAY</title>
 
     
 
@@ -195,7 +195,7 @@
 
 
 <div class="header">
-  <h1>[翻译] 用 Ruby 写编译器之零</h1>
+  <h1>踩坑记：Mobx React 没有触发重绘的问题</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -204,7 +204,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-04-10 00:00</time>
+    <time>2020-10-07 14:53</time>
   </div>
 
   
@@ -213,37 +213,27 @@
 
   
   
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/compiler">compiler</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/ruby">ruby</a>
-    
-  </div>
   
   
 
 </div>
 
-  <p>这是一个国外的编译器达人写的一系列教程，内容为用 Ruby 语言，以自底向上的方式开发一个 Ruby 语言的编译器。这个教程非常适合于实战派的程序员。该教程的入口见<a href="http://www.hokstad.com/compiler">这里</a>，其代码见<a href="https://github.com/vidarh/writing-a-compiler-in-ruby">这里</a>。</p>
-<p>我会试着翻译一下这个教程。由于这个项目之后又有了很大的进展，而教程本身却又已经很久没有更新了，所以之后我可能也会自己总结一下那些最新的开发工作。</p>
-<p>使用版本管理软件的好处之一，就是你可以一步一步的学习一个软件的开发过程。不过这个项目用的是 Git，貌似不支持直接将 Working Tree 检出到历史上的某一个版本，所以我就新建了一个分支，然后将主干上的提交一个一个地 merge 到这个新的分支上，这样就可以一个提交一个提交的按顺序把玩这个编译器了。</p>
+  <p>来水一发：正在学习 <a href="https://mobx.js.org">MobX</a>，用 <code>makeAutoObserverable</code> 写了个 store class，结果发现设置了里面的字段后触发不了重绘，折腾了一圈后发现这字段就没监听上，因为没给初始值（对，懒了，<code>null</code> 都没给😂️），那初始值应该就是 <code>undefined</code> 了，导致被 MobX 忽略掉了😂️</p>
+<p>记得看文档的时候也并没有强调过这个，感觉可以加一下，防止新手踩坑吧……不过最近 MobX 正好在整新版，也许文档正好还不完善吧。</p>
   
   <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-04-10%2f%25E7%25BF%25BB%25E8%25AF%2591-%25E7%2594%25A8-ruby-%25E5%2586%2599%25E7%25BC%2596%25E8%25AF%2591%25E5%2599%25A8%25E4%25B9%258B%25E9%259B%25B6%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2020-10-07%2f%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0mobx-react-%25E6%25B2%25A1%25E6%259C%2589%25E8%25A7%25A6%25E5%258F%2591%25E9%2587%258D%25E7%25BB%2598%25E7%259A%2584%25E9%2597%25AE%25E9%25A2%2598%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -275,13 +265,13 @@
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://blog.glacjay.info/post/2011-03-13/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-dr-%E6%A8%A1%E5%BC%8F/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://blog.glacjay.info/post/2018-09-09/%E7%BA%AF%E8%BD%AF%E4%BB%B6%E5%85%B1%E4%BA%AB%E6%9C%89%E7%BA%BF%E9%94%AE%E9%BC%A0/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://blog.glacjay.info/post/2011-03-13/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-dr-%E6%A8%A1%E5%BC%8F/">总结一下学到的 LVS 相关知识（ DR 模式）</a>
+      <a href="https://blog.glacjay.info/post/2018-09-09/%E7%BA%AF%E8%BD%AF%E4%BB%B6%E5%85%B1%E4%BA%AB%E6%9C%89%E7%BA%BF%E9%94%AE%E9%BC%A0/">纯软件共享有线键鼠</a>
     </nav>
     
   </div>
@@ -290,14 +280,8 @@
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://blog.glacjay.info/post/2011-04-11/%E7%BF%BB%E8%AF%91-%E7%94%A8-ruby-%E5%86%99%E7%BC%96%E8%AF%91%E5%99%A8%E4%B9%8B%E4%B8%80%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84-main-%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/">[翻译] 用 Ruby 写编译器之一：一个简单的 main 函数模板</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://blog.glacjay.info/post/2011-04-11/%E7%BF%BB%E8%AF%91-%E7%94%A8-ruby-%E5%86%99%E7%BC%96%E8%AF%91%E5%99%A8%E4%B9%8B%E4%B8%80%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84-main-%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
