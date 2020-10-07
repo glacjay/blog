@@ -1,21 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>shell on Random Stuff from GlacJAY</title>
-    <link>https://blog.glacjay.info/tags/shell/</link>
-    <description>Recent content in shell on Random Stuff from GlacJAY</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sat, 05 Mar 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/shell/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linux 下有关环境变量与换行符的一个小问题</title>
-      <link>https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Sat, 05 Mar 2011 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;最近在工作中，老是遇到一个莫名其妙的问题。我有一个用来设置一些环境变量的脚本，结果经常发现这个脚本设过的环境变量乱七八糟的，像 PATH 这种，就是之前的值跟后面添加的值重叠在了一起。直到后来才发现，原来是换行符搞的鬼。&lt;/p&gt;
-&lt;p&gt;这样说还不太清楚，上代码吧。编辑文本文件 &lt;code&gt;test.sh&lt;/code&gt; 如下，记得以 DOS 换行符的模式来保存：&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>shell on Random Stuff from GlacJAY</title><link>https://blog.glacjay.info/tags/shell/</link><description>Recent content in shell on Random Stuff from GlacJAY</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 05 Mar 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/shell/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux 下有关环境变量与换行符的一个小问题</title><link>https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/</link><pubDate>Sat, 05 Mar 2011 00:00:00 +0000</pubDate><guid>https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/</guid><description>&lt;p>最近在工作中，老是遇到一个莫名其妙的问题。我有一个用来设置一些环境变量的脚本，结果经常发现这个脚本设过的环境变量乱七八糟的，像 PATH 这种，就是之前的值跟后面添加的值重叠在了一起。直到后来才发现，原来是换行符搞的鬼。&lt;/p>
+&lt;p>这样说还不太清楚，上代码吧。编辑文本文件 &lt;code>test.sh&lt;/code> 如下，记得以 DOS 换行符的模式来保存：&lt;/p></description></item></channel></rss>

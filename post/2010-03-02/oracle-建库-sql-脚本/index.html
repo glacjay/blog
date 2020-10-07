@@ -1,490 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.76.0" />
-
-  <title>Oracle 建库 SQL 脚本 &middot; Random Stuff from GlacJAY</title>
-
-    
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
- 
-  
-
-  
-
-  <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
-
-  
-    
-        <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
-    
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="/">GlacJAY</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>归档</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/tags/"><i class='fa fa-tags fa-fw'></i>标签</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small></small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>Oracle 建库 SQL 脚本</h1>
-  <h2></h2>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2010-03-02 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/oracle">oracle</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/sql">sql</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#09f;font-style:italic">-- 首先是删除该数据库中该用户名下的所有表、序列与触发器，
-</span><span style="color:#09f;font-style:italic">-- 其中触发器是通过表格级联删除的。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">declare</span>
-  <span style="color:#069;font-weight:bold">cursor</span> usertables <span style="color:#069;font-weight:bold">is</span>
-    <span style="color:#069;font-weight:bold">select</span> <span style="color:#555">*</span>
-    <span style="color:#069;font-weight:bold">from</span> user_tables
-    <span style="color:#069;font-weight:bold">where</span> <span style="color:#069;font-weight:bold">table_name</span> <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">like</span> <span style="color:#c30">&#39;BIN$%&#39;</span>;
-  <span style="color:#069;font-weight:bold">cursor</span> usersequences <span style="color:#069;font-weight:bold">is</span>
-    <span style="color:#069;font-weight:bold">select</span> <span style="color:#555">*</span>
-    <span style="color:#069;font-weight:bold">from</span> user_sequences;
-<span style="color:#069;font-weight:bold">begin</span>
-  <span style="color:#069;font-weight:bold">for</span> next_row <span style="color:#069;font-weight:bold">in</span> usertables loop
-    <span style="color:#069;font-weight:bold">execute</span> <span style="color:#069;font-weight:bold">immediate</span>
-      <span style="color:#c30">&#39;drop table &#39;</span> <span style="color:#555">||</span> next_row.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39; cascade constraints&#39;</span>;
-  <span style="color:#069;font-weight:bold">end</span> loop;
-  <span style="color:#069;font-weight:bold">for</span> next_row <span style="color:#069;font-weight:bold">in</span> usersequences loop
-    <span style="color:#069;font-weight:bold">execute</span> <span style="color:#069;font-weight:bold">immediate</span>
-      <span style="color:#c30">&#39;drop sequence &#39;</span> <span style="color:#555">||</span> next_row.sequence_name;
-  <span style="color:#069;font-weight:bold">end</span> loop;
-<span style="color:#069;font-weight:bold">end</span>;
-<span style="color:#555">/</span>
-
-<span style="color:#09f;font-style:italic">-- 然后，就是一砣……的建表语句啦，
-</span><span style="color:#09f;font-style:italic">-- 比方说下面就是两个含外键的表。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#c30">&#34;A&#34;</span> (
-  <span style="color:#c30">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
-  <span style="color:#c30">&#34;NAME&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>         <span style="color:#09f;font-style:italic">-- nvarchar2类型支持UTF8
-</span><span style="color:#09f;font-style:italic"></span>);
-<span style="color:#09f;font-style:italic">-- Oracle中的表名与字段名最好写成这样引号加全大写的形式。
-</span><span style="color:#09f;font-style:italic"></span>
-<span style="color:#069;font-weight:bold">create</span> <span style="color:#069;font-weight:bold">table</span> <span style="color:#c30">&#34;B&#34;</span> (
-  <span style="color:#c30">&#34;ID&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">primary</span> <span style="color:#069;font-weight:bold">key</span>,
-  <span style="color:#c30">&#34;A&#34;</span> <span style="color:#366">integer</span> <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span> <span style="color:#069;font-weight:bold">references</span> <span style="color:#c30">&#34;B&#34;</span> <span style="color:#069;font-weight:bold">on</span> <span style="color:#069;font-weight:bold">delete</span> <span style="color:#069;font-weight:bold">cascade</span>,
-  <span style="color:#c30">&#34;VALUE&#34;</span> nvarchar2(<span style="color:#f60">64</span>) <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">null</span>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.76.0"><title>Oracle 建库 SQL 脚本 &#183; Random Stuff from GlacJAY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css><!--[if lte IE 8]><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css><![endif]--><!--[if gt IE 8]><!--><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css><!--<![endif]--><!--[if lte IE 8]><link rel=stylesheet href=/css/side-menu-old-ie.css><![endif]--><!--[if gt IE 8]><!--><link rel=stylesheet href=/css/side-menu.css><!--<![endif]--><link rel=stylesheet href=/css/blackburn.css><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.9.0/css/all.css><link href="https://fonts.googleapis.com/css?family=Raleway"rel=stylesheet type=text/css><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="shortcut icon"href=https://blog.glacjay.info/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://blog.glacjay.info/glacjay.css></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand"href=/>GlacJAY</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=/post/><i class="fa fa-list fa-fw"></i>归档</a></li><li class=pure-menu-item><a class=pure-menu-link href=/tags/><i class="fa fa-tags fa-fw"></i>标签</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://twitter.com/glacjay rel=me target=_blank><i class="fab fa-twitter-square fa-fw"></i>Twitter</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/glacjay rel=me target=_blank><i class="fab fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small></small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div></div><div id=main><div class=header><h1>Oracle 建库 SQL 脚本</h1><h2></h2></div><div class=content><div class=post-meta><div><i class="fa fa-calendar fa-fw"></i><time>2010-03-02 00:00</time></div><div><i class="fa fa-tags fa-fw"></i><a class=post-taxonomy-tag href=https://blog.glacjay.info/tags/oracle>oracle</a>&nbsp;/
+<a class=post-taxonomy-tag href=https://blog.glacjay.info/tags/sql>sql</a></div></div><div class=highlight><div style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">70
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#09f;font-style:italic>-- 首先是删除该数据库中该用户名下的所有表、序列与触发器，
+</span><span style=color:#09f;font-style:italic>-- 其中触发器是通过表格级联删除的。
+</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>declare</span>
+  <span style=color:#069;font-weight:700>cursor</span> usertables <span style=color:#069;font-weight:700>is</span>
+    <span style=color:#069;font-weight:700>select</span> <span style=color:#555>*</span>
+    <span style=color:#069;font-weight:700>from</span> user_tables
+    <span style=color:#069;font-weight:700>where</span> <span style=color:#069;font-weight:700>table_name</span> <span style=color:#069;font-weight:700>not</span> <span style=color:#069;font-weight:700>like</span> <span style=color:#c30>&#39;BIN$%&#39;</span>;
+  <span style=color:#069;font-weight:700>cursor</span> usersequences <span style=color:#069;font-weight:700>is</span>
+    <span style=color:#069;font-weight:700>select</span> <span style=color:#555>*</span>
+    <span style=color:#069;font-weight:700>from</span> user_sequences;
+<span style=color:#069;font-weight:700>begin</span>
+  <span style=color:#069;font-weight:700>for</span> next_row <span style=color:#069;font-weight:700>in</span> usertables loop
+    <span style=color:#069;font-weight:700>execute</span> <span style=color:#069;font-weight:700>immediate</span>
+      <span style=color:#c30>&#39;drop table &#39;</span> <span style=color:#555>||</span> next_row.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39; cascade constraints&#39;</span>;
+  <span style=color:#069;font-weight:700>end</span> loop;
+  <span style=color:#069;font-weight:700>for</span> next_row <span style=color:#069;font-weight:700>in</span> usersequences loop
+    <span style=color:#069;font-weight:700>execute</span> <span style=color:#069;font-weight:700>immediate</span>
+      <span style=color:#c30>&#39;drop sequence &#39;</span> <span style=color:#555>||</span> next_row.sequence_name;
+  <span style=color:#069;font-weight:700>end</span> loop;
+<span style=color:#069;font-weight:700>end</span>;
+<span style=color:#555>/</span>
+
+<span style=color:#09f;font-style:italic>-- 然后，就是一砣……的建表语句啦，
+</span><span style=color:#09f;font-style:italic>-- 比方说下面就是两个含外键的表。
+</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>create</span> <span style=color:#069;font-weight:700>table</span> <span style=color:#c30>&#34;A&#34;</span> (
+  <span style=color:#c30>&#34;ID&#34;</span> <span style=color:#366>integer</span> <span style=color:#069;font-weight:700>primary</span> <span style=color:#069;font-weight:700>key</span>,
+  <span style=color:#c30>&#34;NAME&#34;</span> nvarchar2(<span style=color:#f60>64</span>) <span style=color:#069;font-weight:700>not</span> <span style=color:#069;font-weight:700>null</span>         <span style=color:#09f;font-style:italic>-- nvarchar2类型支持UTF8
+</span><span style=color:#09f;font-style:italic></span>);
+<span style=color:#09f;font-style:italic>-- Oracle中的表名与字段名最好写成这样引号加全大写的形式。
+</span><span style=color:#09f;font-style:italic></span>
+<span style=color:#069;font-weight:700>create</span> <span style=color:#069;font-weight:700>table</span> <span style=color:#c30>&#34;B&#34;</span> (
+  <span style=color:#c30>&#34;ID&#34;</span> <span style=color:#366>integer</span> <span style=color:#069;font-weight:700>primary</span> <span style=color:#069;font-weight:700>key</span>,
+  <span style=color:#c30>&#34;A&#34;</span> <span style=color:#366>integer</span> <span style=color:#069;font-weight:700>not</span> <span style=color:#069;font-weight:700>null</span> <span style=color:#069;font-weight:700>references</span> <span style=color:#c30>&#34;B&#34;</span> <span style=color:#069;font-weight:700>on</span> <span style=color:#069;font-weight:700>delete</span> <span style=color:#069;font-weight:700>cascade</span>,
+  <span style=color:#c30>&#34;VALUE&#34;</span> nvarchar2(<span style=color:#f60>64</span>) <span style=color:#069;font-weight:700>not</span> <span style=color:#069;font-weight:700>null</span>
 );
 
-<span style="color:#09f;font-style:italic">-- 接下来是第三部分，为所有的表创建对应的序列和触发器，以实现自增主键。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">declare</span>
-  <span style="color:#069;font-weight:bold">cursor</span> usertables <span style="color:#069;font-weight:bold">is</span>
-    <span style="color:#069;font-weight:bold">select</span> cols.<span style="color:#069;font-weight:bold">table_name</span>, cols.<span style="color:#069;font-weight:bold">column_name</span>
-    <span style="color:#069;font-weight:bold">from</span> all_constraints cons, all_cons_columns cols
-    <span style="color:#069;font-weight:bold">where</span> cols.<span style="color:#069;font-weight:bold">owner</span> <span style="color:#555">=</span> (
-      <span style="color:#069;font-weight:bold">select</span> sys_context(<span style="color:#c30">&#39;USERENV&#39;</span>, <span style="color:#c30">&#39;SESSION_USER&#39;</span>)
-      <span style="color:#069;font-weight:bold">from</span> dual)
-    <span style="color:#069;font-weight:bold">and</span> cols.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#069;font-weight:bold">not</span> <span style="color:#069;font-weight:bold">like</span> <span style="color:#c30">&#39;BIN$%&#39;</span>
-    <span style="color:#069;font-weight:bold">and</span> cons.constraint_type <span style="color:#555">=</span> <span style="color:#c30">&#39;P&#39;</span>
-    <span style="color:#069;font-weight:bold">and</span> cons.<span style="color:#069;font-weight:bold">constraint_name</span> <span style="color:#555">=</span> cols.<span style="color:#069;font-weight:bold">constraint_name</span>
-    <span style="color:#069;font-weight:bold">and</span> cons.<span style="color:#069;font-weight:bold">owner</span> <span style="color:#555">=</span> cols.<span style="color:#069;font-weight:bold">owner</span>
-<span style="color:#069;font-weight:bold">begin</span>
-  <span style="color:#069;font-weight:bold">for</span> nextrow <span style="color:#069;font-weight:bold">in</span> usertables loop
-    <span style="color:#09f;font-style:italic">-- 1000以下的留作初始测试数据用，见下
-</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">execute</span> <span style="color:#069;font-weight:bold">immediate</span>
-      <span style="color:#c30">&#39;create sequence &#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;_PK_SEQ&#34; start with 1000&#39;</span>;
-    <span style="color:#069;font-weight:bold">execute</span> <span style="color:#069;font-weight:bold">immediate</span>
-      <span style="color:#c30">&#39;create or replace trigger &#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;_PK_TRG&#34; before insert on &#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;&#34; for each row begin if :new.&#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">column_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;&#34; is null then select &#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">table_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;_PK_SEQ&#34;.nextval into :new.&#34;&#39;</span> <span style="color:#555">||</span> nextrow.<span style="color:#069;font-weight:bold">column_name</span> <span style="color:#555">||</span>
-      <span style="color:#c30">&#39;&#34; from dual; end if; end;&#39;</span>;
-  <span style="color:#069;font-weight:bold">end</span> loop;
-<span style="color:#069;font-weight:bold">end</span>;
-<span style="color:#555">/</span>
+<span style=color:#09f;font-style:italic>-- 接下来是第三部分，为所有的表创建对应的序列和触发器，以实现自增主键。
+</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>declare</span>
+  <span style=color:#069;font-weight:700>cursor</span> usertables <span style=color:#069;font-weight:700>is</span>
+    <span style=color:#069;font-weight:700>select</span> cols.<span style=color:#069;font-weight:700>table_name</span>, cols.<span style=color:#069;font-weight:700>column_name</span>
+    <span style=color:#069;font-weight:700>from</span> all_constraints cons, all_cons_columns cols
+    <span style=color:#069;font-weight:700>where</span> cols.<span style=color:#069;font-weight:700>owner</span> <span style=color:#555>=</span> (
+      <span style=color:#069;font-weight:700>select</span> sys_context(<span style=color:#c30>&#39;USERENV&#39;</span>, <span style=color:#c30>&#39;SESSION_USER&#39;</span>)
+      <span style=color:#069;font-weight:700>from</span> dual)
+    <span style=color:#069;font-weight:700>and</span> cols.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#069;font-weight:700>not</span> <span style=color:#069;font-weight:700>like</span> <span style=color:#c30>&#39;BIN$%&#39;</span>
+    <span style=color:#069;font-weight:700>and</span> cons.constraint_type <span style=color:#555>=</span> <span style=color:#c30>&#39;P&#39;</span>
+    <span style=color:#069;font-weight:700>and</span> cons.<span style=color:#069;font-weight:700>constraint_name</span> <span style=color:#555>=</span> cols.<span style=color:#069;font-weight:700>constraint_name</span>
+    <span style=color:#069;font-weight:700>and</span> cons.<span style=color:#069;font-weight:700>owner</span> <span style=color:#555>=</span> cols.<span style=color:#069;font-weight:700>owner</span>
+<span style=color:#069;font-weight:700>begin</span>
+  <span style=color:#069;font-weight:700>for</span> nextrow <span style=color:#069;font-weight:700>in</span> usertables loop
+    <span style=color:#09f;font-style:italic>-- 1000以下的留作初始测试数据用，见下
+</span><span style=color:#09f;font-style:italic></span>    <span style=color:#069;font-weight:700>execute</span> <span style=color:#069;font-weight:700>immediate</span>
+      <span style=color:#c30>&#39;create sequence &#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;_PK_SEQ&#34; start with 1000&#39;</span>;
+    <span style=color:#069;font-weight:700>execute</span> <span style=color:#069;font-weight:700>immediate</span>
+      <span style=color:#c30>&#39;create or replace trigger &#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;_PK_TRG&#34; before insert on &#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;&#34; for each row begin if :new.&#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>column_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;&#34; is null then select &#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>table_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;_PK_SEQ&#34;.nextval into :new.&#34;&#39;</span> <span style=color:#555>||</span> nextrow.<span style=color:#069;font-weight:700>column_name</span> <span style=color:#555>||</span>
+      <span style=color:#c30>&#39;&#34; from dual; end if; end;&#39;</span>;
+  <span style=color:#069;font-weight:700>end</span> loop;
+<span style=color:#069;font-weight:700>end</span>;
+<span style=color:#555>/</span>
 
-<span style="color:#09f;font-style:italic">-- 最后当然就是测试数据啦。
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;A&#34;</span> (ID, NAME) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#c30">&#39;first name&#39;</span>);
-<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;Jay&#39;</span>);
-<span style="color:#069;font-weight:bold">insert</span> <span style="color:#069;font-weight:bold">into</span> <span style="color:#c30">&#34;B&#34;</span> (ID, AID, VALUE) <span style="color:#069;font-weight:bold">values</span> (<span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#c30">&#39;杰&#39;</span>);
-</code></pre></td></tr></table>
-</div>
-</div>
-  
-  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
-<ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
-	</li>
-</ul>
-
-
-<style>
-	ul.share-buttons{
-	  list-style: none;
-	  padding: 0;
-	}
-
-	ul.share-buttons li{
-	  display: inline;
-	}
-
-	ul.share-buttons .sr-only{
-	  position: absolute;
-	  clip: rect(1px 1px 1px 1px);
-	  clip: rect(1px, 1px, 1px, 1px);
-	  padding: 0;
-	  border: 0;
-	  height: 1px;
-	  width: 1px;
-	  overflow: hidden;
-	}
-</style>
-
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">利用 XMPP 协议实现 VPN</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/">通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-  
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-
-(function() {
-    
-    
-    if (window.location.hostname == "localhost")
-        return;
-
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    var disqus_shortname = 'glacjay';
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-</div>
-
-</div>
-</div>
-<script src="https://blog.glacjay.info/js/ui.js"></script>
-<script src="https://blog.glacjay.info/js/menus.js"></script>
-
-
-
-
-
-
-<script src="/js/math-code.js"></script>
-  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  
-
-
-</body>
-</html>
-
+<span style=color:#09f;font-style:italic>-- 最后当然就是测试数据啦。
+</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>insert</span> <span style=color:#069;font-weight:700>into</span> <span style=color:#c30>&#34;A&#34;</span> (ID, NAME) <span style=color:#069;font-weight:700>values</span> (<span style=color:#f60>1</span>, <span style=color:#c30>&#39;first name&#39;</span>);
+<span style=color:#069;font-weight:700>insert</span> <span style=color:#069;font-weight:700>into</span> <span style=color:#c30>&#34;B&#34;</span> (ID, AID, VALUE) <span style=color:#069;font-weight:700>values</span> (<span style=color:#f60>1</span>, <span style=color:#f60>1</span>, <span style=color:#c30>&#39;Jay&#39;</span>);
+<span style=color:#069;font-weight:700>insert</span> <span style=color:#069;font-weight:700>into</span> <span style=color:#c30>&#34;B&#34;</span> (ID, AID, VALUE) <span style=color:#069;font-weight:700>values</span> (<span style=color:#f60>2</span>, <span style=color:#f60>1</span>, <span style=color:#c30>&#39;杰&#39;</span>);
+</code></pre></td></tr></table></div></div><h4><i class=fa-share-alt aria-hidden=true></i>&nbsp;Share!</h4><ul class=share-buttons><li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f"target=_blank title="Share on Facebook"><i class=fa-facebook aria-hidden=true></i><span class=sr-only>Share on Facebook</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f&via=HorribleGeek"target=_blank title=Tweet><i class=fa-twitter aria-hidden=true></i><span class=sr-only>Tweet</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f"target=_blank title="Share on Google+"><i class=fa-google-plus aria-hidden=true></i><span class=sr-only>Share on Google+</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f"target=_blank title="Post to Tumblr"><i class=fa-tumblr aria-hidden=true></i><span class=sr-only>Post to Tumblr</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f"target=_blank title="Pin it"><i class=fa-pinterest-p aria-hidden=true></i><span class=sr-only>Pin it</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2010-03-02%2foracle-%25E5%25BB%25BA%25E5%25BA%2593-sql-%25E8%2584%259A%25E6%259C%25AC%2f"target=_blank title="Submit to Reddit"><i class=fa-reddit-alien aria-hidden=true></i><span class=sr-only>Submit to Reddit</span></a></li></ul><style>ul.share-buttons{list-style:none;padding:0}ul.share-buttons li{display:inline}ul.share-buttons .sr-only{position:absolute;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}</style><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/>利用 XMPP 协议实现 VPN</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/>通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/><i class="fa fa-chevron-right"></i></a></div></div><div id=disqus_thread></div><script type=text/javascript>!function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='glacjay',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)}()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><script src=https://blog.glacjay.info/js/ui.js></script><script src=https://blog.glacjay.info/js/menus.js></script><script src=/js/math-code.js></script><script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>

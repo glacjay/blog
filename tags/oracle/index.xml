@@ -1,31 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>oracle on Random Stuff from GlacJAY</title>
-    <link>https://blog.glacjay.info/tags/oracle/</link>
-    <description>Recent content in oracle on Random Stuff from GlacJAY</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Wed, 03 Mar 2010 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</title>
-      <link>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</link>
-      <pubDate>Wed, 03 Mar 2010 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</guid>
-      <description>&lt;p&gt;首先，你要安装好 UnixODBC 软件包，这个就不多说了。&lt;/p&gt;
-&lt;p&gt;然后，安装 Oracle 官方客户端，因为我的使用环境为 Fedora 12 ，所以我下载安装的是 &lt;code&gt;oracle-xe-client-10.2.0.1-1.0.i386.rpm&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;装好之后，要设置一些环境变量，我是用的一个 Shell 脚本来完成这项工作的，你可以把它放在 &lt;code&gt;/etc/profile.d/&lt;/code&gt; 目录下并加上可执行权限来让其在系统启动时自动执行，也可以直接运行这个脚本来使其立即生效。脚本如下：&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Oracle 建库 SQL 脚本</title>
-      <link>https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/</link>
-      <pubDate>Tue, 02 Mar 2010 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &amp;#39;BIN$%&amp;#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &amp;#39;drop table &amp;#39; || next_row.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>oracle on Random Stuff from GlacJAY</title><link>https://blog.glacjay.info/tags/oracle/</link><description>Recent content in oracle on Random Stuff from GlacJAY</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 03 Mar 2010 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/oracle/index.xml" rel="self" type="application/rss+xml"/><item><title>通过 ODBC 接口访问 Oracle 数据库 -- Linux 篇</title><link>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</link><pubDate>Wed, 03 Mar 2010 00:00:00 +0000</pubDate><guid>https://blog.glacjay.info/post/2010-03-03/%E9%80%9A%E8%BF%87-odbc-%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE-oracle-%E6%95%B0%E6%8D%AE%E5%BA%93-linux-%E7%AF%87/</guid><description>&lt;p>首先，你要安装好 UnixODBC 软件包，这个就不多说了。&lt;/p>
+&lt;p>然后，安装 Oracle 官方客户端，因为我的使用环境为 Fedora 12 ，所以我下载安装的是 &lt;code>oracle-xe-client-10.2.0.1-1.0.i386.rpm&lt;/code> 。&lt;/p>
+&lt;p>装好之后，要设置一些环境变量，我是用的一个 Shell 脚本来完成这项工作的，你可以把它放在 &lt;code>/etc/profile.d/&lt;/code> 目录下并加上可执行权限来让其在系统启动时自动执行，也可以直接运行这个脚本来使其立即生效。脚本如下：&lt;/p></description></item><item><title>Oracle 建库 SQL 脚本</title><link>https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/</link><pubDate>Tue, 02 Mar 2010 00:00:00 +0000</pubDate><guid>https://blog.glacjay.info/post/2010-03-02/oracle-%E5%BB%BA%E5%BA%93-sql-%E8%84%9A%E6%9C%AC/</guid><description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 -- 首先是删除该数据库中该用户名下的所有表、序列与触发器， -- 其中触发器是通过表格级联删除的。 declare cursor usertables is select * from user_tables where table_name not like &amp;#39;BIN$%&amp;#39;; cursor usersequences is select * from user_sequences; begin for next_row in usertables loop execute immediate &amp;#39;drop table &amp;#39; || next_row.</description></item></channel></rss>

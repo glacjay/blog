@@ -1,640 +1,287 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.76.0" />
-
-  <title>发布一个寻找局域网内主机的小工具 &middot; Random Stuff from GlacJAY</title>
-
-    
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
- 
-  
-
-  
-
-  <link rel="shortcut icon" href="https://blog.glacjay.info/img/favicon.ico" type="image/x-icon" />
-
-  
-    
-        <link rel="stylesheet" href="https://blog.glacjay.info/glacjay.css">
-    
-  
-  
-
-</head>
-
-
-<body>
-<div id="layout">
-
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="/">GlacJAY</a>
-
-
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>归档</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/tags/"><i class='fa fa-tags fa-fw'></i>标签</a>
-      
-        </li>
-      
-    </ul>
-  </div>
-
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/glacjay" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/glacjay" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-  </ul>
-</div>
-
-
-  <div>
-  <div class="small-print">
-    <small></small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
-
-</div>
-
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>发布一个寻找局域网内主机的小工具</h1>
-  <h2></h2>
-</div>
-<div class="content">
-
-  <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2011-03-05 22:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/c&#43;&#43;">c&#43;&#43;</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://blog.glacjay.info/tags/linux">linux</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  <p>在工作中，经常需要远程登录到机房中的设备上进行调试与开发，走的是工作局域网。由于这些设备的地址也是动态获取的，因此在遇到一些意外事故，如网线松了、网络不稳定之类的，这些地址可能就变了。每当这时，我们就得跑到机房，给设备连上显示器（我们连 KVM 都没有，命苦啊），查看 IP ，然后再跑回去重新连。太麻烦了。</p>
-<p>我知道有支持动态地址的 DNS 服务，可是我们没权限操作 DNS 服务器，而且设备也都是不固定的，没必要惊动网络管理员（好吧，我甚至都不知道谁是网络管理员，作为三年的“老”员工，我面壁去了。好吧，其实我就是想写写程序练练手），所以我就写了个小程序，用来查找一台特定设备的 IP 地址。</p>
-<p>原理其实很简单啦。客户端（也就是我的笔记本）发个 UDP 广播报文，里面有要找的主机的名字。服务端呢，启动时则指定一个主机名字。当服务端收到一个 UDP 广播报文，并且发现找的就是自己呢，就返回一个 <code>bingo</code> 报文。这样，客户端就知道这个主机的 IP 地址啦。</p>
-<p>现在用的服务端口是 <code>5460</code> （取自某本网络小说 :-），应该没有哪个知名服务用这个端口吧。当然，因为这个工具确实太简单了，所以就没有考虑冲突的情况啦。请大家在使用的时候，给主机取个有个性的名字哟。</p>
-<p>我通过这个程序学到的新知识就是，要发送 UDP 的广播报文，只是指定一个全 <code>1</code> 的地址是不够的，还要设置 socket 选项 <code>SO_BROADCAST</code> （我继续面壁去了）。</p>
-<p>下面是代码（好撑篇幅啊，又没人给我稿费的说）：</p>
-<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#099">#include</span> <span style="color:#099">&lt;stdio.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;stdlib.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;errno.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;string.h&gt;</span><span style="color:#099">
-</span><span style="color:#099"></span>
-<span style="color:#099">#include</span> <span style="color:#099">&lt;sys/socket.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;netinet/in.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;pthread.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;unistd.h&gt;</span><span style="color:#099">
-</span><span style="color:#099">#include</span> <span style="color:#099">&lt;arpa/inet.h&gt;</span><span style="color:#099">
-</span><span style="color:#099"></span>
-<span style="color:#099">#define PORT 5460
-</span><span style="color:#099"></span>
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>progname;
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> sock;
-
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">usage</span>(<span style="color:#078;font-weight:bold">void</span>)
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=generator content="Hugo 0.76.0"><title>发布一个寻找局域网内主机的小工具 &#183; Random Stuff from GlacJAY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css><!--[if lte IE 8]><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css><![endif]--><!--[if gt IE 8]><!--><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css><!--<![endif]--><!--[if lte IE 8]><link rel=stylesheet href=/css/side-menu-old-ie.css><![endif]--><!--[if gt IE 8]><!--><link rel=stylesheet href=/css/side-menu.css><!--<![endif]--><link rel=stylesheet href=/css/blackburn.css><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.9.0/css/all.css><link href="https://fonts.googleapis.com/css?family=Raleway"rel=stylesheet type=text/css><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel="shortcut icon"href=https://blog.glacjay.info/img/favicon.ico type=image/x-icon><link rel=stylesheet href=https://blog.glacjay.info/glacjay.css></head><body><div id=layout><a href=#menu id=menuLink class=menu-link><span></span></a><div id=menu><a class="pure-menu-heading brand"href=/>GlacJAY</a><div class=pure-menu><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=/post/><i class="fa fa-list fa-fw"></i>归档</a></li><li class=pure-menu-item><a class=pure-menu-link href=/tags/><i class="fa fa-tags fa-fw"></i>标签</a></li></ul></div><div class="pure-menu social"><ul class=pure-menu-list><li class=pure-menu-item><a class=pure-menu-link href=https://twitter.com/glacjay rel=me target=_blank><i class="fab fa-twitter-square fa-fw"></i>Twitter</a></li><li class=pure-menu-item><a class=pure-menu-link href=https://github.com/glacjay rel=me target=_blank><i class="fab fa-github-square fa-fw"></i>GitHub</a></li></ul></div><div><div class=small-print><small></small></div><div class=small-print><small>Built with&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a></small>
+<small>Theme&nbsp;<a href=https://github.com/yoshiharuyamashita/blackburn target=_blank>Blackburn</a></small></div></div></div><div id=main><div class=header><h1>发布一个寻找局域网内主机的小工具</h1><h2></h2></div><div class=content><div class=post-meta><div><i class="fa fa-calendar fa-fw"></i><time>2011-03-05 22:00</time></div><div><i class="fa fa-tags fa-fw"></i><a class=post-taxonomy-tag href=https://blog.glacjay.info/tags/c++>c++</a>&nbsp;/
+<a class=post-taxonomy-tag href=https://blog.glacjay.info/tags/linux>linux</a></div></div><p>在工作中，经常需要远程登录到机房中的设备上进行调试与开发，走的是工作局域网。由于这些设备的地址也是动态获取的，因此在遇到一些意外事故，如网线松了、网络不稳定之类的，这些地址可能就变了。每当这时，我们就得跑到机房，给设备连上显示器（我们连 KVM 都没有，命苦啊），查看 IP ，然后再跑回去重新连。太麻烦了。</p><p>我知道有支持动态地址的 DNS 服务，可是我们没权限操作 DNS 服务器，而且设备也都是不固定的，没必要惊动网络管理员（好吧，我甚至都不知道谁是网络管理员，作为三年的“老”员工，我面壁去了。好吧，其实我就是想写写程序练练手），所以我就写了个小程序，用来查找一台特定设备的 IP 地址。</p><p>原理其实很简单啦。客户端（也就是我的笔记本）发个 UDP 广播报文，里面有要找的主机的名字。服务端呢，启动时则指定一个主机名字。当服务端收到一个 UDP 广播报文，并且发现找的就是自己呢，就返回一个 <code>bingo</code> 报文。这样，客户端就知道这个主机的 IP 地址啦。</p><p>现在用的服务端口是 <code>5460</code> （取自某本网络小说 :-），应该没有哪个知名服务用这个端口吧。当然，因为这个工具确实太简单了，所以就没有考虑冲突的情况啦。请大家在使用的时候，给主机取个有个性的名字哟。</p><p>我通过这个程序学到的新知识就是，要发送 UDP 的广播报文，只是指定一个全 <code>1</code> 的地址是不够的，还要设置 socket 选项 <code>SO_BROADCAST</code> （我继续面壁去了）。</p><p>下面是代码（好撑篇幅啊，又没人给我稿费的说）：</p><div class=highlight><div style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">112
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">113
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">114
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">115
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">116
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">117
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">118
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">119
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">120
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">121
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">122
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">123
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">124
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">126
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">127
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">128
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">129
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">130
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">131
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">132
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">133
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">134
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">135
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">136
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">137
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">138
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">139
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">140
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">141
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">142
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#099>#include</span> <span style=color:#099>&lt;stdio.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;stdlib.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;errno.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;string.h&gt;</span><span style=color:#099>
+</span><span style=color:#099></span>
+<span style=color:#099>#include</span> <span style=color:#099>&lt;sys/socket.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;netinet/in.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;pthread.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;unistd.h&gt;</span><span style=color:#099>
+</span><span style=color:#099>#include</span> <span style=color:#099>&lt;arpa/inet.h&gt;</span><span style=color:#099>
+</span><span style=color:#099></span>
+<span style=color:#099>#define PORT 5460
+</span><span style=color:#099></span>
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>char</span> <span style=color:#555>*</span>progname;
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>int</span> sock;
+
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>usage</span>(<span style=color:#078;font-weight:700>void</span>)
 {
     fprintf(stderr,
-            <span style="color:#c30">&#34;Usage: %s options</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
-            <span style="color:#c30">&#34;where options must be one of:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
-            <span style="color:#c30">&#34;  -s         Running as a  named server.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
-            <span style="color:#c30">&#34;  -c         Asking for &#39;s address.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
+            <span style=color:#c30>&#34;Usage: %s options</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>
+            <span style=color:#c30>&#34;where options must be one of:</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>
+            <span style=color:#c30>&#34;  -s         Running as a  named server.</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>
+            <span style=color:#c30>&#34;  -c         Asking for &#39;s address.</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>,
             progname);
-    exit(<span style="color:#f60">1</span>);
+    exit(<span style=color:#f60>1</span>);
 }
 
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">udp_socket</span>(<span style="color:#078;font-weight:bold">void</span>)
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>udp_socket</span>(<span style=color:#078;font-weight:700>void</span>)
 {
-    <span style="color:#078;font-weight:bold">int</span> sock <span style="color:#555">=</span> socket(PF_INET, SOCK_DGRAM, <span style="color:#f60">0</span>);
-    <span style="color:#069;font-weight:bold">if</span> (sock <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>) {
-        fprintf(stderr, <span style="color:#c30">&#34;Cannot open a new socket: %s</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, strerror(errno));
-        exit(<span style="color:#f60">1</span>);
+    <span style=color:#078;font-weight:700>int</span> sock <span style=color:#555>=</span> socket(PF_INET, SOCK_DGRAM, <span style=color:#f60>0</span>);
+    <span style=color:#069;font-weight:700>if</span> (sock <span style=color:#555>==</span> <span style=color:#555>-</span><span style=color:#f60>1</span>) {
+        fprintf(stderr, <span style=color:#c30>&#34;Cannot open a new socket: %s</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>, strerror(errno));
+        exit(<span style=color:#f60>1</span>);
     }
-    <span style="color:#069;font-weight:bold">return</span> sock;
+    <span style=color:#069;font-weight:700>return</span> sock;
 }
 
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">server</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name)
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>server</span>(<span style=color:#069;font-weight:700>const</span> <span style=color:#078;font-weight:700>char</span> <span style=color:#555>*</span>name)
 {
-    <span style="color:#069;font-weight:bold">struct</span> sockaddr_in listen_addr;
+    <span style=color:#069;font-weight:700>struct</span> sockaddr_in listen_addr;
 
-    listen_addr.sin_family <span style="color:#555">=</span> AF_INET;
-    listen_addr.sin_addr.s_addr <span style="color:#555">=</span> INADDR_ANY;
-    listen_addr.sin_port <span style="color:#555">=</span> htons(PORT);
+    listen_addr.sin_family <span style=color:#555>=</span> AF_INET;
+    listen_addr.sin_addr.s_addr <span style=color:#555>=</span> INADDR_ANY;
+    listen_addr.sin_port <span style=color:#555>=</span> htons(PORT);
 
-    <span style="color:#069;font-weight:bold">if</span> (bind(sock, (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>listen_addr,
-             <span style="color:#069;font-weight:bold">sizeof</span>(listen_addr)) <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
+    <span style=color:#069;font-weight:700>if</span> (bind(sock, (<span style=color:#069;font-weight:700>struct</span> sockaddr <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>listen_addr,
+             <span style=color:#069;font-weight:700>sizeof</span>(listen_addr)) <span style=color:#555>==</span> <span style=color:#555>-</span><span style=color:#f60>1</span>)
     {
-        fprintf(stderr, <span style="color:#c30">&#34;Cannot bind to the UDP port %d: %s</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
+        fprintf(stderr, <span style=color:#c30>&#34;Cannot bind to the UDP port %d: %s</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>,
                 PORT, strerror(errno));
-        exit(<span style="color:#f60">1</span>);
+        exit(<span style=color:#f60>1</span>);
     }
 
-    <span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">1</span>) {
-        <span style="color:#078;font-weight:bold">char</span> buf[BUFSIZ<span style="color:#555">+</span><span style="color:#f60">1</span>];
-        <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
-        <span style="color:#078;font-weight:bold">int</span> addrlen <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">sizeof</span>(addr);
-        <span style="color:#078;font-weight:bold">int</span> received;
+    <span style=color:#069;font-weight:700>while</span> (<span style=color:#f60>1</span>) {
+        <span style=color:#078;font-weight:700>char</span> buf[BUFSIZ<span style=color:#555>+</span><span style=color:#f60>1</span>];
+        <span style=color:#069;font-weight:700>struct</span> sockaddr_in addr;
+        <span style=color:#078;font-weight:700>int</span> addrlen <span style=color:#555>=</span> <span style=color:#069;font-weight:700>sizeof</span>(addr);
+        <span style=color:#078;font-weight:700>int</span> received;
 
-        received <span style="color:#555">=</span> recvfrom(sock, buf, <span style="color:#069;font-weight:bold">sizeof</span>(buf)<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>,
-                            (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, (socklen_t <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addrlen);
-        <span style="color:#069;font-weight:bold">if</span> (received <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
-            <span style="color:#069;font-weight:bold">continue</span>;
+        received <span style=color:#555>=</span> recvfrom(sock, buf, <span style=color:#069;font-weight:700>sizeof</span>(buf)<span style=color:#555>-</span><span style=color:#f60>1</span>, <span style=color:#f60>0</span>,
+                            (<span style=color:#069;font-weight:700>struct</span> sockaddr <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>addr, (socklen_t <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>addrlen);
+        <span style=color:#069;font-weight:700>if</span> (received <span style=color:#555>==</span> <span style=color:#555>-</span><span style=color:#f60>1</span>)
+            <span style=color:#069;font-weight:700>continue</span>;
 
-        buf[received] <span style="color:#555">=</span> <span style="color:#f60">0</span>;
-        <span style="color:#069;font-weight:bold">if</span> (strcmp(buf, name) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
-            sendto(sock, <span style="color:#c30">&#34;bingo&#34;</span>, <span style="color:#f60">5</span>, <span style="color:#f60">0</span>, (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, addrlen);
+        buf[received] <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+        <span style=color:#069;font-weight:700>if</span> (strcmp(buf, name) <span style=color:#555>==</span> <span style=color:#f60>0</span>)
+            sendto(sock, <span style=color:#c30>&#34;bingo&#34;</span>, <span style=color:#f60>5</span>, <span style=color:#f60>0</span>, (<span style=color:#069;font-weight:700>struct</span> sockaddr <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>addr, addrlen);
     }
 }
 
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span><span style="color:#c0f">waiton_response</span>(<span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span>arg)
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>void</span> <span style=color:#555>*</span><span style=color:#c0f>waiton_response</span>(<span style=color:#078;font-weight:700>void</span> <span style=color:#555>*</span>arg)
 {
-    <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name <span style="color:#555">=</span> (<span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>) arg;
+    <span style=color:#078;font-weight:700>char</span> <span style=color:#555>*</span>name <span style=color:#555>=</span> (<span style=color:#078;font-weight:700>char</span> <span style=color:#555>*</span>) arg;
 
-    <span style="color:#069;font-weight:bold">while</span> (<span style="color:#f60">1</span>) {
-        <span style="color:#078;font-weight:bold">char</span> buf[BUFSIZ<span style="color:#555">+</span><span style="color:#f60">1</span>];
-        <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
-        socklen_t addrlen <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">sizeof</span>(addr);
-        <span style="color:#078;font-weight:bold">int</span> received;
+    <span style=color:#069;font-weight:700>while</span> (<span style=color:#f60>1</span>) {
+        <span style=color:#078;font-weight:700>char</span> buf[BUFSIZ<span style=color:#555>+</span><span style=color:#f60>1</span>];
+        <span style=color:#069;font-weight:700>struct</span> sockaddr_in addr;
+        socklen_t addrlen <span style=color:#555>=</span> <span style=color:#069;font-weight:700>sizeof</span>(addr);
+        <span style=color:#078;font-weight:700>int</span> received;
 
-        received <span style="color:#555">=</span> recvfrom(sock, buf, <span style="color:#069;font-weight:bold">sizeof</span>(buf)<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>,
-                            (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, <span style="color:#555">&amp;</span>addrlen);
-        <span style="color:#069;font-weight:bold">if</span> (received <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
-            <span style="color:#069;font-weight:bold">continue</span>;
-        buf[received] <span style="color:#555">=</span> <span style="color:#f60">0</span>;
-        <span style="color:#069;font-weight:bold">if</span> (strcmp(buf, <span style="color:#c30">&#34;bingo&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>) {
-            printf(<span style="color:#c30">&#34;Got. %s&#39;s address is %s.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>,
+        received <span style=color:#555>=</span> recvfrom(sock, buf, <span style=color:#069;font-weight:700>sizeof</span>(buf)<span style=color:#555>-</span><span style=color:#f60>1</span>, <span style=color:#f60>0</span>,
+                            (<span style=color:#069;font-weight:700>struct</span> sockaddr <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>addr, <span style=color:#555>&amp;</span>addrlen);
+        <span style=color:#069;font-weight:700>if</span> (received <span style=color:#555>==</span> <span style=color:#555>-</span><span style=color:#f60>1</span>)
+            <span style=color:#069;font-weight:700>continue</span>;
+        buf[received] <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+        <span style=color:#069;font-weight:700>if</span> (strcmp(buf, <span style=color:#c30>&#34;bingo&#34;</span>) <span style=color:#555>==</span> <span style=color:#f60>0</span>) {
+            printf(<span style=color:#c30>&#34;Got. %s&#39;s address is %s.</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>,
                    name, inet_ntoa(addr.sin_addr));
-            exit(<span style="color:#f60">0</span>);
+            exit(<span style=color:#f60>0</span>);
         }
     }
 
-    <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">NULL</span>;
+    <span style=color:#069;font-weight:700>return</span> <span style=color:#366>NULL</span>;
 }
 
-<span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">client</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>name)
+<span style=color:#069;font-weight:700>static</span> <span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>client</span>(<span style=color:#069;font-weight:700>const</span> <span style=color:#078;font-weight:700>char</span> <span style=color:#555>*</span>name)
 {
-    <span style="color:#078;font-weight:bold">int</span> bcast <span style="color:#555">=</span> <span style="color:#f60">1</span>;
+    <span style=color:#078;font-weight:700>int</span> bcast <span style=color:#555>=</span> <span style=color:#f60>1</span>;
     pthread_t tid;
     pthread_attr_t attr;
-    <span style="color:#069;font-weight:bold">struct</span> sockaddr_in addr;
-    <span style="color:#078;font-weight:bold">int</span> i;
+    <span style=color:#069;font-weight:700>struct</span> sockaddr_in addr;
+    <span style=color:#078;font-weight:700>int</span> i;
 
-    setsockopt(sock, SOL_SOCKET, SO_BROADCAST, <span style="color:#555">&amp;</span>bcast, <span style="color:#069;font-weight:bold">sizeof</span>(bcast));
+    setsockopt(sock, SOL_SOCKET, SO_BROADCAST, <span style=color:#555>&amp;</span>bcast, <span style=color:#069;font-weight:700>sizeof</span>(bcast));
 
-    pthread_attr_init(<span style="color:#555">&amp;</span>attr);
-    pthread_attr_setdetachstate(<span style="color:#555">&amp;</span>attr, PTHREAD_CREATE_DETACHED);
+    pthread_attr_init(<span style=color:#555>&amp;</span>attr);
+    pthread_attr_setdetachstate(<span style=color:#555>&amp;</span>attr, PTHREAD_CREATE_DETACHED);
 
-    addr.sin_family <span style="color:#555">=</span> AF_INET;
-    addr.sin_addr.s_addr <span style="color:#555">=</span> <span style="color:#f60">0xffffffff</span>;
-    addr.sin_port <span style="color:#555">=</span> htons(PORT);
+    addr.sin_family <span style=color:#555>=</span> AF_INET;
+    addr.sin_addr.s_addr <span style=color:#555>=</span> <span style=color:#f60>0xffffffff</span>;
+    addr.sin_port <span style=color:#555>=</span> htons(PORT);
 
-    <span style="color:#069;font-weight:bold">for</span> (i <span style="color:#555">=</span> <span style="color:#f60">0</span>; i <span style="color:#555">&lt;</span> <span style="color:#f60">6</span>; i<span style="color:#555">++</span>) {
-        printf(<span style="color:#c30">&#34;Searching...</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>);
+    <span style=color:#069;font-weight:700>for</span> (i <span style=color:#555>=</span> <span style=color:#f60>0</span>; i <span style=color:#555>&lt;</span> <span style=color:#f60>6</span>; i<span style=color:#555>++</span>) {
+        printf(<span style=color:#c30>&#34;Searching...</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>);
 
-        sendto(sock, name, strlen(name), <span style="color:#f60">0</span>,
-               (<span style="color:#069;font-weight:bold">struct</span> sockaddr <span style="color:#555">*</span>) <span style="color:#555">&amp;</span>addr, <span style="color:#069;font-weight:bold">sizeof</span>(addr));
-        <span style="color:#069;font-weight:bold">if</span> (i <span style="color:#555">==</span> <span style="color:#f60">0</span>)
-            pthread_create(<span style="color:#555">&amp;</span>tid, <span style="color:#555">&amp;</span>attr, waiton_response, (<span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span>) name);
-        sleep(<span style="color:#f60">5</span>);
+        sendto(sock, name, strlen(name), <span style=color:#f60>0</span>,
+               (<span style=color:#069;font-weight:700>struct</span> sockaddr <span style=color:#555>*</span>) <span style=color:#555>&amp;</span>addr, <span style=color:#069;font-weight:700>sizeof</span>(addr));
+        <span style=color:#069;font-weight:700>if</span> (i <span style=color:#555>==</span> <span style=color:#f60>0</span>)
+            pthread_create(<span style=color:#555>&amp;</span>tid, <span style=color:#555>&amp;</span>attr, waiton_response, (<span style=color:#078;font-weight:700>void</span> <span style=color:#555>*</span>) name);
+        sleep(<span style=color:#f60>5</span>);
     }
 
-    printf(<span style="color:#c30">&#34;Cannot find the machine.</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>);
-    pthread_attr_destroy(<span style="color:#555">&amp;</span>attr);
+    printf(<span style=color:#c30>&#34;Cannot find the machine.</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>);
+    pthread_attr_destroy(<span style=color:#555>&amp;</span>attr);
 }
 
-<span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>(<span style="color:#078;font-weight:bold">int</span> argc, <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">**</span>argv)
+<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>main</span>(<span style=color:#078;font-weight:700>int</span> argc, <span style=color:#078;font-weight:700>char</span> <span style=color:#555>**</span>argv)
 {
-    progname <span style="color:#555">=</span> argv[<span style="color:#f60">0</span>];
-    sock <span style="color:#555">=</span> udp_socket();
+    progname <span style=color:#555>=</span> argv[<span style=color:#f60>0</span>];
+    sock <span style=color:#555>=</span> udp_socket();
 
-    <span style="color:#069;font-weight:bold">if</span> (argc <span style="color:#555">!=</span> <span style="color:#f60">3</span>)
+    <span style=color:#069;font-weight:700>if</span> (argc <span style=color:#555>!=</span> <span style=color:#f60>3</span>)
         usage();
-    <span style="color:#069;font-weight:bold">if</span> (strcmp(argv[<span style="color:#f60">1</span>], <span style="color:#c30">&#34;-s&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
-        server(argv[<span style="color:#f60">2</span>]);
-    <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (strcmp(argv[<span style="color:#f60">1</span>], <span style="color:#c30">&#34;-c&#34;</span>) <span style="color:#555">==</span> <span style="color:#f60">0</span>)
-        client(argv[<span style="color:#f60">2</span>]);
-    <span style="color:#069;font-weight:bold">else</span>
+    <span style=color:#069;font-weight:700>if</span> (strcmp(argv[<span style=color:#f60>1</span>], <span style=color:#c30>&#34;-s&#34;</span>) <span style=color:#555>==</span> <span style=color:#f60>0</span>)
+        server(argv[<span style=color:#f60>2</span>]);
+    <span style=color:#069;font-weight:700>else</span> <span style=color:#069;font-weight:700>if</span> (strcmp(argv[<span style=color:#f60>1</span>], <span style=color:#c30>&#34;-c&#34;</span>) <span style=color:#555>==</span> <span style=color:#f60>0</span>)
+        client(argv[<span style=color:#f60>2</span>]);
+    <span style=color:#069;font-weight:700>else</span>
         usage();
 
-    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+    <span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
 }
-</code></pre></td></tr></table>
-</div>
-</div><p>PS. 最近 gist.github.com 好像不是很给力，用它贴代码的话，不翻墙就看不到，只好直接贴这里了。</p>
-  
-  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
-<ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
-	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
-	</li>
-</ul>
-
-
-<style>
-	ul.share-buttons{
-	  list-style: none;
-	  padding: 0;
-	}
-
-	ul.share-buttons li{
-	  display: inline;
-	}
-
-	ul.share-buttons .sr-only{
-	  position: absolute;
-	  clip: rect(1px 1px 1px 1px);
-	  clip: rect(1px, 1px, 1px, 1px);
-	  padding: 0;
-	  border: 0;
-	  height: 1px;
-	  width: 1px;
-	  overflow: hidden;
-	}
-</style>
-
-
-  
-<div class="prev-next-post pure-g">
-  <div class="pure-u-1-24" style="text-align: left;">
-    
-    <a href="https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/"><i class="fa fa-chevron-left"></i></a>
-    
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="prev">
-      <a href="https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/">Linux 下有关环境变量与换行符的一个小问题</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-2-24">
-    &nbsp;
-  </div>
-  <div class="pure-u-10-24">
-    
-    <nav class="next">
-      <a href="https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/">总结一下学到的 LVS 相关知识（ NAT 模式）</a>
-    </nav>
-    
-  </div>
-  <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/"><i class="fa fa-chevron-right"></i></a>
-    
-  </div>
-</div>
-
-
-
-  
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-
-(function() {
-    
-    
-    if (window.location.hostname == "localhost")
-        return;
-
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    var disqus_shortname = 'glacjay';
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-</div>
-
-</div>
-</div>
-<script src="https://blog.glacjay.info/js/ui.js"></script>
-<script src="https://blog.glacjay.info/js/menus.js"></script>
-
-
-
-
-
-
-<script src="/js/math-code.js"></script>
-  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  
-
-
-</body>
-</html>
-
+</code></pre></td></tr></table></div></div><p>PS. 最近 gist.github.com 好像不是很给力，用它贴代码的话，不翻墙就看不到，只好直接贴这里了。</p><h4><i class=fa-share-alt aria-hidden=true></i>&nbsp;Share!</h4><ul class=share-buttons><li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f"target=_blank title="Share on Facebook"><i class=fa-facebook aria-hidden=true></i><span class=sr-only>Share on Facebook</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f&via=HorribleGeek"target=_blank title=Tweet><i class=fa-twitter aria-hidden=true></i><span class=sr-only>Tweet</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="https://plus.google.com/share?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f"target=_blank title="Share on Google+"><i class=fa-google-plus aria-hidden=true></i><span class=sr-only>Share on Google+</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f"target=_blank title="Post to Tumblr"><i class=fa-tumblr aria-hidden=true></i><span class=sr-only>Post to Tumblr</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f"target=_blank title="Pin it"><i class=fa-pinterest-p aria-hidden=true></i><span class=sr-only>Pin it</span></a></li>&nbsp;&nbsp;&nbsp;<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fblog.glacjay.info%2fpost%2f2011-03-05%2f%25E5%258F%2591%25E5%25B8%2583%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AF%25BB%25E6%2589%25BE%25E5%25B1%2580%25E5%259F%259F%25E7%25BD%2591%25E5%2586%2585%25E4%25B8%25BB%25E6%259C%25BA%25E7%259A%2584%25E5%25B0%258F%25E5%25B7%25A5%25E5%2585%25B7%2f"target=_blank title="Submit to Reddit"><i class=fa-reddit-alien aria-hidden=true></i><span class=sr-only>Submit to Reddit</span></a></li></ul><style>ul.share-buttons{list-style:none;padding:0}ul.share-buttons li{display:inline}ul.share-buttons .sr-only{position:absolute;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}</style><div class="prev-next-post pure-g"><div class=pure-u-1-24 style=text-align:left><a href=https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/><i class="fa fa-chevron-left"></i></a></div><div class=pure-u-10-24><nav class=prev><a href=https://blog.glacjay.info/post/2011-03-05/linux-%E4%B8%8B%E6%9C%89%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%AC%A6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98/>Linux 下有关环境变量与换行符的一个小问题</a></nav></div><div class=pure-u-2-24>&nbsp;</div><div class=pure-u-10-24><nav class=next><a href=https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/>总结一下学到的 LVS 相关知识（ NAT 模式）</a></nav></div><div class=pure-u-1-24 style=text-align:right><a href=https://blog.glacjay.info/post/2011-03-12/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%AD%A6%E5%88%B0%E7%9A%84-lvs-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86-nat-%E6%A8%A1%E5%BC%8F/><i class="fa fa-chevron-right"></i></a></div></div><div id=disqus_thread></div><script type=text/javascript>!function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='glacjay',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)}()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><script src=https://blog.glacjay.info/js/ui.js></script><script src=https://blog.glacjay.info/js/menus.js></script><script src=/js/math-code.js></script><script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>

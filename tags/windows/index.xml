@@ -1,73 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>windows on Random Stuff from GlacJAY</title>
-    <link>https://blog.glacjay.info/tags/windows/</link>
-    <description>Recent content in windows on Random Stuff from GlacJAY</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Thu, 05 Apr 2018 16:25:07 +0800</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/windows/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>cmder 颜色配置</title>
-      <link>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Thu, 05 Apr 2018 16:25:07 +0800</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</guid>
-      <description>&lt;p&gt;工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 &lt;a href=&#34;http://cmder.net&#34;&gt;cmder&lt;/a&gt;，一个非常好用的 Windows 终端环境。&lt;/p&gt;
-&lt;p&gt;PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵~~，当然最重要的是 Windows 上游戏多啊😂~~。&lt;/p&gt;
-&lt;p&gt;跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。&lt;/p&gt;
-&lt;p&gt;PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 &lt;a href=&#34;http://scoop.sh&#34;&gt;scoop&lt;/a&gt;，虽然没有 &lt;a href=&#34;https://chocolatey.org&#34;&gt;Chocoletey&lt;/a&gt; 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。&lt;/p&gt;
-&lt;p&gt;emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.js 时总会有些输出的前景色跟背景色一样导致有些字符显示不出来了😂：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.glacjay.info/img/2018-04-05/cmder-initial.png#center&#34; alt=&#34;初始的 Tomorrow 配色&#34;&gt;&lt;/p&gt;
-&lt;p&gt;从上图可以看出（其实我也是过了一段时间才注意到的😂，因为记得我一开始遇到这个问题的时候，还没有这个显眼的背影色来着，也不记得当时用的是啥配色了😂），画红圈的地方就有字符没能正常显示出来。&lt;/p&gt;
-&lt;p&gt;经过摸索，只要按照下图中的配置就可以把这个颜色问题给修正过来了：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.glacjay.info/img/2018-04-05/cmder-settings.png#center&#34; alt=&#34;相关的 cmder 配置项&#34;&gt;&lt;/p&gt;
-&lt;p&gt;下面是最终效果图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://blog.glacjay.info/img/2018-04-05/cmder-final.png#center&#34; alt=&#34;最终效果图&#34;&gt;&lt;/p&gt;
-&lt;p&gt;嘛，虽然原来的背景色没了，不过至少能看了不是😂&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>VS2010 环境中调试 IE ActiveX 控制时断点不起作用的问题</title>
-      <link>https://blog.glacjay.info/post/2014-06-18/vs2010-%E7%8E%AF%E5%A2%83%E4%B8%AD%E8%B0%83%E8%AF%95-ie-activex-%E6%8E%A7%E5%88%B6%E6%97%B6%E6%96%AD%E7%82%B9%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Wed, 18 Jun 2014 22:29:01 +0800</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2014-06-18/vs2010-%E7%8E%AF%E5%A2%83%E4%B8%AD%E8%B0%83%E8%AF%95-ie-activex-%E6%8E%A7%E5%88%B6%E6%97%B6%E6%96%AD%E7%82%B9%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;又是惯例的长了好长时间的草，今天先来篇短的。&lt;/p&gt;
-&lt;p&gt;工作需要，在使用 VS2010 开发调试 IE ActiveX 插件时，默认条件下下的断点不起作用，这是因为选错了调试器，在工程属性 - Debugging 中的 Debugger to launch 项，选择 Web Browser Debugger ，然后在 HTTP URL 项填本地 HTML 文件的绝对路径，以 file:/// 打头就可以了。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>OpenSSL 与 WinSock2 配合使用时遇到的一个坑</title>
-      <link>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link>
-      <pubDate>Sat, 29 Mar 2014 23:06:38 +0800</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid>
-      <description>&lt;p&gt;今天才发现，这里已经两年多没有被照看过了，估计连树都要长出来了吧。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;在用 Windows 的 WSAEventSelect 模式进行网络编程时，比较固定的一个模式是这样的：&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用 Python 操作虚拟网卡</title>
-      <link>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</link>
-      <pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid>
-      <description>&lt;p&gt;在我的 &lt;a href=&#34;https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/&#34;&gt;XTunnel&lt;/a&gt; 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p&gt;
-&lt;p&gt;在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code&gt;TUN/TAP&lt;/code&gt; 虚拟网卡的驱动程序，看一下有没有 &lt;code&gt;/dev/net/tun&lt;/code&gt; 这个文件就可以知道了。如果没有，就执行一下 &lt;code&gt;sudo modprobe tun&lt;/code&gt; 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>使用 Visual Studio 2008 为 Windows CE 开发编译 OpenSSL</title>
-      <link>https://blog.glacjay.info/post/2009-12-05/%E4%BD%BF%E7%94%A8-visual-studio-2008-%E4%B8%BA-windows-ce-%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91-openssl/</link>
-      <pubDate>Sat, 05 Dec 2009 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.glacjay.info/post/2009-12-05/%E4%BD%BF%E7%94%A8-visual-studio-2008-%E4%B8%BA-windows-ce-%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91-openssl/</guid>
-      <description>&lt;p&gt;我的编译环境是 Visual Studio Team System 2008 版本 9.0.21022.8 RTM ， Windows Mobile 5.0 SDK R2 （ VS2008 自带的版本）。当然， Perl 也是需要的，我装的是 ActivePerl 。我要编译的 OpenSSL 版本是 0.9.8e 。&lt;/p&gt;
-&lt;h2 id=&#34;vs2008-的安装&#34;&gt;VS2008 的安装&lt;/h2&gt;
-&lt;p&gt;那个 Web Developer Tools （好像叫这个）的安装会失败，又不能不装，根据网上的说明，要把它的目录单独从光盘上解压出来安装，且安装的时候要挂 Office 的安装光盘（我的 Office 版本是 2007 ）。这个装好了之后，再从光盘上安装 VS2008 就没有问题了。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>windows on Random Stuff from GlacJAY</title><link>https://blog.glacjay.info/tags/windows/</link><description>Recent content in windows on Random Stuff from GlacJAY</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 05 Apr 2018 16:25:07 +0800</lastBuildDate><atom:link href="https://blog.glacjay.info/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>cmder 颜色配置</title><link>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</link><pubDate>Thu, 05 Apr 2018 16:25:07 +0800</pubDate><guid>https://blog.glacjay.info/post/2018-04-05/cmder-%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE/</guid><description>&lt;p>工作需要，现在在用 Windows 10 作为主力开发系统，然后根据以往使用 Linux 和 macOS 的经验，一个好用的终端还是必不可少的，然后就找到了 &lt;a href="http://cmder.net">cmder&lt;/a>，一个非常好用的 Windows 终端环境。&lt;/p>
+&lt;p>PS. 其实倒也不全是因为工作需要啦，现在的 Windows 10 也已经挺好用的了，现在老了也懒得折腾 Linux 桌面了，苹果的电脑还是那么的贵~~，当然最重要的是 Windows 上游戏多啊😂~~。&lt;/p>
+&lt;p>跟 msys2 这种在 Windows 系统中模拟 Linux 环境的工具不同，cmder 的定位是 Windows 自带 cmd 窗口的替代品。现在有很多命令行工具，如 git、node.js 等，都专门针对 Windows 系统进行了优化，而这样的优化版本是需要在 Windows 自己的 cmd.exe 环境下才能正常运行的，这时一个像 cmder 这样的 cmd.exe 增强工具就很有必要了。至于在 msys2 中通过 pacman 安装的版本，特别是 node.js，实际使用中总会有这样那样的问题，大概还是 unix 版在 Windows 下的水土不服吧。&lt;/p>
+&lt;p>PS. 有了好用的终端，当然还少不了好用的软件包管理器啦，特别是对 Windows 这种并不原生对命令行特别友好的系统来说，能有个管理器帮忙安装和升级命令行工具的话会方便很多。我自己选用的是 &lt;a href="http://scoop.sh">scoop&lt;/a>，虽然没有 &lt;a href="https://chocolatey.org">Chocoletey&lt;/a> 那么流行和那么多的软件包数量，但胜在可以方便的定制安装位置（Chocolatey 要定制貌似得用收费版才行），对我来说已经够用了。&lt;/p>
+&lt;p>emmm 进入正题……之前没在 Windows 下搞过 node.js 开发的时候还不知道，原来 Windows 的 cmd.exe 也是支持彩色输出的，而且颜色还挺多😂。这时遇到的一个问题就是，在 cmder 下用 node.js 时总会有些输出的前景色跟背景色一样导致有些字符显示不出来了😂：&lt;/p>
+&lt;p>&lt;img src="https://blog.glacjay.info/img/2018-04-05/cmder-initial.png#center" alt="初始的 Tomorrow 配色">&lt;/p>
+&lt;p>从上图可以看出（其实我也是过了一段时间才注意到的😂，因为记得我一开始遇到这个问题的时候，还没有这个显眼的背影色来着，也不记得当时用的是啥配色了😂），画红圈的地方就有字符没能正常显示出来。&lt;/p>
+&lt;p>经过摸索，只要按照下图中的配置就可以把这个颜色问题给修正过来了：&lt;/p>
+&lt;p>&lt;img src="https://blog.glacjay.info/img/2018-04-05/cmder-settings.png#center" alt="相关的 cmder 配置项">&lt;/p>
+&lt;p>下面是最终效果图：&lt;/p>
+&lt;p>&lt;img src="https://blog.glacjay.info/img/2018-04-05/cmder-final.png#center" alt="最终效果图">&lt;/p>
+&lt;p>嘛，虽然原来的背景色没了，不过至少能看了不是😂&lt;/p></description></item><item><title>VS2010 环境中调试 IE ActiveX 控制时断点不起作用的问题</title><link>https://blog.glacjay.info/post/2014-06-18/vs2010-%E7%8E%AF%E5%A2%83%E4%B8%AD%E8%B0%83%E8%AF%95-ie-activex-%E6%8E%A7%E5%88%B6%E6%97%B6%E6%96%AD%E7%82%B9%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Wed, 18 Jun 2014 22:29:01 +0800</pubDate><guid>https://blog.glacjay.info/post/2014-06-18/vs2010-%E7%8E%AF%E5%A2%83%E4%B8%AD%E8%B0%83%E8%AF%95-ie-activex-%E6%8E%A7%E5%88%B6%E6%97%B6%E6%96%AD%E7%82%B9%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>又是惯例的长了好长时间的草，今天先来篇短的。&lt;/p>
+&lt;p>工作需要，在使用 VS2010 开发调试 IE ActiveX 插件时，默认条件下下的断点不起作用，这是因为选错了调试器，在工程属性 - Debugging 中的 Debugger to launch 项，选择 Web Browser Debugger ，然后在 HTTP URL 项填本地 HTML 文件的绝对路径，以 file:/// 打头就可以了。&lt;/p></description></item><item><title>OpenSSL 与 WinSock2 配合使用时遇到的一个坑</title><link>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link><pubDate>Sat, 29 Mar 2014 23:06:38 +0800</pubDate><guid>https://blog.glacjay.info/post/2014-03-29/openssl-%E4%B8%8E-winsock2-%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid><description>&lt;p>今天才发现，这里已经两年多没有被照看过了，估计连树都要长出来了吧。&lt;/p>
+&lt;hr>
+&lt;p>在用 Windows 的 WSAEventSelect 模式进行网络编程时，比较固定的一个模式是这样的：&lt;/p></description></item><item><title>用 Python 操作虚拟网卡</title><link>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</link><pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate><guid>https://blog.glacjay.info/post/2010-09-18/%E7%94%A8-python-%E6%93%8D%E4%BD%9C%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/</guid><description>&lt;p>在我的 &lt;a href="https://blog.glacjay.info/post/2009-12-19/%E5%88%A9%E7%94%A8-xmpp-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0-vpn/">XTunnel&lt;/a> 项目中，已经用 Python 作过这种相对底层的工作了（这说明 Python 果然还是非常强大的，上下层通吃啊），不过那边目前还是只实现了 Linux 的版本。后来我又陆陆续续地把 Windows 以及 Mac 下的操作方法给搞通了，今天就来总结一下。&lt;/p>
+&lt;p>在 Linux 内核中，特别是在现在的发行版中，应该都已经有了 &lt;code>TUN/TAP&lt;/code> 虚拟网卡的驱动程序，看一下有没有 &lt;code>/dev/net/tun&lt;/code> 这个文件就可以知道了。如果没有，就执行一下 &lt;code>sudo modprobe tun&lt;/code> 这个命令吧。如果还是没有，那就 Google 之吧。下面上代码：&lt;/p></description></item><item><title>使用 Visual Studio 2008 为 Windows CE 开发编译 OpenSSL</title><link>https://blog.glacjay.info/post/2009-12-05/%E4%BD%BF%E7%94%A8-visual-studio-2008-%E4%B8%BA-windows-ce-%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91-openssl/</link><pubDate>Sat, 05 Dec 2009 00:00:00 +0000</pubDate><guid>https://blog.glacjay.info/post/2009-12-05/%E4%BD%BF%E7%94%A8-visual-studio-2008-%E4%B8%BA-windows-ce-%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91-openssl/</guid><description>&lt;p>我的编译环境是 Visual Studio Team System 2008 版本 9.0.21022.8 RTM ， Windows Mobile 5.0 SDK R2 （ VS2008 自带的版本）。当然， Perl 也是需要的，我装的是 ActivePerl 。我要编译的 OpenSSL 版本是 0.9.8e 。&lt;/p>
+&lt;h2 id="vs2008-的安装">VS2008 的安装&lt;/h2>
+&lt;p>那个 Web Developer Tools （好像叫这个）的安装会失败，又不能不装，根据网上的说明，要把它的目录单独从光盘上解压出来安装，且安装的时候要挂 Office 的安装光盘（我的 Office 版本是 2007 ）。这个装好了之后，再从光盘上安装 VS2008 就没有问题了。&lt;/p></description></item></channel></rss>
